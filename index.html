@@ -808,6 +808,54 @@ body.hacked{overflow:hidden}
 #hintX{flex:0 0 auto;background:none;border:0;color:var(--dim);font-size:15px;cursor:pointer;line-height:1;padding:2px 4px}
 @media(max-width:900px){#hintToast{right:12px;left:12px;width:auto;bottom:84px}}
 @media (prefers-reduced-motion: reduce){#hintToast{transition:none}.hh-cur{animation:none}}
+
+/* ---------- ask TRB chat ---------- */
+.ask-fab{position:fixed;right:22px;bottom:22px;z-index:139;width:58px;height:58px;border-radius:50%;border:1px solid color-mix(in srgb,var(--or) 55%,transparent);background:linear-gradient(145deg,var(--grad-a),var(--grad-b));color:#180e06;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 14px 34px -10px color-mix(in srgb,var(--or) 60%,transparent),0 4px 14px rgba(0,0,0,.5);transition:transform .3s,opacity .3s;animation:askFloat 3.8s ease-in-out infinite}
+.ask-fab:hover{transform:translateY(-2px) scale(1.05)}
+.ask-fab svg{width:27px;height:27px}
+.ask-fab::before{content:"";position:absolute;inset:-6px;border-radius:50%;border:1.5px solid color-mix(in srgb,var(--or) 45%,transparent);animation:askRing 2.6s ease-out infinite;pointer-events:none}
+.ask-dot{position:absolute;top:2px;right:3px;width:11px;height:11px;border-radius:50%;background:#2bff7d;border:2px solid #0a0b10;animation:bootDot 1.7s steps(2) infinite}
+@keyframes askFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+@keyframes askRing{0%{transform:scale(.8);opacity:.9}70%{opacity:0}100%{transform:scale(1.3);opacity:0}}
+body.ask-open .ask-fab{transform:scale(0);opacity:0;pointer-events:none;animation:none}
+#toTop{bottom:96px}
+@media(max-width:900px){.ask-fab{right:14px;bottom:84px;width:54px;height:54px}#toTop{bottom:152px;right:14px}}
+.ask-teaser{position:fixed;right:94px;bottom:40px;z-index:138;background:rgba(11,12,17,.96);border:1px solid var(--line-2);border-radius:12px 12px 3px 12px;padding:9px 13px;font-size:12.5px;color:var(--txt);box-shadow:0 16px 36px -14px rgba(0,0,0,.85);opacity:0;visibility:hidden;transform:translateX(8px);transition:opacity .35s,transform .35s,visibility .35s;max-width:62vw}
+.ask-teaser.show{opacity:1;visibility:visible;transform:none}
+@media(max-width:900px){.ask-teaser{right:80px;bottom:102px}}
+.ask-panel{position:fixed;right:22px;bottom:96px;z-index:140;width:min(384px,92vw);height:min(568px,74vh);display:flex;flex-direction:column;background:#0b0c11;border:1px solid var(--line-2);border-radius:20px;overflow:hidden;box-shadow:0 34px 80px -24px rgba(0,0,0,.92);opacity:0;visibility:hidden;transform-origin:100% 100%;transform:translateY(18px) scale(.94);transition:opacity .3s,transform .38s cubic-bezier(.25,1.12,.35,1),visibility .3s}
+body.ask-open .ask-panel{opacity:1;visibility:visible;transform:none}
+@media(max-width:700px){.ask-panel{left:10px;right:10px;bottom:10px;width:auto;height:min(72dvh,620px);border-radius:22px;transform-origin:50% 100%}}
+.ask-head{display:flex;align-items:center;gap:12px;padding:14px 16px;background:linear-gradient(180deg,color-mix(in srgb,var(--or) 13%,#0b0c11),#0b0c11);border-bottom:1px solid var(--line)}
+.ask-ava{width:42px;height:42px;border-radius:50%;padding:2px;background:linear-gradient(140deg,var(--grad-a),var(--grad-b));flex:none}
+.ask-ava img{width:100%;height:100%;border-radius:50%;background:#0b0c11;object-fit:cover;display:block}
+.ask-head h4{font-family:var(--disp);font-size:15.5px}
+.ask-head p{font-size:11px;color:var(--muted);display:flex;align-items:center;gap:6px;margin-top:2px}
+.ask-live{width:7px;height:7px;border-radius:50%;background:#2bff7d;animation:bootDot 1.7s steps(2) infinite;flex:none}
+.ask-x{margin-left:auto;width:34px;height:34px;border-radius:50%;border:1px solid var(--line);background:rgba(255,255,255,.03);color:var(--muted);font-size:18px;cursor:pointer;line-height:1;flex:none}
+.ask-x:hover{color:#fff;border-color:var(--or)}
+.ask-msgs{flex:1;overflow-y:auto;padding:16px 14px 8px;display:flex;flex-direction:column;gap:10px;scrollbar-width:thin}
+.ask-msg{max-width:84%;padding:10px 13px;border-radius:16px;font-size:13.5px;line-height:1.58;animation:askIn .35s cubic-bezier(.2,.9,.3,1) both;white-space:pre-wrap;word-break:break-word}
+@keyframes askIn{from{opacity:0;transform:translateY(10px) scale(.97)}to{opacity:1;transform:none}}
+.ask-msg.bot{align-self:flex-start;background:rgba(255,255,255,.055);border:1px solid var(--line);border-bottom-left-radius:5px;color:var(--txt)}
+.ask-msg.me{align-self:flex-end;background:linear-gradient(135deg,var(--grad-a),var(--grad-b));color:#180e06;border-bottom-right-radius:5px;font-weight:550}
+.ask-acts{display:flex;flex-wrap:wrap;gap:7px;margin-top:9px}
+.ask-act{font-size:11.5px;font-family:var(--mono);letter-spacing:.04em;padding:6px 11px;border-radius:99px;border:1px solid color-mix(in srgb,var(--or) 60%,transparent);color:var(--or-2);text-decoration:none;background:color-mix(in srgb,var(--or) 8%,transparent);cursor:pointer;transition:background .25s,color .25s}
+.ask-act:hover{background:var(--or);color:#180e06}
+.ask-type{align-self:flex-start;display:flex;gap:5px;padding:13px 14px;background:rgba(255,255,255,.055);border:1px solid var(--line);border-radius:16px;border-bottom-left-radius:5px;animation:askIn .3s both}
+.ask-type i{width:7px;height:7px;border-radius:50%;background:var(--or-2);animation:askBounce 1.1s ease-in-out infinite}
+.ask-type i:nth-child(2){animation-delay:.15s}.ask-type i:nth-child(3){animation-delay:.3s}
+@keyframes askBounce{0%,60%,100%{transform:translateY(0);opacity:.45}30%{transform:translateY(-5px);opacity:1}}
+.ask-chips{display:flex;gap:7px;padding:8px 12px 4px;overflow-x:auto;scrollbar-width:none}
+.ask-chips::-webkit-scrollbar{display:none}
+.ask-chip{flex:none;font-family:var(--mono);font-size:11px;letter-spacing:.04em;padding:7px 12px;border-radius:99px;border:1px solid var(--line);background:rgba(255,255,255,.03);color:var(--muted);cursor:pointer;transition:border-color .25s,color .25s;animation:askIn .45s both}
+.ask-chip:hover{border-color:var(--or);color:var(--or-2)}
+.ask-form{display:flex;gap:8px;padding:10px 12px 13px;border-top:1px solid var(--line)}
+.ask-in{flex:1;background:rgba(255,255,255,.045);border:1px solid var(--line);border-radius:13px;padding:11px 13px;color:var(--txt);font-size:16px;font-family:inherit;outline:none;min-width:0}
+.ask-in:focus{border-color:var(--or)}
+.ask-send{flex:none;width:44px;border-radius:13px;border:none;background:linear-gradient(135deg,var(--grad-a),var(--grad-b));color:#180e06;font-size:17px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:transform .2s}
+.ask-send:active{transform:scale(.92)}
+@media (prefers-reduced-motion: reduce){.ask-fab,.ask-fab::before,.ask-msg,.ask-chip,.ask-type,.ask-type i{animation:none}}
 </style>
 </head>
 <body id="top">
@@ -1419,6 +1467,8 @@ body.hacked{overflow:hidden}
       <button type="button" class="gt-chip" data-cmd="stack">stack</button>
       <button type="button" class="gt-chip" data-cmd="work">work</button>
       <button type="button" class="gt-chip" data-cmd="contact">contact</button>
+      <button type="button" class="gt-chip" data-cmd="theme list">theme list</button>
+      <button type="button" class="gt-chip" data-cmd="hack">hack</button>
       <button type="button" class="gt-chip" data-cmd="hire-us">hire-us</button>
     </div>
   </section>
@@ -1614,6 +1664,25 @@ body.hacked{overflow:hidden}
   <div id="hintToast" role="status">
     <span>psst — this site has <b>secrets</b>: a terminal, 6 themes, an x-ray mode. Press <b>Ctrl+K</b> or tap <b>&#8984; Menu</b>.</span>
     <button type="button" id="hintX" aria-label="Dismiss hint">&times;</button>
+  </div>
+
+  <button type="button" class="ask-fab" id="askFab" aria-label="Chat with The Raw Bros">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-8.5 8.5 8.5 8.5 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 8.5-8.5 8.38 8.38 0 0 1 8.5 8.5z"/></svg>
+    <span class="ask-dot"></span>
+  </button>
+  <div class="ask-teaser" id="askTeaser">Questions? Ask me — I reply instantly.</div>
+  <div class="ask-panel" id="askPanel" role="dialog" aria-label="Ask The Raw Bros" aria-hidden="true">
+    <div class="ask-head">
+      <span class="ask-ava"><img src="img/logo-icon.PNG" alt=""></span>
+      <div><h4>Ask TRB</h4><p><span class="ask-live"></span> online — replies instantly</p></div>
+      <button type="button" class="ask-x" id="askClose" aria-label="Close chat">&times;</button>
+    </div>
+    <div class="ask-msgs" id="askMsgs"></div>
+    <div class="ask-chips" id="askChips"></div>
+    <form class="ask-form" id="askForm">
+      <input class="ask-in" id="askIn" type="text" placeholder="Ask about pricing, timelines…" autocomplete="off" aria-label="Type your question">
+      <button class="ask-send" type="submit" aria-label="Send">&#10148;</button>
+    </form>
   </div>
 </div>
 
@@ -1987,8 +2056,10 @@ if (gtEl) {
         '  contact    — email & WhatsApp',
         '  goto <sec> — jump: stack, services, team, work, faq, contact',
         '  hire-us    — start your project',
+        '  theme      — 6 site themes ("theme list")',
+        '  ask        — chat with our assistant',
         '  clear      — wipe the screen',
-        { t: "Psst — try 'sudo make me a website'.", c: 'o-dim' }
+        { t: "Psst — hidden ones: 'hack', 'coffee', 'ping', 'sudo make me a website'.", c: 'o-dim' }
       ]);
     },
     about: function () {
@@ -2228,6 +2299,7 @@ var PAL = [
     } },
   { t: 'Toggle X-Ray mode', c: 'action', k: 'xray x-ray inspect wireframe markup skeleton', run: function () { window.toggleXray(); } },
   { t: 'Visit Zuberee — live project', c: 'link', k: 'zuberee work project store live', run: function () { window.open('https://zuberee.com/', '_blank', 'noopener'); } },
+  { t: 'Ask TRB — chat', c: 'action', k: 'chat ask question assistant ai help message', run: function () { if (window.openAsk) window.openAsk(); } },
   { t: 'Cycle site theme (6)', c: 'action', k: 'theme matrix green hacker color dark', run: function () { if (window.__cycleTheme) window.__cycleTheme(); } },
   { t: 'Fake-hack the site (fun)', c: 'action', k: 'hack fun easter egg glitch breach', run: function () { if (window.__fakeHack) window.__fakeHack(); } },
   { t: 'Take the project quiz', c: 'action', k: 'quiz finder wizard which package', run: function () { palGoto('quiz'); } },
@@ -2538,7 +2610,7 @@ function xrShow(el) {
 function xrFromEvent(e) {
   if (!document.body.classList.contains('xray')) return;
   var el = document.elementFromPoint(e.clientX, e.clientY);
-  if (el && !el.closest('#xrayBar,#xrayInfo,.pal,#hintToast,#hackFx')) xrShow(el);
+  if (el && !el.closest('#xrayBar,#xrayInfo,.pal,#hintToast,#hackFx,#askFab,#askPanel')) xrShow(el);
 }
 document.addEventListener('pointermove', xrFromEvent, { passive: true });
 document.addEventListener('pointerdown', xrFromEvent, { passive: true });
@@ -2559,6 +2631,199 @@ if (hintToast) {
     if (hx) hx.addEventListener('click', hideHint);
   }
 }
+
+/* ---------- ask TRB: smart chat ---------- */
+(function () {
+  var fab = document.getElementById('askFab'), panel = document.getElementById('askPanel'),
+      msgs = document.getElementById('askMsgs'), form = document.getElementById('askForm'),
+      input = document.getElementById('askIn'), chipsBox = document.getElementById('askChips'),
+      teaser = document.getElementById('askTeaser');
+  if (!fab || !panel || !msgs || !form) return;
+  var WA = 'https://wa.me/fr1skyfox1?text=';
+  var opened = false, busy = false;
+
+  var RULES = [
+    { r: /price|pricing|cost|quote|budget|charge|\brate\b|দাম|খরচ|টাকা লাগ|dam koto|koto lag/i,
+      en: "Pricing depends on scope — pages, features and integrations. Send the 1-minute brief and you get a fixed, written quote before any work starts. No hidden costs, no surprises.",
+      bn: "দাম নির্ভর করে কাজের পরিধির উপর — পেজ, ফিচার আর ইন্টিগ্রেশন অনুযায়ী। ১ মিনিটের brief টা পাঠালেই কাজ শুরুর আগে লিখিতভাবে নির্দিষ্ট quote পাবেন। কোনো hidden cost নেই।",
+      acts: [{ t: '1-min brief →', g: 'contact' }, { t: 'WhatsApp', w: 'Hi The Raw Bros! I want a quote for a website.' }] },
+    { r: /how long|timeline|deadline|\bdays?\b|weeks|deliver|duration|কয়দিন|কতদিন|সময় লাগ|koydin|koy din|kotodin/i,
+      en: "A landing page can ship in days; a full e-commerce store or web app usually takes a few weeks. Your quote always includes a clear timeline — and we share progress as we build.",
+      bn: "ল্যান্ডিং পেজ কয়েক দিনেই হয়ে যায়; পূর্ণাঙ্গ স্টোর বা ওয়েব অ্যাপে সাধারণত কয়েক সপ্তাহ লাগে। quote-এর সাথেই পরিষ্কার timeline পাবেন — কাজের অগ্রগতিও নিয়মিত জানানো হয়।",
+      acts: [{ t: '1-min brief →', g: 'contact' }] },
+    { r: /service|what do you (do|build|make)|offer|provide|কি কি (কাজ|পারো|সার্ভিস)|ki ki|store|shop|e-?commerce|web ?app|website ban/i,
+      en: "We design and build, end to end:\n01 Frontend — the face of your product\n02 Backend — the engine room\n03 UI/UX design — clarity first\n04 Deploy & maintain\nBusiness websites, e-commerce stores and web apps.",
+      bn: "আমরা শুরু থেকে শেষ পর্যন্ত বানাই:\n01 Frontend — প্রোডাক্টের চেহারা\n02 Backend — ইঞ্জিন রুম\n03 UI/UX Design\n04 Deploy & Maintain\nবিজনেস ওয়েবসাইট, ই-কমার্স স্টোর আর ওয়েব অ্যাপ।",
+      acts: [{ t: 'See services →', g: 'services' }] },
+    { r: /portfolio|sample|example|previous work|zuberee|কাজ দেখ|পোর্টফোলিও|\bwork\b/i,
+      en: "Recent build: Zuberee — a full e-commerce platform for a Dhaka fashion store. Storefront, admin panel, orders, payments — the whole engine, hand-built.",
+      bn: "সাম্প্রতিক কাজ: Zuberee — ঢাকার একটি ফ্যাশন স্টোরের পূর্ণ ই-কমার্স প্ল্যাটফর্ম। স্টোরফ্রন্ট, admin panel, অর্ডার, পেমেন্ট — পুরোটাই হাতে বানানো।",
+      acts: [{ t: 'See the work →', g: 'projects' }] },
+    { r: /contact|whatsapp|phone|number|e-?mail|\bcall\b|reach|নম্বর|নাম্বার|যোগাযোগ|ইমেইল/i,
+      en: "Fastest is WhatsApp — we reply within 24 hours. Email works too: hello.therawbros@gmail.com",
+      bn: "সবচেয়ে দ্রুত মাধ্যম WhatsApp — ২৪ ঘণ্টার মধ্যে উত্তর দিই। ইমেইলেও পাবেন: hello.therawbros@gmail.com",
+      acts: [{ t: 'WhatsApp', w: 'Hi The Raw Bros!' }, { t: 'Email us', m: 1 }] },
+    { r: /team|who are you|anondo|nahid|founder|owner|কারা|তোমরা কারা|members/i,
+      en: "The Raw Bros is Gm Anondo & Younus Ali Nahid — a two-dev studio from Dhaka. Design, build, deploy: the people you talk to are the people who ship your site.",
+      bn: "The Raw Bros মানে Gm Anondo ও Younus Ali Nahid — ঢাকার ছোট্ট ডেভ স্টুডিও। ডিজাইন, বিল্ড, ডিপ্লয় — যাদের সাথে কথা বলবেন, তারাই আপনার সাইট বানাবেন।",
+      acts: [{ t: 'Meet the team →', g: 'team' }] },
+    { r: /wordpress|template|wix|shopify|page ?builder|technology|\bstack\b|react|টেমপ্লেট/i,
+      en: "No templates and no page builders — everything we ship is 100% custom code (React / Next.js, Node, PostgreSQL…). Faster load times, better security, and a site that grows with you.",
+      bn: "কোনো টেমপ্লেট বা page builder না — আমরা যা বানাই সব ১০০% কাস্টম কোড (React / Next.js, Node, PostgreSQL…)। ফলে স্পিড বেশি, নিরাপত্তা ভালো, আর সাইট ব্যবসার সাথে বড় হতে পারে।",
+      acts: [{ t: 'Our stack →', g: 'stack' }] },
+    { r: /admin|dashboard|manage|panel|নিজে (আপডেট|পরিবর্তন)|এডমিন|ম্যানেজ/i,
+      en: "Yes — stores and web apps come with an admin panel where you manage products, orders and content yourself. We walk you through everything at handover.",
+      bn: "হ্যাঁ — স্টোর ও ওয়েব অ্যাপের সাথে admin panel থাকে, নিজেই পণ্য, অর্ডার আর কন্টেন্ট ম্যানেজ করতে পারবেন। handover-এর সময় সব বুঝিয়ে দিই।",
+      acts: [{ t: 'WhatsApp', w: 'Hi! Tell me more about the admin panel.' }] },
+    { r: /support|maintenance|hosting|domain|server|after (launch|delivery)|সাপোর্ট|হোস্টিং|ডোমেইন/i,
+      en: "After launch we stay with you — deployment, monitoring, fixes and improvements. One message away on WhatsApp or email, replies within 24 hours.",
+      bn: "লঞ্চের পরও আমরা পাশে থাকি — deployment, monitoring, fix আর improvement নিয়ে। WhatsApp বা ইমেইলে এক মেসেজেই পাবেন, ২৪ ঘণ্টায় উত্তর।",
+      acts: [{ t: 'WhatsApp', w: 'Hi! Tell me about post-launch support.' }] },
+    { r: /start|get started|\border\b|hire|book|begin|বানাতে চাই|বানাবো|ওয়েবসাইট লাগবে|website lagbe|banate chai|kivabe shuru/i,
+      en: "Easiest start: the 1-minute brief below. Or take the 3-tap Project Finder — it pre-fills the brief for you.",
+      bn: "সবচেয়ে সহজ শুরু: নিচের ১ মিনিটের brief ফর্মটা। অথবা ৩-ট্যাপের Project Finder নিন — brief অটো-ফিল হয়ে যাবে।",
+      acts: [{ t: 'Project Finder →', g: 'quiz' }, { t: '1-min brief →', g: 'contact' }] },
+    { r: /where|location|address|office|based|কোথায়|ঠিকানা|ঢাকা|dhaka/i,
+      en: "We're based in Dhaka, Bangladesh — and build for clients anywhere. Everything happens online: chat, live previews, launch.",
+      bn: "আমাদের বেস ঢাকা, বাংলাদেশ — তবে ক্লায়েন্ট যেকোনো দেশের হতে পারেন। সবকিছুই অনলাইনে হয়: চ্যাট, লাইভ প্রিভিউ, লঞ্চ।",
+      acts: [{ t: 'WhatsApp', w: 'Hi The Raw Bros!' }] },
+    { r: /hack|secret|easter|matrix|theme|সিক্রেট/i,
+      en: "Psst… this site has secrets. Head to the Playground terminal and type 'hack'. And 'theme list' shows all 6 site themes.",
+      bn: "Psst… এই সাইটে সিক্রেট আছে। Playground টার্মিনালে গিয়ে 'hack' লিখে দেখো। আর 'theme list' দিলে ৬টা থিমের লিস্ট আসবে।",
+      acts: [{ t: 'Open the terminal →', g: 'playground' }] },
+    { r: /thank|thanks|ধন্যবাদ|শুকরিয়া/i,
+      en: "Anytime! If a project is on your mind, the 1-minute brief is the fastest way to a quote.",
+      bn: "স্বাগতম! মাথায় কোনো প্রজেক্ট থাকলে ১ মিনিটের brief টাই quote পাওয়ার সবচেয়ে দ্রুত রাস্তা।",
+      acts: [{ t: '1-min brief →', g: 'contact' }] },
+    { r: /^(hi+|hello+|hey+|yo|salam|assalamu?\s*alaikum|হ্যালো|হাই|আসসালামু)/i,
+      en: "Hey! Good to see you. Ask me about pricing, timelines or services — or tap a shortcut below.",
+      bn: "হ্যালো! দাম, সময় বা সার্ভিস নিয়ে জিজ্ঞেস করুন — অথবা নিচের shortcut ট্যাপ করুন।",
+      acts: [] }
+  ];
+  var FALLBACK = {
+    en: "Good question — that one deserves a human. Send it to us on WhatsApp and we'll reply within 24 hours:",
+    bn: "ভালো প্রশ্ন — এটার উত্তর মানুষের কাছ থেকেই ভালো হবে। WhatsApp-এ পাঠিয়ে দিন, ২৪ ঘণ্টার মধ্যে উত্তর পাবেন:"
+  };
+  var WELCOME = "Hi! I'm the TRB assistant. Ask me about pricing, timelines or services — English, বাংলা or বাংলিশ, all work.";
+  var CHIPS = ['Pricing?', 'How long does it take?', 'Services', 'দাম কত?', 'See our work', 'WhatsApp number?'];
+
+  function isBn(t) {
+    if (/[\u0980-\u09FF]/.test(t)) return true;
+    return /\b(koto|koydin|koy|kotodin|chai|ache|lagbe|kemon|bolen|amar|ekta|banate|hobe|paro|kivabe|dam)\b/i.test(t);
+  }
+  function scrollDown() { msgs.scrollTop = msgs.scrollHeight; }
+  function save(log) { try { localStorage.setItem('trb-ask-log', JSON.stringify(log.slice(-40))); } catch (e) {} }
+  function load() { try { return JSON.parse(localStorage.getItem('trb-ask-log') || '[]'); } catch (e) { return []; } }
+  var log = load();
+
+  function bubble(who, text, instant) {
+    var d = document.createElement('div');
+    d.className = 'ask-msg ' + who;
+    if (who === 'me' || instant || REDUCED) { d.textContent = text; msgs.appendChild(d); scrollDown(); return d; }
+    d.textContent = ''; msgs.appendChild(d);
+    var words = text.split(' '), i = 0, iv = setInterval(function () {
+      i = Math.min(words.length, i + 2);
+      d.textContent = words.slice(0, i).join(' ');
+      scrollDown();
+      if (i >= words.length) clearInterval(iv);
+    }, 24);
+    d._streamMs = Math.ceil(words.length / 2) * 24;
+    return d;
+  }
+  function addActs(host, acts, question) {
+    if (!acts || !acts.length) return;
+    var row = document.createElement('div'); row.className = 'ask-acts';
+    acts.forEach(function (a) {
+      var el;
+      if (a.g) {
+        el = document.createElement('button'); el.type = 'button'; el.className = 'ask-act'; el.textContent = a.t;
+        el.addEventListener('click', function () {
+          closeAsk();
+          setTimeout(function () { var t = document.getElementById(a.g); if (t) t.scrollIntoView({ behavior: REDUCED ? 'auto' : 'smooth' }); }, 80);
+        });
+      } else {
+        el = document.createElement('a'); el.className = 'ask-act'; el.textContent = a.t;
+        el.href = a.m ? 'mailto:hello.therawbros@gmail.com' : WA + encodeURIComponent(a.w || ('Hi The Raw Bros! ' + (question || '')));
+        if (!a.m) { el.target = '_blank'; el.rel = 'noopener'; }
+      }
+      row.appendChild(el);
+    });
+    host.appendChild(row); scrollDown();
+  }
+  function botReply(q) {
+    busy = true;
+    var typing = document.createElement('div');
+    typing.className = 'ask-type'; typing.innerHTML = '<i></i><i></i><i></i>';
+    msgs.appendChild(typing); scrollDown();
+    var bn = isBn(q), hit = null;
+    for (var i = 0; i < RULES.length; i++) { if (RULES[i].r.test(q)) { hit = RULES[i]; break; } }
+    var text = hit ? (bn ? hit.bn : hit.en) : (bn ? FALLBACK.bn : FALLBACK.en);
+    var acts = hit ? hit.acts : [{ t: 'Send on WhatsApp →', w: 'Hi The Raw Bros! ' + q }, { t: 'Email us', m: 1 }];
+    var delay = REDUCED ? 60 : Math.min(1200, 450 + text.length * 2.2);
+    setTimeout(function () {
+      if (typing.parentNode) typing.parentNode.removeChild(typing);
+      var b = bubble('bot', text);
+      log.push({ f: 'bot', t: text }); save(log);
+      setTimeout(function () { addActs(b, acts, q); busy = false; }, REDUCED ? 30 : (b._streamMs || 0) + 60);
+    }, delay);
+  }
+  function send(text) {
+    var q = (text || '').trim();
+    if (!q || busy) return;
+    bubble('me', q, true);
+    log.push({ f: 'me', t: q }); save(log);
+    botReply(q);
+  }
+  form.addEventListener('submit', function (e) { e.preventDefault(); var v = input.value; input.value = ''; send(v); });
+
+  CHIPS.forEach(function (c, idx) {
+    var b = document.createElement('button');
+    b.type = 'button'; b.className = 'ask-chip'; b.textContent = c;
+    b.style.animationDelay = (idx * 60) + 'ms';
+    b.addEventListener('click', function () { send(c); });
+    chipsBox.appendChild(b);
+  });
+
+  function openAsk() {
+    document.body.classList.add('ask-open');
+    panel.setAttribute('aria-hidden', 'false');
+    if (teaser) teaser.classList.remove('show');
+    try { localStorage.setItem('trb-asked', '1'); } catch (e) {}
+    if (!opened) {
+      opened = true;
+      if (log.length) { log.forEach(function (m) { bubble(m.f === 'me' ? 'me' : 'bot', m.t, true); }); }
+      else { busy = true; setTimeout(function () { var b = bubble('bot', WELCOME); log.push({ f: 'bot', t: WELCOME }); save(log); busy = false; }, REDUCED ? 60 : 420); }
+    }
+    scrollDown();
+    if (window.innerWidth > 760) setTimeout(function () { input.focus({ preventScroll: true }); }, 380);
+  }
+  function closeAsk() {
+    document.body.classList.remove('ask-open');
+    panel.setAttribute('aria-hidden', 'true');
+    if (document.activeElement === input) input.blur();
+  }
+  window.openAsk = openAsk; window.closeAsk = closeAsk;
+  fab.addEventListener('click', openAsk);
+  var xc = document.getElementById('askClose'); if (xc) xc.addEventListener('click', closeAsk);
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && document.body.classList.contains('ask-open')) closeAsk(); });
+
+  if (teaser) {
+    var asked = false;
+    try { asked = !!localStorage.getItem('trb-asked'); } catch (e) {}
+    if (!asked) setTimeout(function () {
+      if (!document.body.classList.contains('ask-open') && !document.body.classList.contains('hacked')) {
+        teaser.classList.add('show');
+        setTimeout(function () { teaser.classList.remove('show'); }, 6500);
+      }
+    }, 14000);
+  }
+  if (typeof GT !== 'undefined') {
+    GT.ask = GT.chat = function () {
+      gtPrint([{ t: 'Opening Ask TRB…', c: 'o-ok' }]);
+      setTimeout(openAsk, 350);
+    };
+  }
+})();
 </script>
 </body>
 </html>
