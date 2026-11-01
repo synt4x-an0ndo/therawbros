@@ -5,6 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>The Raw Bros | Web Developers | Build Better Web</title>
 <meta name="description" content="The Raw Bros is a two-person web development studio. Frontend, backend and UI/UX. Modern websites and web apps built with React, Next.js, Node.js and PostgreSQL.">
+<meta name="theme-color" content="#050507">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="The Raw Bros">
+<meta property="og:title" content="The Raw Bros | Web Developers | Build Better Web">
+<meta property="og:description" content="The Raw Bros is a web development studio. Frontend, backend and UI/UX. Modern websites and web apps built with React, Next.js, Node.js and PostgreSQL.">
+<meta property="og:url" content="https://therawbros.pages.dev/">
+<meta property="og:image" content="https://therawbros.pages.dev/img/logo.PNG">
 <link rel="icon" type="image/png" href="img/logo-icon.PNG">
 <style>
 /* ============ TOKENS ============ */
@@ -350,6 +357,47 @@ footer{padding:8px 10px 22px}
 .f-tag{color:var(--dim);font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;margin-top:12px}
 .f-bottom{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-top:26px;padding-top:20px;border-top:1px solid var(--line);flex-wrap:wrap;color:var(--dim);font-size:12.5px}
 
+/* ============ POLISH ============ */
+/* slim dark scrollbar with an orange thumb */
+::-webkit-scrollbar{width:10px}
+::-webkit-scrollbar-track{background:#070709}
+::-webkit-scrollbar-thumb{background:#26262E;border-radius:8px;border:2px solid #070709}
+::-webkit-scrollbar-thumb:hover{background:#E14E00}
+html{scrollbar-color:#26262E #070709;scrollbar-width:thin}
+:focus-visible{outline:2px solid rgba(255,106,0,.75);outline-offset:3px;border-radius:8px}
+h1,h2{text-wrap:balance}
+.eyebrow .idx{color:var(--dim)}
+.brand-ico{height:22px;mix-blend-mode:screen}
+/* faint blueprint grid inside the hero (static, decorative) */
+.hero::before{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:
+    linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);
+  background-size:44px 44px;
+  -webkit-mask-image:radial-gradient(70% 60% at 50% 38%,#000 30%,transparent 78%);
+  mask-image:radial-gradient(70% 60% at 50% 38%,#000 30%,transparent 78%);
+}
+/* logo plaque */
+.logo-tile{
+  position:relative;display:inline-block;line-height:0;border-radius:24px;overflow:hidden;background:#000;
+  border:1px solid rgba(255,255,255,.14);
+  box-shadow:0 0 0 8px rgba(255,255,255,.02), 0 34px 80px -34px rgba(255,106,0,.55), 0 18px 44px -22px rgba(0,0,0,.9);
+}
+.logo-tile img{height:clamp(108px,16vw,148px);width:auto}
+.logo-tile::after{
+  content:"";position:absolute;left:10%;right:10%;bottom:0;height:2px;
+  background:linear-gradient(90deg,transparent,#FF8A2B,transparent);opacity:.85;
+}
+.badge-chip{right:-30px;bottom:-16px;z-index:3}
+.badge-chip .dot{width:7px;height:7px;border-radius:50%;background:#1FB457;box-shadow:0 0 0 4px rgba(31,180,87,.18);flex:0 0 auto}
+@media (max-width:760px){.badge-chip{bottom:auto}}
+.svc{position:relative;transition:transform .35s ease}
+.svc:hover{transform:translateY(-3px)}
+.svc:hover .svc-ico{box-shadow:0 12px 26px -12px rgba(255,106,0,.8)}
+.svc-num{position:absolute;top:2px;right:2px;color:#33333C;letter-spacing:.14em}
+.tag.hot{color:#FFB37A;border-color:rgba(255,106,0,.5);background:rgba(255,106,0,.08)}
+
 /* ============ REVEAL ============ */
 .reveal{opacity:0;transform:translateY(22px);transition:opacity .75s cubic-bezier(.2,.7,.2,1), transform .75s cubic-bezier(.2,.7,.2,1)}
 .reveal.in{opacity:1;transform:none}
@@ -520,7 +568,7 @@ footer{padding:8px 10px 22px}
   <header class="topbar">
     <div class="tb-left">
       <a class="brand" href="#top" aria-label="The Raw Bros home">
-        <img style="height: 20px;"  src="img/logo-icon.PNG" alt="">
+        <img class="brand-ico" src="img/logo-icon.PNG" alt="">
         <span class="brand-name">The <em>Raw</em> Bros</span>
       </a>
       <a class="pill pill-mail" href="mailto:hello_therawbro@gmail.com" id="mailLink">
@@ -552,12 +600,10 @@ footer{padding:8px 10px 22px}
     </div>
 
     <div class="hero-badge">
-      
-      
-          <img style="height: 130px; border-radius: 10px;"  src="img/logo.PNG" alt="">
-        
-      
-      
+      <div class="logo-tile">
+        <img src="img/logo.PNG" alt="The Raw Bros logo">
+      </div>
+      <span class="badge-chip"><span class="dot"></span>Available for new projects</span>
     </div>
 
     <h1>Building digital products, brands <span class="hl">and experiences.</span></h1>
@@ -587,7 +633,7 @@ footer{padding:8px 10px 22px}
   <!-- ================= TOOLS MARQUEE ================= -->
   <section class="card tools reveal" id="stack">
     <div class="sec-head">
-      <span class="eyebrow mono">Our Stack</span>
+      <span class="eyebrow mono"><span class="idx">01 /</span> Our Stack</span>
       <h2>Tools we <span class="hl">build with</span></h2>
       <p class="sec-sub">Modern, battle-tested tech. The same tools used by the world&rsquo;s best product teams.</p>
     </div>
@@ -620,7 +666,7 @@ footer{padding:8px 10px 22px}
   <!-- ================= SERVICES ================= -->
   <section class="card reveal" id="services">
     <div class="sec-head">
-      <span class="eyebrow mono">What we do</span>
+      <span class="eyebrow mono"><span class="idx">02 /</span> What we do</span>
       <h2>Collaborate with us to create <span class="hl">impactful results.</span></h2>
       <p class="sec-sub">One small team, the full pipeline: design, frontend, backend and deployment under one roof.</p>
     </div>
@@ -629,24 +675,28 @@ footer{padding:8px 10px 22px}
 
     <div class="grid-4">
       <article class="svc">
+        <span class="svc-num mono">01</span>
         <div class="svc-ico"><svg><use href="#i-code"/></svg></div>
         <h3>Frontend Development</h3>
         <p>Responsive, accessible and pixel-perfect interfaces built with React &amp; Next.js, fast on every screen and every connection.</p>
         <div class="svc-tags"><span class="tag">React</span><span class="tag">Next.js</span><span class="tag">Tailwind</span></div>
       </article>
       <article class="svc">
+        <span class="svc-num mono">02</span>
         <div class="svc-ico"><svg><use href="#i-server"/></svg></div>
         <h3>Backend Development</h3>
         <p>Secure APIs, databases, authentication and integrations that stay stable and fast as your product grows.</p>
         <div class="svc-tags"><span class="tag">Node.js</span><span class="tag">REST API</span><span class="tag">PostgreSQL</span></div>
       </article>
       <article class="svc">
+        <span class="svc-num mono">03</span>
         <div class="svc-ico"><svg><use href="#i-layers"/></svg></div>
         <h3>UI/UX Design</h3>
         <p>Wireframes, prototypes and design systems that turn rough ideas into clear, usable, on-brand experiences.</p>
         <div class="svc-tags"><span class="tag">Figma</span><span class="tag">Design system</span></div>
       </article>
       <article class="svc">
+        <span class="svc-num mono">04</span>
         <div class="svc-ico"><svg><use href="#i-rocket"/></svg></div>
         <h3>Deploy &amp; Maintain</h3>
         <p>Hosting, CI/CD, performance tuning, SEO basics and ongoing support. We keep it live, fast and healthy.</p>
@@ -658,9 +708,9 @@ footer{padding:8px 10px 22px}
   <!-- ================= TEAM ================= -->
   <section class="card reveal" id="team">
     <div class="sec-head">
-      <span class="eyebrow mono">The Team</span>
-      <h2>Two minds, <span class="hl">one vision.</span></h2>
-      <p class="sec-sub">Two developers, one shared goal: build better web. No account managers, no hand-offs. You always talk to the people writing the code.</p>
+      <span class="eyebrow mono"><span class="idx">03 /</span> The Team</span>
+      <h2>The people behind <span class="hl">The Raw Bros.</span></h2>
+      <p class="sec-sub">You work directly with the developers building your product — no account managers, no hand-offs, no lost context. Clear communication, honest timelines and production-grade code.</p>
     </div>
 
     <div class="team-grid">
@@ -710,7 +760,7 @@ footer{padding:8px 10px 22px}
   <!-- ================= PROJECTS ================= -->
   <section class="card reveal" id="projects">
     <div class="sec-head">
-      <span class="eyebrow mono">Selected Work</span>
+      <span class="eyebrow mono"><span class="idx">04 /</span> Selected Work</span>
       <h2>Projects we&rsquo;ve <span class="hl">shipped.</span></h2>
       <p class="sec-sub">Real products, live on the web, built, tested and launched by us.</p>
     </div>
@@ -742,15 +792,16 @@ footer{padding:8px 10px 22px}
         </div>
         <h3>Zuberee</h3>
         <p class="p-tagline">Best Online Shop for Foreign Products</p>
-        <p class="p-desc">A full online store for premium imported goods: women&rsquo;s and kids&rsquo; fashion, shoes, bags and seasonal collections. We built a mobile-first storefront with a category-driven catalog, smooth product browsing, cart &amp; checkout and a WhatsApp-fast ordering flow, so a customer can go from browsing to ordering in seconds.</p>
+        <p class="p-desc">A full online store for premium imported goods: women&rsquo;s and kids&rsquo; fashion, shoes, bags and seasonal collections. We designed and custom-built the entire platform end to end — storefront, REST API, database and admin panel; no WordPress, no page builders. A mobile-first storefront with a category-driven catalog, smooth product browsing, cart &amp; checkout and a WhatsApp-fast ordering flow, so a customer can go from browsing to ordering in seconds.</p>
         <ul class="feat">
           <li><svg><use href="#i-check"/></svg>Category &amp; collection catalog (shoes, bags, clothing, baby, summer / winter)</li>
           <li><svg><use href="#i-check"/></svg>Cart, checkout and customer account flows</li>
           <li><svg><use href="#i-check"/></svg>WhatsApp ordering &amp; quick-contact integration</li>
+          <li><svg><use href="#i-check"/></svg>Installable PWA with push notifications, plus a full admin dashboard for orders, stock &amp; courier</li>
           <li><svg><use href="#i-check"/></svg>Responsive, SEO-friendly storefront tuned for mobile shoppers</li>
         </ul>
         <div class="svc-tags">
-          <span class="tag">E-commerce</span><span class="tag">WooCommerce</span><span class="tag">WordPress</span><span class="tag">UI/UX</span><span class="tag">Responsive</span>
+          <span class="tag hot">100% Custom Code</span><span class="tag">Next.js</span><span class="tag">React</span><span class="tag">Node.js</span><span class="tag">PostgreSQL</span><span class="tag">PWA</span>
         </div>
         <div class="p-actions">
           <a class="btn btn-primary" href="https://zuberee.com/" target="_blank" rel="noopener">Visit zuberee.com <svg><use href="#i-arrow"/></svg></a>
@@ -793,6 +844,11 @@ footer{padding:8px 10px 22px}
         <div class="wordmark">The <em>Raw</em> Bros</div>
         <div class="f-tag">Build / Code / Create</div>
       </div>
+      <nav class="f-socials" aria-label="Footer links">
+        <a href="mailto:hello_therawbro@gmail.com">Email</a><span class="sep">/</span>
+        <a href="https://wa.me/fr1skyfox1" target="_blank" rel="noopener">WhatsApp</a><span class="sep">/</span>
+        <a href="#top">Back to top</a>
+      </nav>
       
     </div>
     <div class="f-bottom">
