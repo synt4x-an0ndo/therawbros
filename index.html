@@ -534,6 +534,34 @@ h1,h2,.wordmark,.p-info h3,.svc h3,.tcard-role .name,.brand-name,.stat-n{font-fa
   .hero-cta .btn{flex:1 1 auto;justify-content:center}
   .cta .btn-row .btn{flex:1 1 100%;justify-content:center}
 }
+/* professional pass 2 */
+.sec-ghost{position:absolute;top:6px;right:22px;font-family:var(--disp);font-size:clamp(84px,10vw,150px);font-weight:700;line-height:1;letter-spacing:-.04em;color:rgba(255,255,255,.028);pointer-events:none;user-select:none}
+.svc.reveal,.tcard.reveal{transition:opacity .6s cubic-bezier(.2,.7,.2,1),transform .6s cubic-bezier(.2,.7,.2,1),border-color .35s ease,box-shadow .35s ease}
+.svc.reveal:hover,.tcard.reveal:hover{transform:translateY(-3px)}
+/* FAQ accordion */
+.faq-list{margin-top:clamp(26px,3.5vw,40px);border-top:1px solid var(--line)}
+.faq-item{border-bottom:1px solid var(--line)}
+.faq-q{width:100%;display:flex;align-items:center;justify-content:space-between;gap:16px;text-align:left;padding:21px 4px;font-size:16px;font-weight:600;letter-spacing:-.01em;color:var(--txt)}
+.faq-q:hover{color:#fff}
+.faq-ico{font-family:var(--mono);font-size:18px;color:var(--or-2);flex:0 0 auto;transition:transform .3s ease}
+.faq-item.open .faq-ico{transform:rotate(45deg)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .45s cubic-bezier(.2,.7,.2,1)}
+.faq-a p{color:var(--muted);font-size:14.5px;line-height:1.7;padding:0 4px 21px;max-width:72ch}
+/* project brief form */
+.cta-div{display:flex;align-items:center;gap:16px;max-width:760px;margin:38px auto 0;color:var(--dim)}
+.cta-div::before,.cta-div::after{content:"";flex:1;height:1px;background:var(--line)}
+.brief{max-width:760px;margin:26px auto 0;text-align:left}
+.brief-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.fld{display:flex;flex-direction:column;gap:8px}
+.fld.wide{grid-column:1/-1}
+.fld>span{color:var(--dim);font-size:10.5px}
+.fld input,.fld select,.fld textarea{background:rgba(255,255,255,.03);border:1px solid var(--line-2);border-radius:12px;padding:12px 14px;color:var(--txt);font:inherit;font-size:14px;width:100%;transition:border-color .25s ease,box-shadow .25s ease}
+.fld textarea{resize:vertical;min-height:104px}
+.fld select option{background:#121218;color:var(--txt)}
+.fld input:focus,.fld select:focus,.fld textarea:focus{outline:none;border-color:rgba(255,106,0,.65);box-shadow:0 0 0 4px rgba(255,106,0,.14)}
+.brief-actions{display:flex;gap:12px;margin-top:18px;flex-wrap:wrap;justify-content:center}
+.brief-note{margin-top:16px;text-align:center;color:var(--dim);font-size:10.5px}
+@media (max-width:640px){.brief-grid{grid-template-columns:1fr}.brief-actions .btn{flex:1 1 100%;justify-content:center}}
 </style>
 </head>
 <body id="top">
@@ -747,6 +775,7 @@ h1,h2,.wordmark,.p-info h3,.svc h3,.tcard-role .name,.brand-name,.stat-n{font-fa
         <a href="#services">Services</a>
         <a href="#team">Team</a>
         <a href="#projects">Work</a>
+        <a href="#faq">FAQ</a>
       </nav>
       <a class="pill pill-hire" href="#contact">Contact Us <svg><use href="#i-arrow"/></svg></a>
     </div>
@@ -814,6 +843,7 @@ h1,h2,.wordmark,.p-info h3,.svc h3,.tcard-role .name,.brand-name,.stat-n{font-fa
 
   <!-- ================= TOOLS MARQUEE ================= -->
   <section class="card tools reveal" id="stack">
+    <span class="sec-ghost" aria-hidden="true">01</span>
     <div class="sec-head">
       <span class="eyebrow mono"><span class="idx">// 01</span> Our Stack</span>
       <h2>Tools we <span class="hl">build with</span></h2>
@@ -866,6 +896,7 @@ h1,h2,.wordmark,.p-info h3,.svc h3,.tcard-role .name,.brand-name,.stat-n{font-fa
 
   <!-- ================= SERVICES ================= -->
   <section class="card reveal" id="services">
+    <span class="sec-ghost" aria-hidden="true">02</span>
     <div class="sec-head">
       <span class="eyebrow mono"><span class="idx">// 02</span> What we do</span>
       <h2>Collaborate with us to create <span class="hl">impactful results.</span></h2>
@@ -875,28 +906,28 @@ h1,h2,.wordmark,.p-info h3,.svc h3,.tcard-role .name,.brand-name,.stat-n{font-fa
     <div class="divider-pill"><span class="lbl">Services</span></div>
 
     <div class="grid-4">
-      <article class="svc">
+      <article class="svc reveal">
         <span class="svc-num mono">01</span>
         <div class="svc-ico"><svg><use href="#i-code"/></svg></div>
         <h3>Frontend Development</h3>
         <p>Responsive, accessible and pixel-perfect interfaces built with React &amp; Next.js, fast on every screen and every connection.</p>
         <div class="svc-tags"><span class="tag">React</span><span class="tag">Next.js</span><span class="tag">Tailwind</span></div>
       </article>
-      <article class="svc">
+      <article class="svc reveal">
         <span class="svc-num mono">02</span>
         <div class="svc-ico"><svg><use href="#i-server"/></svg></div>
         <h3>Backend Development</h3>
         <p>Secure APIs, databases, authentication and integrations that stay stable and fast as your product grows.</p>
         <div class="svc-tags"><span class="tag">Node.js</span><span class="tag">REST API</span><span class="tag">PostgreSQL</span></div>
       </article>
-      <article class="svc">
+      <article class="svc reveal">
         <span class="svc-num mono">03</span>
         <div class="svc-ico"><svg><use href="#i-layers"/></svg></div>
         <h3>UI/UX Design</h3>
         <p>Wireframes, prototypes and design systems that turn rough ideas into clear, usable, on-brand experiences.</p>
         <div class="svc-tags"><span class="tag">Figma</span><span class="tag">Design system</span></div>
       </article>
-      <article class="svc">
+      <article class="svc reveal">
         <span class="svc-num mono">04</span>
         <div class="svc-ico"><svg><use href="#i-rocket"/></svg></div>
         <h3>Deploy &amp; Maintain</h3>
@@ -915,6 +946,7 @@ h1,h2,.wordmark,.p-info h3,.svc h3,.tcard-role .name,.brand-name,.stat-n{font-fa
 
   <!-- ================= TEAM ================= -->
   <section class="card reveal" id="team">
+    <span class="sec-ghost" aria-hidden="true">03</span>
     <div class="sec-head">
       <span class="eyebrow mono"><span class="idx">// 03</span> The Team</span>
       <h2>The people behind <span class="hl">The Raw Bros.</span></h2>
@@ -922,7 +954,7 @@ h1,h2,.wordmark,.p-info h3,.svc h3,.tcard-role .name,.brand-name,.stat-n{font-fa
     </div>
 
     <div class="team-grid">
-      <article class="tcard">
+      <article class="tcard reveal">
         <span class="tcard-ghost" aria-hidden="true">01</span>
         <div class="tcard-head mono"><span>The Raw Bros</span><span class="tcard-id">ID — 01</span></div>
         <div class="tcard-main">
@@ -942,7 +974,7 @@ h1,h2,.wordmark,.p-info h3,.svc h3,.tcard-role .name,.brand-name,.stat-n{font-fa
         </div>
       </article>
 
-      <article class="tcard">
+      <article class="tcard reveal">
         <span class="tcard-ghost" aria-hidden="true">02</span>
         <div class="tcard-head mono"><span>The Raw Bros</span><span class="tcard-id">ID — 02</span></div>
         <div class="tcard-main">
@@ -966,13 +998,14 @@ h1,h2,.wordmark,.p-info h3,.svc h3,.tcard-role .name,.brand-name,.stat-n{font-fa
 
   <!-- ================= PROJECTS ================= -->
   <section class="card reveal" id="projects">
+    <span class="sec-ghost" aria-hidden="true">04</span>
     <div class="sec-head">
       <span class="eyebrow mono"><span class="idx">// 04</span> Selected Work</span>
       <h2>Projects we&rsquo;ve <span class="hl">shipped.</span></h2>
       <p class="sec-sub">Real products, live on the web, built, tested and launched by us.</p>
     </div>
 
-    <article class="project">
+    <article class="project reveal">
       <a class="mock" href="https://zuberee.com/" target="_blank" rel="noopener" aria-label="Open Zuberee website">
         <div class="mock-bar">
           <span class="dot o"></span><span class="dot"></span><span class="dot"></span>
@@ -1015,6 +1048,41 @@ h1,h2,.wordmark,.p-info h3,.svc h3,.tcard-role .name,.brand-name,.stat-n{font-fa
       <a class="link-btn plain" href="#contact">Start a project <svg><use href="#i-arrow"/></svg></a>
     </div>
   </section>
+  <!-- ================= FAQ ================= -->
+  <section class="card reveal" id="faq">
+    <span class="sec-ghost" aria-hidden="true">05</span>
+    <div class="sec-head">
+      <span class="eyebrow mono"><span class="idx">// 05</span> FAQ</span>
+      <h2>Questions, <span class="hl">answered.</span></h2>
+      <p class="sec-sub">Everything clients usually ask before we start. Something else on your mind? Message us — we reply within 24 hours.</p>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item">
+        <button class="faq-q" type="button" aria-expanded="false">How much does a website or web app cost?<span class="faq-ico">+</span></button>
+        <div class="faq-a"><p>It depends on scope — pages, features and integrations. Send us a short brief (the form below takes a minute) and we reply with a fixed, written quote before any work starts. No hidden costs, no surprises later.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" type="button" aria-expanded="false">How long does a project take?<span class="faq-ico">+</span></button>
+        <div class="faq-a"><p>A landing page can ship in days; a full e-commerce store or web app usually takes a few weeks. Your quote always includes a clear timeline, and we share progress as we build — you never have to chase us for updates.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" type="button" aria-expanded="false">Do you use WordPress or ready-made templates?<span class="faq-ico">+</span></button>
+        <div class="faq-a"><p>No. Everything we ship is 100% custom code — designed and built from scratch for your business. That means faster load times, better security and a site that can grow with you, instead of fighting a bloated template.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" type="button" aria-expanded="false">Will I be able to manage the site myself?<span class="faq-ico">+</span></button>
+        <div class="faq-a"><p>Yes. Stores and web apps come with an admin panel where you can manage products, orders and content yourself — and we walk you through everything at handover.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" type="button" aria-expanded="false">What do you need from me to start?<span class="faq-ico">+</span></button>
+        <div class="faq-a"><p>Just the short brief below. If you have a logo, photos or text ready, great — if not, we will guide you through exactly what is needed, step by step.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" type="button" aria-expanded="false">Do you support the site after launch?<span class="faq-ico">+</span></button>
+        <div class="faq-a"><p>Yes — deployment, monitoring, fixes and improvements after go-live. We stay one message away on WhatsApp or email, with replies within 24 hours.</p></div>
+      </div>
+    </div>
+  </section>
 
   <!-- ================= CTA ================= -->
   <section class="card cta reveal" id="contact">
@@ -1031,6 +1099,38 @@ h1,h2,.wordmark,.p-info h3,.svc h3,.tcard-role .name,.brand-name,.stat-n{font-fa
         <svg><use href="#i-chat"/></svg>WhatsApp
       </a>
     </div>
+        <div class="cta-div mono"><span>or send a 1-minute project brief</span></div>
+    <form class="brief" id="briefForm">
+      <div class="brief-grid">
+        <label class="fld"><span class="mono">Your name</span><input type="text" name="name" placeholder="e.g. Rahim Uddin" autocomplete="name"></label>
+        <label class="fld"><span class="mono">WhatsApp / Email</span><input type="text" name="contact" placeholder="01XXX-XXXXXX or you@mail.com"></label>
+        <label class="fld"><span class="mono">Project type</span>
+          <select name="type">
+            <option>Business website</option>
+            <option>E-commerce store</option>
+            <option>Web app / dashboard</option>
+            <option>Landing page</option>
+            <option>Redesign / fix existing site</option>
+            <option>Other</option>
+          </select>
+        </label>
+        <label class="fld"><span class="mono">Budget</span>
+          <select name="budget">
+            <option>Let&rsquo;s discuss</option>
+            <option>Under ৳50,000</option>
+            <option>৳50,000 – ৳1,50,000</option>
+            <option>৳1,50,000 – ৳5,00,000</option>
+            <option>৳5,00,000+</option>
+          </select>
+        </label>
+        <label class="fld wide"><span class="mono">Project details *</span><textarea name="details" rows="4" required placeholder="What are we building? Key pages or features, any deadline..."></textarea></label>
+      </div>
+      <div class="brief-actions">
+        <button class="btn btn-primary" type="submit" data-via="wa"><svg><use href="#i-chat"/></svg>Send via WhatsApp</button>
+        <button class="btn btn-ghost" type="submit" data-via="mail"><svg><use href="#i-mail"/></svg>Send via Email</button>
+      </div>
+      <p class="brief-note mono">Opens WhatsApp or Gmail with your brief pre-filled — nothing is stored</p>
+    </form>
     <p class="note mono">Average reply time: under 24 hours</p>
   </section>
 
@@ -1048,6 +1148,7 @@ h1,h2,.wordmark,.p-info h3,.svc h3,.tcard-role .name,.brand-name,.stat-n{font-fa
           <a href="#services">Services</a>
           <a href="#team">Team</a>
           <a href="#projects">Work</a>
+          <a href="#faq">FAQ</a>
           <a href="#contact">Contact</a>
         </nav>
         <nav class="f-col" aria-label="Get in touch">
@@ -1122,6 +1223,7 @@ if ('IntersectionObserver' in window) {
       if (entry.isIntersecting) {
         entry.target.classList.add('in');
         io.unobserve(entry.target);
+        (function (el) { setTimeout(function () { el.style.transitionDelay = '0ms'; }, 950); })(entry.target);
       }
     });
   }, { rootMargin: '0px 0px -8% 0px', threshold: 0.06 });
@@ -1193,7 +1295,7 @@ if (navLinks.length && 'IntersectionObserver' in window) {
       }
     });
   }, { rootMargin: '-38% 0px -55% 0px' });
-  ['stack', 'services', 'team', 'projects'].forEach(function (id) { var el = document.getElementById(id); if (el) spy.observe(el); });
+  ['stack', 'services', 'team', 'projects', 'faq'].forEach(function (id) { var el = document.getElementById(id); if (el) spy.observe(el); });
 }
 
 /* ---------- live Dhaka clock ---------- */
@@ -1203,6 +1305,53 @@ if (clockEl) {
   try { clockFmt = new Intl.DateTimeFormat('en-GB', { hour: '2-digit', minute: '2-digit', hour12: true, timeZone: 'Asia/Dhaka' }); } catch (e) {}
   var tickClock = function () { if (clockFmt) clockEl.textContent = clockFmt.format(new Date()); };
   tickClock(); setInterval(tickClock, 30000);
+}
+/* ---------- FAQ accordion ---------- */
+document.querySelectorAll('.faq-item').forEach(function (item) {
+  var btn = item.querySelector('.faq-q');
+  var panel = item.querySelector('.faq-a');
+  btn.addEventListener('click', function () {
+    var isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(function (o) {
+      o.classList.remove('open');
+      o.querySelector('.faq-a').style.maxHeight = '';
+      o.querySelector('.faq-q').setAttribute('aria-expanded', 'false');
+    });
+    if (!isOpen) {
+      item.classList.add('open');
+      panel.style.maxHeight = panel.scrollHeight + 'px';
+      btn.setAttribute('aria-expanded', 'true');
+    }
+  });
+});
+
+/* ---------- project brief: compose via WhatsApp / Email ---------- */
+var briefForm = document.getElementById('briefForm');
+if (briefForm) {
+  briefForm.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var f = new FormData(briefForm);
+    var lines = ['New project brief — The Raw Bros', ''];
+    if (f.get('name')) lines.push('Name: ' + f.get('name'));
+    if (f.get('contact')) lines.push('Contact: ' + f.get('contact'));
+    lines.push('Project type: ' + f.get('type'));
+    lines.push('Budget: ' + f.get('budget'));
+    lines.push('');
+    lines.push(f.get('details') || '');
+    var msg = lines.join('\n');
+    var via = (e.submitter && e.submitter.dataset.via) || 'wa';
+    if (via === 'mail') {
+      var subj = encodeURIComponent('New project brief — The Raw Bros');
+      var body = encodeURIComponent(msg);
+      if (window.matchMedia('(min-width: 761px)').matches) {
+        window.open('https://mail.google.com/mail/?view=cm&fs=1&to=' + encodeURIComponent(EMAIL) + '&su=' + subj + '&body=' + body, '_blank', 'noopener');
+      } else {
+        window.location.href = 'mailto:' + EMAIL + '?subject=' + subj + '&body=' + body;
+      }
+    } else {
+      window.open('https://wa.me/fr1skyfox1?text=' + encodeURIComponent(msg), '_blank', 'noopener');
+    }
+  });
 }
 </script>
 </body>
