@@ -3,25 +3,94 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>The Raw Bros — Web Development Agency | Build Better Web</title>
+<title>The Raw Bros — Web Development Agency in Dhaka, Bangladesh</title>
 <meta name="description" content="The Raw Bros is a web development agency in Dhaka, Bangladesh. We design and build fast, modern websites, e-commerce stores and web apps with React, Next.js, Node.js and PostgreSQL — 100% custom code, end to end.">
+<meta name="robots" content="index, follow, max-image-preview:large">
 <meta name="theme-color" content="#050507">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="The Raw Bros">
-<meta property="og:title" content="The Raw Bros — Web Development Agency | Build Better Web">
+<meta property="og:title" content="The Raw Bros — Web Development Agency in Dhaka, Bangladesh">
 <meta property="og:description" content="The Raw Bros is a web development agency in Dhaka, Bangladesh. We design and build fast, modern websites, e-commerce stores and web apps with React, Next.js, Node.js and PostgreSQL — 100% custom code, end to end.">
 <meta property="og:url" content="https://therawbros.pages.dev/">
-<meta property="og:image" content="https://therawbros.pages.dev/img/logo.PNG">
+<meta property="og:image" content="https://therawbros.pages.dev/img/og-card.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="The Raw Bros — web development agency in Dhaka, Bangladesh">
 <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32.png">
 <link rel="icon" type="image/png" sizes="192x192" href="img/icon-192.png">
 <link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png">
 <link rel="canonical" href="https://therawbros.pages.dev/">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="The Raw Bros — Web Development Agency | Build Better Web">
+<meta name="twitter:title" content="The Raw Bros — Web Development Agency in Dhaka, Bangladesh">
 <meta name="twitter:description" content="The Raw Bros is a web development agency in Dhaka, Bangladesh. We design and build fast, modern websites, e-commerce stores and web apps with React, Next.js, Node.js and PostgreSQL — 100% custom code, end to end.">
-<meta name="twitter:image" content="https://therawbros.pages.dev/img/logo.PNG">
+<meta name="twitter:image" content="https://therawbros.pages.dev/img/og-card.jpg">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"ProfessionalService","name":"The Raw Bros","url":"https://therawbros.pages.dev/","logo":"https://therawbros.pages.dev/img/logo.PNG","image":"https://therawbros.pages.dev/img/logo.PNG","email":"hello.therawbros@gmail.com","description":"Web development agency in Dhaka, Bangladesh building custom websites, e-commerce stores and web apps.","address":{"@type":"PostalAddress","addressLocality":"Dhaka","addressCountry":"BD"},"areaServed":"Worldwide","knowsAbout":["Web Development","E-commerce","UI/UX Design","React","Next.js","Node.js","PostgreSQL","PWA"]}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "name": "The Raw Bros",
+      "url": "https://therawbros.pages.dev/"
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How much does a website or web app cost?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "It depends on scope — pages, features and integrations. Send us a short brief (the form below takes a minute) and we reply with a fixed, written quote before any work starts. No hidden costs, no surprises later."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How long does a project take?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A landing page can ship in days; a full e-commerce store or web app usually takes a few weeks. Your quote always includes a clear timeline, and we share progress as we build — you never have to chase us for updates."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do you use WordPress or ready-made templates?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. Everything we ship is 100% custom code — designed and built from scratch for your business. That means faster load times, better security and a site that can grow with you, instead of fighting a bloated template."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Will I be able to manage the site myself?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Stores and web apps come with an admin panel where you can manage products, orders and content yourself — and we walk you through everything at handover."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What do you need from me to start?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Just the short brief below. If you have a logo, photos or text ready, great — if not, we will guide you through exactly what is needed, step by step."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do you support the site after launch?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes — deployment, monitoring, fixes and improvements after go-live. We stay one message away on WhatsApp or email, with replies within 24 hours."
+          }
+        }
+      ]
+    }
+  ]
+}
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -860,6 +929,22 @@ body.ask-open .ask-panel{opacity:1;visibility:visible;transform:none}
 /* ---------- speed strip ---------- */
 .spd-strip{margin-top:16px;font-size:10.5px;letter-spacing:.06em;color:var(--dim)}
 .spd-strip b{color:var(--or-2);font-weight:700}
+
+/* ---------- team build-in animation ---------- */
+.build-log{position:absolute;top:14px;left:16px;z-index:6;max-width:86%;background:rgba(5,6,9,.85);border:1px solid var(--line);border-radius:10px;padding:8px 12px;font-size:10px;line-height:1.9;letter-spacing:.04em;color:var(--muted);opacity:0;visibility:hidden;transition:opacity .35s,visibility .35s;pointer-events:none}
+#team.building .build-log{opacity:1;visibility:visible}
+.build-log:empty{padding:0;border:none}
+.build-log b{color:var(--or-2);font-weight:700}
+.build-scan{position:absolute;left:0;right:0;top:-130px;height:120px;z-index:5;background:linear-gradient(180deg,transparent,color-mix(in srgb,var(--or) 14%,transparent));border-bottom:2px solid var(--or);opacity:0;pointer-events:none}
+#team.building .build-scan{opacity:1;animation:bscan 1.7s ease-in-out forwards}
+@keyframes bscan{from{top:-130px}to{top:100%}}
+#team.prebuild .bld{opacity:.5;filter:grayscale(.9) blur(1px);outline:1px dashed color-mix(in srgb,var(--or) 55%,transparent);outline-offset:-1px;transition:opacity .7s ease,filter .7s ease,outline-color .7s ease}
+#team.prebuild .bld.built{opacity:1;filter:none;outline-color:transparent}
+.bld-tag{position:absolute;top:46px;right:14px;z-index:4;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:#2bff7d;border:1px solid rgba(43,255,125,.55);background:rgba(4,20,10,.85);border-radius:99px;padding:4px 9px;opacity:0;transform:scale(.8);transition:opacity .35s,transform .35s;pointer-events:none}
+#team.prebuild .bld.built .bld-tag{opacity:1;transform:scale(1);transition-delay:.3s}
+.rebuild-btn{display:inline-block;margin-top:16px;font-size:10.5px;letter-spacing:.1em;color:var(--dim);background:none;border:1px solid var(--line);border-radius:99px;padding:7px 13px;cursor:pointer;transition:color .25s,border-color .25s}
+.rebuild-btn:hover{color:var(--or-2);border-color:var(--or)}
+@media (prefers-reduced-motion: reduce){.build-scan{display:none}}
 </style>
 </head>
 <body id="top">
@@ -1118,7 +1203,7 @@ body.ask-open .ask-panel{opacity:1;visibility:visible;transform:none}
     <span class="hglyph" style="top:84%;left:22%;animation-delay:2.8s" aria-hidden="true">&amp;&amp;</span>
 
     <div class="hero-badge">
-          <img style="height: 130px; border-radius: 10px;"  src="img/logo.PNG" alt="The Raw Bros logo">
+          <img style="height: 130px; border-radius: 10px;"  src="img/logo.PNG" alt="The Raw Bros — web development agency in Dhaka, Bangladesh">
     </div>
 
     <div class="hero-eyebrow mono"><span class="g-dot"></span>Web Development Agency — Dhaka, Bangladesh</div>
@@ -1317,18 +1402,22 @@ body.ask-open .ask-panel{opacity:1;visibility:visible;transform:none}
   <!-- ================= TEAM ================= -->
   <section class="card reveal" id="team">
     <span class="sec-ghost" aria-hidden="true">03</span>
-    <div class="sec-head">
+    <div class="build-scan" aria-hidden="true"></div>
+    <div class="build-log mono" id="buildLog" aria-hidden="true"></div>
+    <div class="sec-head bld">
       <span class="eyebrow mono"><span class="idx">// 03</span> The Team</span>
       <h2>The people behind <span class="hl">The Raw Bros.</span></h2>
       <p class="sec-sub">You work directly with the developers building your product — no account managers, no hand-offs, no lost context. Clear communication, honest timelines and production-grade code.</p>
     </div>
 
+    <button type="button" class="rebuild-btn mono" id="rebuildBtn">// &#8635; rebuild this section</button>
     <div class="team-grid">
-      <article class="tcard reveal">
+      <article class="tcard reveal bld">
         <span class="tcard-ghost" aria-hidden="true">01</span>
+        <span class="bld-tag mono" aria-hidden="true">&#10003; mounted</span>
         <div class="tcard-head mono"><span>The Raw Bros</span><span class="tcard-id">ID — 01</span></div>
         <div class="tcard-main">
-          <span class="avatar sq"><img src="img/anondo.jpg" alt="Gm Anondo" loading="lazy" decoding="async"></span>
+          <span class="avatar sq"><img src="img/anondo.jpg" alt="Gm Anondo — The Raw Bros" loading="lazy" decoding="async"></span>
           <div class="tcard-role">
             <div class="name">Gm Anondo</div>
             <div class="tcard-meta mono">Dhaka · Bangladesh</div>
@@ -1344,11 +1433,12 @@ body.ask-open .ask-panel{opacity:1;visibility:visible;transform:none}
         </div>
       </article>
 
-      <article class="tcard reveal">
+      <article class="tcard reveal bld">
         <span class="tcard-ghost" aria-hidden="true">02</span>
+        <span class="bld-tag mono" aria-hidden="true">&#10003; mounted</span>
         <div class="tcard-head mono"><span>The Raw Bros</span><span class="tcard-id">ID — 02</span></div>
         <div class="tcard-main">
-          <span class="avatar sq alt"><img src="img/nahid.jpg" alt="Younus Ali Nahid" loading="lazy" decoding="async"></span>
+          <span class="avatar sq alt"><img src="img/nahid.jpg" alt="Younus Ali Nahid — The Raw Bros" loading="lazy" decoding="async"></span>
           <div class="tcard-role">
             <div class="name">Younus Ali Nahid</div>
             <div class="tcard-meta mono">Dhaka · Bangladesh</div>
@@ -2939,6 +3029,43 @@ window.__rawMode = function (on) {
       setTimeout(function () { window.__rawMode(true); }, 650);
     };
   }
+})();
+
+/* ---------- team section: build-in animation ---------- */
+(function () {
+  var sec = document.getElementById('team');
+  if (!sec || REDUCED) return;
+  var log = document.getElementById('buildLog');
+  var parts = sec.querySelectorAll('.bld');
+  var timers = [], ran = false;
+  function later(fn, ms) { timers.push(setTimeout(fn, ms)); }
+  function line(html) { if (!log) return; var d = document.createElement('div'); d.innerHTML = html; log.appendChild(d); }
+  window.__buildTeam = function () {
+    timers.forEach(clearTimeout); timers = [];
+    sec.classList.add('prebuild');
+    parts.forEach(function (el) { el.classList.remove('built'); });
+    if (log) log.innerHTML = '';
+    sec.classList.remove('building'); void sec.offsetWidth; sec.classList.add('building');
+    line('<b>&gt;</b> npm run build:team');
+    later(function () { line('<b>&gt;</b> compiling &lt;section id="team"&gt; …'); if (parts[0]) parts[0].classList.add('built'); }, 430);
+    later(function () { line('<b>&gt;</b> importing developers [01, 02] …'); if (parts[1]) parts[1].classList.add('built'); }, 920);
+    later(function () { if (parts[2]) parts[2].classList.add('built'); }, 1280);
+    later(function () { line('<b>&gt;</b> render complete — 0 errors ✓'); }, 1520);
+    later(function () { sec.classList.remove('building'); sec.classList.remove('prebuild'); }, 2350);
+    later(function () { if (log) log.innerHTML = ''; }, 2800);
+  };
+  sec.classList.add('prebuild');
+  var io = new IntersectionObserver(function (es) {
+    es.forEach(function (e) { if (e.isIntersecting && !ran) { ran = true; window.__buildTeam(); io.disconnect(); } });
+  }, { threshold: 0.3 });
+  io.observe(sec);
+  var rb = document.getElementById('rebuildBtn');
+  if (rb) rb.addEventListener('click', function () { ran = true; window.__buildTeam(); });
+  if (typeof GT !== 'undefined') GT.build = function () {
+    gtPrint([{ t: 'Rebuilding the team section…', c: 'o-ok' }]);
+    sec.scrollIntoView({ behavior: 'smooth' });
+    setTimeout(function () { ran = true; window.__buildTeam(); }, 650);
+  };
 })();
 </script>
 </body>
