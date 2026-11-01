@@ -663,6 +663,29 @@ h1,h2,.wordmark,.p-info h3,.svc h3,.tcard-role .name,.brand-name,.stat-n{font-fa
 @media(max-width:1080px){.process::before{display:none}}
 @media(max-width:640px){.term-side{display:none}.term-main{padding:16px 16px 4px}.term-code{font-size:11.5px}.term-title{display:none}.term-tab{padding:7px 10px;font-size:10.5px}.term-head{padding:10px 12px 0}}
 @media (prefers-reduced-motion: reduce){.term-panel.is-on{animation:none}}
+
+/* ---------- playground: guest terminal ---------- */
+.gt-head{display:flex;align-items:center;gap:7px;padding:13px 16px;border-bottom:1px solid var(--line);background:rgba(255,255,255,.02)}
+.gt-title{margin-left:10px;font-family:var(--mono);font-size:11.5px;letter-spacing:.08em;color:var(--muted)}
+.gt-live{margin-left:auto;font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#4ADE80}
+.gt-out{height:302px;overflow-y:auto;padding:18px 20px 4px;font-family:var(--mono);font-size:13px;line-height:1.85;color:#C9C9D4;scrollbar-width:thin;scrollbar-color:rgba(255,255,255,.18) transparent}
+.gt-out::-webkit-scrollbar{width:8px}
+.gt-out::-webkit-scrollbar-thumb{background:rgba(255,255,255,.14);border-radius:99px}
+.gt-out div{white-space:pre-wrap;word-break:break-word}
+.gt-out .o-dim{color:var(--dim)}
+.gt-out .o-or{color:var(--or-2)}
+.gt-out .o-ok{color:#4ADE80}
+.gt-out .o-warn{color:#FF9D7A}
+.gt-out a{color:var(--or-2);text-decoration:underline;text-underline-offset:3px}
+.gt-pe{color:var(--or);font-weight:700}
+.gt-inrow{display:flex;align-items:center;gap:9px;padding:10px 20px 17px;font-family:var(--mono);font-size:13px}
+.gt-input{flex:1;min-width:0;background:transparent;border:0;outline:0;color:var(--txt);font-family:var(--mono);font-size:13px;caret-color:var(--or)}
+.gt-input::placeholder{color:rgba(255,255,255,.25)}
+.gt-chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.gt-chip{font-family:var(--mono);font-size:11px;letter-spacing:.08em;padding:8px 13px;border:1px solid var(--line);border-radius:99px;background:rgba(255,255,255,.02);color:var(--muted);cursor:pointer;transition:border-color .25s,color .25s,background .25s}
+.gt-chip::before{content:"$ ";color:var(--or);font-weight:700}
+.gt-chip:hover{border-color:var(--or);color:var(--or-2);background:rgba(255,72,0,.06)}
+@media(max-width:640px){.gt-out{height:262px;font-size:12px;padding:14px 14px 2px}.gt-inrow{padding:8px 14px 14px}.gt-input{font-size:16px}.gt-title{font-size:10.5px}}
 </style>
 </head>
 <body id="top">
@@ -1242,6 +1265,39 @@ h1,h2,.wordmark,.p-info h3,.svc h3,.tcard-role .name,.brand-name,.stat-n{font-fa
       </div>
     </div>
   </section>
+
+  <!-- ================= PLAYGROUND ================= -->
+  <section class="card reveal" id="playground">
+    <span class="sec-ghost" aria-hidden="true">&gt;_</span>
+    <div class="sec-head">
+      <span class="eyebrow mono"><span class="idx">//</span> Interactive</span>
+      <h2>Don&rsquo;t just read. <span class="hl">Run something.</span></h2>
+      <p class="sec-sub">Most agency sites talk. Ours executes. This little terminal actually works — go ahead, type a command.</p>
+    </div>
+
+    <div class="term rv-up" id="gterm">
+      <div class="gt-head">
+        <span class="b-dot"></span><span class="b-dot"></span><span class="b-dot"></span>
+        <span class="gt-title">guest@therawbros — zsh</span>
+        <span class="gt-live">&#9679; live</span>
+      </div>
+      <div class="gt-out" id="gtOut" aria-live="polite"></div>
+      <div class="gt-inrow">
+        <span class="gt-pe">guest@trb:~$</span>
+        <input class="gt-input" id="gtIn" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="type 'help' and hit enter" aria-label="Terminal command input">
+      </div>
+    </div>
+    <div class="gt-chips rv-up" aria-label="Quick commands">
+      <button type="button" class="gt-chip" data-cmd="help">help</button>
+      <button type="button" class="gt-chip" data-cmd="about">about</button>
+      <button type="button" class="gt-chip" data-cmd="services">services</button>
+      <button type="button" class="gt-chip" data-cmd="stack">stack</button>
+      <button type="button" class="gt-chip" data-cmd="work">work</button>
+      <button type="button" class="gt-chip" data-cmd="contact">contact</button>
+      <button type="button" class="gt-chip" data-cmd="hire-us">hire-us</button>
+    </div>
+  </section>
+
   <!-- ================= FAQ ================= -->
   <section class="card reveal" id="faq">
     <span class="sec-ghost" aria-hidden="true">05</span>
@@ -1687,6 +1743,219 @@ if (svcTerm) {
     }, 5000);
     svcTerm.addEventListener('pointerdown', stopSvcAuto);
   }
+}
+/* ---------- playground: guest terminal ---------- */
+var gtEl = document.getElementById('gterm');
+if (gtEl) {
+  var gtOut = document.getElementById('gtOut');
+  var gtIn = document.getElementById('gtIn');
+  var gtHist = [], gtHi = -1, gtBooted = false;
+  var gtQueue = [], gtPrinting = false;
+
+  function gtAdd(item) {
+    var d = document.createElement('div');
+    if (item.c) d.className = item.c;
+    if (item.html) d.innerHTML = item.html; else d.textContent = item.t || '';
+    gtOut.appendChild(d);
+    gtOut.scrollTop = gtOut.scrollHeight;
+  }
+  function gtFlush() {
+    if (gtPrinting) return; gtPrinting = true;
+    (function step() {
+      var item = gtQueue.shift();
+      if (!item) { gtPrinting = false; return; }
+      gtAdd(item);
+      setTimeout(step, REDUCED ? 0 : 40);
+    })();
+  }
+  function gtPrint(lines) {
+    lines.forEach(function (l) { gtQueue.push(typeof l === 'string' ? { t: l } : l); });
+    gtFlush();
+  }
+  function gtEcho(raw) {
+    var d = document.createElement('div');
+    var p = document.createElement('span'); p.className = 'gt-pe'; p.textContent = 'guest@trb:~$ ';
+    var t = document.createElement('span'); t.textContent = raw;
+    d.appendChild(p); d.appendChild(t);
+    gtOut.appendChild(d);
+    gtOut.scrollTop = gtOut.scrollHeight;
+  }
+  function gtGoto(id) {
+    var el = document.getElementById(id);
+    if (el) el.scrollIntoView({ behavior: REDUCED ? 'auto' : 'smooth', block: 'start' });
+    return !!el;
+  }
+  function gtHire() {
+    gtPrint([
+      { t: 'Excellent decision.', c: 'o-ok' },
+      'Taking you to the 1-minute project brief...'
+    ]);
+    setTimeout(function () {
+      gtGoto('contact');
+      setTimeout(function () {
+        var f = document.querySelector('#briefForm input');
+        if (f) f.focus({ preventScroll: true });
+      }, 900);
+    }, 700);
+  }
+
+  var GT = {
+    help: function () {
+      gtPrint([
+        { t: 'Available commands:', c: 'o-or' },
+        '  about      — who we are',
+        '  services   — what we do',
+        '  stack      — tools we build with',
+        '  team       — the humans',
+        '  work       — things we shipped',
+        '  price      — how pricing works',
+        '  contact    — email & WhatsApp',
+        '  goto <sec> — jump: stack, services, team, work, faq, contact',
+        '  hire-us    — start your project',
+        '  clear      — wipe the screen',
+        { t: "Psst — try 'sudo make me a website'.", c: 'o-dim' }
+      ]);
+    },
+    about: function () {
+      gtPrint([
+        { t: 'The Raw Bros', c: 'o-or' },
+        'A web development agency from Dhaka, Bangladesh.',
+        'We design, build and ship custom websites, e-commerce stores and web apps.',
+        '100% hand-written code — no templates, no page builders, no shortcuts.'
+      ]);
+    },
+    services: function () {
+      gtPrint([
+        { t: 'What we do:', c: 'o-or' },
+        '  01  Frontend Development — the face of your product',
+        '  02  Backend Development  — the engine room',
+        '  03  UI/UX Design         — clarity first',
+        '  04  Deploy & Maintain    — live, fast and healthy',
+        { t: "The fancy version lives in // 02 — try 'goto services'.", c: 'o-dim' }
+      ]);
+    },
+    stack: function () {
+      gtPrint([
+        { t: 'Tools we build with (32):', c: 'o-or' },
+        'React · Next.js · JavaScript · TypeScript · Node.js · Express.js · Python',
+        'PostgreSQL · SQL · MongoDB · Firebase · Firestore · REST APIs',
+        'Tailwind CSS · Bootstrap · Vite · Git · GitHub · VS Code · Figma',
+        'Vercel · Netlify · Cloudflare · Docker · Postman · C · C++',
+        'Kali Linux · XGBoost · Photoshop · Premiere Pro · Canva',
+        { t: "Full show in // 01 — try 'goto stack'.", c: 'o-dim' }
+      ]);
+    },
+    team: function () {
+      gtPrint([
+        { t: 'The humans:', c: 'o-or' },
+        'Gm Anondo & Younus Ali Nahid.',
+        "Titles? We don't split hairs — both of us design, build and deploy, end to end.",
+        'You always talk to the people actually writing your code.'
+      ]);
+    },
+    work: function () {
+      gtPrint([
+        { t: 'Latest launch: Zuberee', c: 'o-or' },
+        'A full custom e-commerce store for premium imported goods — storefront, admin, payments, PWA and more.',
+        { html: 'Visit it live: <a href="https://zuberee.com/" target="_blank" rel="noopener">zuberee.com</a>' },
+        { t: "Yours could be next — type 'hire-us'.", c: 'o-dim' }
+      ]);
+    },
+    price: function () {
+      gtPrint([
+        { t: 'How pricing works:', c: 'o-or' },
+        'No price tags — every project is scoped first, then quoted fixed. No surprises later.',
+        "Send the 1-minute brief (type 'hire-us') and you get an honest estimate within 24 hours."
+      ]);
+    },
+    contact: function () {
+      gtPrint([
+        { html: 'Email:    <a href="mailto:hello.therawbros@gmail.com">hello.therawbros@gmail.com</a>' },
+        { html: 'WhatsApp: <a href="https://wa.me/fr1skyfox1" target="_blank" rel="noopener">chat now</a>' },
+        'We reply within 24 hours.'
+      ]);
+    },
+    whoami: function () { gtPrint(['guest — but around here, guests usually leave as clients.']); },
+    ls: function () {
+      gtPrint([
+        'about.txt  services.txt  stack.txt  team.txt  work.txt  contact.txt  hire-us.sh',
+        { t: "Try: cat services.txt", c: 'o-dim' }
+      ]);
+    },
+    date: function () {
+      try { gtPrint([new Date().toLocaleString('en-GB', { timeZone: 'Asia/Dhaka', dateStyle: 'full', timeStyle: 'medium' }) + ' (Dhaka)']); }
+      catch (e) { gtPrint([new Date().toString()]); }
+    },
+    exit: function () { gtPrint([{ t: "logout failed: this terminal likes you. Type 'hire-us' to escape productively.", c: 'o-warn' }]); },
+    clear: function () { gtOut.innerHTML = ''; gtQueue = []; }
+  };
+  GT.projects = GT.work;
+  GT.pricing = GT.price;
+  GT.hire = gtHire; GT['hire-us'] = gtHire; GT.start = gtHire;
+
+  function gtRun(raw) {
+    var line = (raw || '').trim();
+    gtEcho(line);
+    if (!line) return;
+    gtHist.unshift(line); gtHi = -1;
+    var parts = line.split(/\s+/);
+    var cmd = parts[0].toLowerCase();
+    var args = parts.slice(1);
+    if (cmd === 'sudo') {
+      gtPrint([
+        { t: '[sudo] permission granted.', c: 'o-ok' },
+        'Building your website... just kidding — real builds start with a brief.'
+      ]);
+      setTimeout(gtHire, 650);
+      return;
+    }
+    if (cmd === 'echo') { gtPrint([args.join(' ')]); return; }
+    if (cmd === 'cat') {
+      var f = (args[0] || '').toLowerCase().replace(/\.(txt|sh)$/, '');
+      if (f === 'hire-us') { gtHire(); return; }
+      if (GT[f]) { GT[f](); return; }
+      gtPrint([{ t: 'cat: ' + (args[0] || '') + ': No such file. Try ls.', c: 'o-warn' }]);
+      return;
+    }
+    if (cmd === 'goto') {
+      var map = { stack: 'stack', services: 'services', team: 'team', work: 'projects', projects: 'projects', faq: 'faq', contact: 'contact', home: 'hero', top: 'top' };
+      var target = map[(args[0] || '').toLowerCase()];
+      if (target && gtGoto(target)) gtPrint([{ t: 'Jumping to ' + args[0] + '...', c: 'o-dim' }]);
+      else gtPrint([{ t: 'goto: unknown section. Try stack, services, team, work, faq, contact.', c: 'o-warn' }]);
+      return;
+    }
+    if (GT[cmd]) { GT[cmd](); return; }
+    gtPrint([
+      { t: 'zsh: command not found: ' + cmd, c: 'o-warn' },
+      { t: "Type 'help' for the list.", c: 'o-dim' }
+    ]);
+  }
+
+  gtIn.addEventListener('keydown', function (e) {
+    if (e.key === 'Enter') { gtRun(gtIn.value); gtIn.value = ''; }
+    else if (e.key === 'ArrowUp') { e.preventDefault(); if (gtHi < gtHist.length - 1) { gtHi++; gtIn.value = gtHist[gtHi] || ''; } }
+    else if (e.key === 'ArrowDown') { e.preventDefault(); if (gtHi > 0) { gtHi--; gtIn.value = gtHist[gtHi] || ''; } else { gtHi = -1; gtIn.value = ''; } }
+  });
+  gtEl.addEventListener('click', function () { gtIn.focus({ preventScroll: true }); });
+  document.querySelectorAll('.gt-chip').forEach(function (chip) {
+    chip.addEventListener('click', function () { gtRun(chip.getAttribute('data-cmd')); });
+  });
+
+  function gtBoot() {
+    if (gtBooted) return; gtBooted = true;
+    gtPrint([
+      { t: 'The Raw Bros — guest terminal v1.0', c: 'o-or' },
+      'Hand-built, like everything else here.',
+      { t: "Type 'help' to see what you can do.", c: 'o-dim' }
+    ]);
+  }
+  if ('IntersectionObserver' in window) {
+    var gtIO = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) { if (en.isIntersecting) { gtBoot(); gtIO.disconnect(); } });
+    }, { threshold: 0.25 });
+    gtIO.observe(gtEl);
+    setTimeout(gtBoot, 4000);
+  } else gtBoot();
 }
 </script>
 </body>
