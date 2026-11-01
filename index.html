@@ -930,38 +930,19 @@ body.ask-open .ask-panel{opacity:1;visibility:visible;transform:none}
 .spd-strip{margin-top:16px;font-size:10.5px;letter-spacing:.06em;color:var(--dim)}
 .spd-strip b{color:var(--or-2);font-weight:700}
 
-/* ---------- team build-in: typed code builds the section ---------- */
-.codebuild{position:absolute;top:14px;left:16px;right:16px;max-width:540px;z-index:7;background:rgba(6,7,11,.94);border:1px solid var(--line-2);border-radius:12px;box-shadow:0 24px 50px -20px rgba(0,0,0,.85);opacity:0;visibility:hidden;transform:translateY(-8px);transition:opacity .35s,transform .35s,visibility .35s;pointer-events:none;overflow:hidden}
-#team.building .codebuild{opacity:1;visibility:visible;transform:none}
-.cb-head{display:flex;align-items:center;gap:7px;padding:8px 12px;border-bottom:1px solid var(--line);background:rgba(255,255,255,.02)}
-.cb-dot{width:9px;height:9px;border-radius:50%;background:#2b2e3a;flex:none}
-.cb-dot:first-child{background:var(--or)}
-.cb-file{font-size:10.5px;letter-spacing:.06em;color:var(--muted);margin-left:5px}
-.cb-state{margin-left:auto;font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim)}
-.cb-state.done{color:#2bff7d}
-.cb-body{margin:0;padding:10px 13px 12px;font-family:var(--mono);font-size:10.5px;line-height:1.8;letter-spacing:.02em;color:#d7dae2;white-space:pre-wrap;word-break:break-all;min-height:104px}
-.cb-caret{display:inline-block;width:7px;height:13px;margin-left:2px;background:var(--or);vertical-align:-2px;animation:bootDot 1s steps(2) infinite}
-.cb-t{color:var(--or-2)}
-.cb-a{color:color-mix(in srgb,var(--or) 55%,#fff)}
-.cb-s{color:#ffd9a8}
-.cb-p{color:var(--dim)}
-.cb-ok{color:#2bff7d}
+/* ---------- team build-in: lines + photos develop in place ---------- */
 .build-scan{position:absolute;left:0;right:0;top:-130px;height:120px;z-index:5;background:linear-gradient(180deg,transparent,color-mix(in srgb,var(--or) 13%,transparent));border-bottom:2px solid var(--or);opacity:0;pointer-events:none}
-#team.building .build-scan{opacity:1;animation:bscan 2.4s ease-in-out forwards}
+#team.building .build-scan{opacity:1;animation:bscan 3.9s ease-in-out forwards}
 @keyframes bscan{from{top:-130px}to{top:100%}}
-#team.prebuild .sec-head.bld{opacity:.3;filter:blur(2px);transition:opacity .6s ease,filter .6s ease}
-#team.prebuild .sec-head.bld.built{opacity:1;filter:none}
+#team.prebuild .bstep{opacity:0}
+#team.prebuild .bstep.on{opacity:1}
 #team.prebuild .tcard.bld{outline:1px dashed color-mix(in srgb,var(--or) 55%,transparent);outline-offset:-1px;transition:outline-color .6s ease}
 #team.prebuild .tcard.bld.built{outline-color:transparent}
-#team.prebuild .tcard .tcard-head,#team.prebuild .tcard .tcard-main,#team.prebuild .tcard .tcard-spec,#team.prebuild .tcard .tcard-links{opacity:0;transform:translateY(12px);transition:opacity .5s ease,transform .5s ease}
-#team.prebuild .tcard.built .tcard-head{opacity:1;transform:none;transition-delay:.05s}
-#team.prebuild .tcard.built .tcard-main{opacity:1;transform:none;transition-delay:.2s}
-#team.prebuild .tcard.built .tcard-spec{opacity:1;transform:none;transition-delay:.34s}
-#team.prebuild .tcard.built .tcard-links{opacity:1;transform:none;transition-delay:.46s}
-#team.prebuild .tcard .avatar img{filter:grayscale(1);transition:filter .6s ease .3s}
-#team.prebuild .tcard.built .avatar img{filter:none}
+#team.prebuild .tcard .avatar img{clip-path:inset(0 0 100% 0);filter:grayscale(1);transition:clip-path .85s linear,filter .7s ease .25s}
+#team.prebuild .tcard .avatar img.scan{clip-path:inset(0 0 0% 0);filter:none}
+.b-caret{display:inline-block;width:.55em;height:1em;margin-left:2px;background:var(--or);vertical-align:-.12em;animation:bootDot 1s steps(2) infinite}
 .bld-tag{position:absolute;top:46px;right:14px;z-index:4;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:#2bff7d;border:1px solid rgba(43,255,125,.55);background:rgba(4,20,10,.85);border-radius:99px;padding:4px 9px;opacity:0;transform:scale(.8);transition:opacity .35s,transform .35s;pointer-events:none}
-#team.prebuild .bld.built .bld-tag{opacity:1;transform:scale(1);transition-delay:.45s}
+#team.prebuild .bld.built .bld-tag{opacity:1;transform:scale(1)}
 .rebuild-btn{display:inline-block;margin-top:16px;font-size:10.5px;letter-spacing:.1em;color:var(--dim);background:none;border:1px solid var(--line);border-radius:99px;padding:7px 13px;cursor:pointer;transition:color .25s,border-color .25s}
 .rebuild-btn:hover{color:var(--or-2);border-color:var(--or)}
 @media (prefers-reduced-motion: reduce){.build-scan{display:none}}
@@ -1424,10 +1405,7 @@ body.ask-open .ask-panel{opacity:1;visibility:visible;transform:none}
   <section class="card reveal" id="team">
     <span class="sec-ghost" aria-hidden="true">03</span>
     <div class="build-scan" aria-hidden="true"></div>
-    <div class="codebuild mono" id="buildLog" aria-hidden="true">
-      <div class="cb-head"><span class="cb-dot"></span><span class="cb-dot"></span><span class="cb-dot"></span><span class="cb-file">team.tsx</span><span class="cb-state" id="cbState">building…</span></div>
-      <pre class="cb-body" id="cbBody"></pre>
-    </div>
+    
     <div class="sec-head bld">
       <span class="eyebrow mono"><span class="idx">// 03</span> The Team</span>
       <h2>The people behind <span class="hl">The Raw Bros.</span></h2>
@@ -3055,69 +3033,105 @@ window.__rawMode = function (on) {
   }
 })();
 
-/* ---------- team section: typed code builds it live ---------- */
+/* ---------- team section: every line + photo develops in place ---------- */
 (function () {
   var sec = document.getElementById('team');
   if (!sec || REDUCED) return;
-  var body = document.getElementById('cbBody'), state = document.getElementById('cbState');
-  var parts = sec.querySelectorAll('.bld');
-  var timers = [], ivs = [], ran = false;
-  var LINES = [
-    { type: '<section id="team">', part: -1,
-      html: '<span class="cb-p">&lt;</span><span class="cb-t">section</span> <span class="cb-a">id</span>=<span class="cb-s">"team"</span><span class="cb-p">&gt;</span>' },
-    { type: '  <h2>The people behind The Raw Bros.</h2>', part: 0,
-      html: '  <span class="cb-p">&lt;</span><span class="cb-t">h2</span><span class="cb-p">&gt;</span>The people behind The Raw Bros.<span class="cb-p">&lt;/</span><span class="cb-t">h2</span><span class="cb-p">&gt;</span>' },
-    { type: '  <DevCard id="01" name="Gm Anondo" />', part: 1,
-      html: '  <span class="cb-p">&lt;</span><span class="cb-t">DevCard</span> <span class="cb-a">id</span>=<span class="cb-s">"01"</span> <span class="cb-a">name</span>=<span class="cb-s">"Gm Anondo"</span> <span class="cb-p">/&gt;</span>' },
-    { type: '  <DevCard id="02" name="Younus Ali Nahid" />', part: 2,
-      html: '  <span class="cb-p">&lt;</span><span class="cb-t">DevCard</span> <span class="cb-a">id</span>=<span class="cb-s">"02"</span> <span class="cb-a">name</span>=<span class="cb-s">"Younus Ali Nahid"</span> <span class="cb-p">/&gt;</span>' },
-    { type: '</section>', part: -1,
-      html: '<span class="cb-p">&lt;/</span><span class="cb-t">section</span><span class="cb-p">&gt;</span>' }
-  ];
+  function q(sel, root) { return (root || sec).querySelector(sel); }
+  var cards = sec.querySelectorAll('.tcard');
+  var seq = [];
+  function addStep(el, mode, speed, wait) { if (el) { el.classList.add('bstep'); seq.push({ el: el, mode: mode, speed: speed || 12, wait: wait || 0 }); } }
+  addStep(q('.eyebrow'), 'type', 14);
+  addStep(q('.sec-head h2'), 'type', 15);
+  addStep(q('.sec-sub'), 'words', 21);
+  cards.forEach(function (card) {
+    addStep(card, 'frame', 0, 130);
+    addStep(q('.tcard-head', card), 'type', 9);
+    addStep(q('.avatar img', card), 'img', 0, 240);
+    addStep(q('.tcard-role .name', card), 'type', 14);
+    addStep(q('.tcard-meta', card), 'type', 10);
+    addStep(q('.tcard-spec', card), 'type', 8);
+    addStep(q('.tcard-links', card), 'pop', 0, 170);
+  });
+  /* capture + blank text of type/words steps */
+  function textNodes(el) {
+    var out = [], w = document.createTreeWalker(el, NodeFilter.SHOW_TEXT, null), n;
+    while ((n = w.nextNode())) if (n.nodeValue.trim()) out.push(n);
+    return out;
+  }
+  seq.forEach(function (st) {
+    if (st.mode === 'type' || st.mode === 'words') {
+      st.nodes = textNodes(st.el).map(function (n) { return { n: n, full: n.nodeValue }; });
+      st.nodes.forEach(function (o) { o.n.nodeValue = ''; });
+    }
+  });
+  var timers = [], ivs = [], ran = false, caret = null;
   function later(fn, ms) { timers.push(setTimeout(fn, ms)); }
   function clearAll() { timers.forEach(clearTimeout); ivs.forEach(clearInterval); timers = []; ivs = []; }
-  window.__buildTeam = function () {
-    clearAll();
-    sec.classList.add('prebuild');
-    parts.forEach(function (el) { el.classList.remove('built'); });
-    if (body) body.innerHTML = '';
-    if (state) { state.textContent = 'building…'; state.classList.remove('done'); }
-    sec.classList.remove('building'); void sec.offsetWidth; sec.classList.add('building');
-    var t = 300;
-    LINES.forEach(function (L) {
-      (function (L, start) {
-        later(function () {
-          if (!body) { if (L.part >= 0 && parts[L.part]) parts[L.part].classList.add('built'); return; }
-          var row = document.createElement('span');
-          body.appendChild(row);
-          var caret = document.createElement('span'); caret.className = 'cb-caret'; body.appendChild(caret);
-          var i = 0, txt = L.type;
-          var iv = setInterval(function () {
-            i++; row.textContent = txt.slice(0, i);
-            if (i >= txt.length) {
-              clearInterval(iv);
-              row.innerHTML = L.html;
-              if (caret.parentNode) caret.parentNode.removeChild(caret);
-              body.appendChild(document.createTextNode('\n'));
-              if (L.part >= 0 && parts[L.part]) parts[L.part].classList.add('built');
-            }
-          }, 11);
-          ivs.push(iv);
-        }, start);
-      })(L, t);
-      t += L.type.length * 11 + 115;
+  function restoreAll() {
+    seq.forEach(function (st) {
+      st.el.classList.add('on');
+      if (st.nodes) st.nodes.forEach(function (o) { o.n.nodeValue = o.full; });
+      if (st.mode === 'img') st.el.classList.add('scan');
     });
-    later(function () {
-      if (body) { var ok = document.createElement('span'); ok.className = 'cb-ok'; ok.textContent = '✓ compiled successfully — 0 errors'; body.appendChild(ok); }
-      if (state) { state.textContent = '✓ done'; state.classList.add('done'); }
-    }, t + 40);
-    later(function () { sec.classList.remove('building'); sec.classList.remove('prebuild'); }, t + 900);
-    later(function () { if (body) body.innerHTML = ''; }, t + 1350);
+    cards.forEach(function (c) { c.classList.add('built'); });
+    if (caret && caret.parentNode) caret.parentNode.removeChild(caret);
+    sec.classList.remove('building'); sec.classList.remove('prebuild');
+  }
+  function moveCaret(parentEl) {
+    if (!caret) { caret = document.createElement('span'); caret.className = 'b-caret'; caret.setAttribute('aria-hidden', 'true'); }
+    parentEl.appendChild(caret);
+  }
+  function runStep(idx) {
+    if (idx >= seq.length) { later(restoreAll, 420); return; }
+    var st = seq[idx], el = st.el;
+    el.classList.add('on');
+    if (st.mode === 'frame') { later(function () { runStep(idx + 1); }, st.wait); return; }
+    if (st.mode === 'img') { el.classList.add('scan'); later(function () { runStep(idx + 1); }, st.wait); return; }
+    if (st.mode === 'pop') {
+      var card = el.closest('.tcard'); if (card) card.classList.add('built');
+      later(function () { runStep(idx + 1); }, st.wait); return;
+    }
+    /* type / words across all text nodes of the element */
+    var units = [];
+    st.nodes.forEach(function (o) {
+      if (st.mode === 'words') {
+        var parts = o.full.split(/(\s+)/);
+        var acc = '';
+        parts.forEach(function (p) { acc += p; if (p.trim()) units.push({ o: o, txt: acc }); });
+        if (!parts.length || acc !== o.full) units.push({ o: o, txt: o.full });
+      } else {
+        for (var i = 1; i <= o.full.length; i++) units.push({ o: o, txt: o.full.slice(0, i) });
+      }
+    });
+    var ui = 0;
+    moveCaret(units.length ? units[0].o.n.parentElement : el);
+    var iv = setInterval(function () {
+      if (ui >= units.length) { clearInterval(iv); runStep(idx + 1); return; }
+      var u = units[ui++];
+      u.o.n.nodeValue = u.txt;
+      moveCaret(u.o.n.parentElement);
+    }, st.speed);
+    ivs.push(iv);
+  }
+  window.__buildTeam = function () {
+    try {
+      clearAll();
+      seq.forEach(function (st) {
+        st.el.classList.remove('on');
+        if (st.nodes) st.nodes.forEach(function (o) { o.n.nodeValue = ''; });
+        if (st.mode === 'img') st.el.classList.remove('scan');
+      });
+      cards.forEach(function (c) { c.classList.remove('built'); });
+      sec.classList.add('prebuild');
+      sec.classList.remove('building'); void sec.offsetWidth; sec.classList.add('building');
+      later(function () { runStep(0); }, 260);
+    } catch (e) { restoreAll(); }
   };
   sec.classList.add('prebuild');
   var io = new IntersectionObserver(function (es) {
     es.forEach(function (e) { if (e.isIntersecting && !ran) { ran = true; window.__buildTeam(); io.disconnect(); } });
-  }, { threshold: 0.05, rootMargin: '0px 0px -12% 0px' });
+  }, { threshold: 0.05, rootMargin: '0px 0px -10% 0px' });
   io.observe(sec);
   var rb = document.getElementById('rebuildBtn');
   if (rb) rb.addEventListener('click', function () { ran = true; window.__buildTeam(); });
