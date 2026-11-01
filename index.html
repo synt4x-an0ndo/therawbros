@@ -856,6 +856,10 @@ body.ask-open .ask-panel{opacity:1;visibility:visible;transform:none}
 .ask-send{flex:none;width:44px;border-radius:13px;border:none;background:linear-gradient(135deg,var(--grad-a),var(--grad-b));color:#180e06;font-size:17px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:transform .2s}
 .ask-send:active{transform:scale(.92)}
 @media (prefers-reduced-motion: reduce){.ask-fab,.ask-fab::before,.ask-msg,.ask-chip,.ask-type,.ask-type i{animation:none}}
+
+/* ---------- speed strip ---------- */
+.spd-strip{margin-top:16px;font-size:10.5px;letter-spacing:.06em;color:var(--dim)}
+.spd-strip b{color:var(--or-2);font-weight:700}
 </style>
 </head>
 <body id="top">
@@ -1471,6 +1475,7 @@ body.ask-open .ask-panel{opacity:1;visibility:visible;transform:none}
       <button type="button" class="gt-chip" data-cmd="hack">hack</button>
       <button type="button" class="gt-chip" data-cmd="hire-us">hire-us</button>
     </div>
+    <div class="spd-strip mono rv-up" id="spdStrip">// measuring this page on your device…</div>
   </section>
 
   <!-- ================= FAQ ================= -->
@@ -1636,6 +1641,7 @@ body.ask-open .ask-panel{opacity:1;visibility:visible;transform:none}
       <span class="mono" style="letter-spacing:.14em">Dhaka, Bangladesh — <span id="dhakaClock">--:--</span> BST · Working Worldwide</span>
     </div>
     <div class="f-spec mono">// this page ships with: 1 terminal / 6 themes / 1 x-ray / several secrets</div>
+    <div class="f-spec mono"><button type="button" id="footRaw" class="foot-link" style="font:inherit;color:inherit;background:none;border:none;cursor:pointer;text-decoration:underline;text-underline-offset:3px">// view this page RAW — zero CSS</button></div>
   </footer>
   <button id="toTop" type="button" aria-label="Back to top">&uarr; TOP</button>
 
@@ -1683,6 +1689,11 @@ body.ask-open .ask-panel{opacity:1;visibility:visible;transform:none}
       <input class="ask-in" id="askIn" type="text" placeholder="Ask about pricing, timelines…" autocomplete="off" aria-label="Type your question">
       <button class="ask-send" type="submit" aria-label="Send">&#10148;</button>
     </form>
+  </div>
+
+  <div id="rawBar" hidden style="position:fixed;left:10px;right:10px;bottom:10px;z-index:2147483000;background:#0b0c11;color:#f2f2f2;border:1px solid #ff4800;border-radius:12px;padding:12px 14px;font-family:monospace;font-size:12.5px;line-height:1.6;box-shadow:0 18px 44px rgba(0,0,0,.55)">
+    <b style="color:#ff7a1a;letter-spacing:.12em">RAW MODE</b> — zero CSS. Same page, no makeup: still structured, still readable. That is what clean, hand-built code looks like.
+    <button type="button" id="rawOff" style="margin-left:10px;background:#ff4800;color:#180e06;border:none;border-radius:99px;padding:7px 14px;font-family:inherit;font-size:12px;font-weight:700;cursor:pointer">Back to styled →</button>
   </div>
 </div>
 
@@ -2058,6 +2069,8 @@ if (gtEl) {
         '  hire-us    — start your project',
         '  theme      — 6 site themes ("theme list")',
         '  ask        — chat with our assistant',
+        '  speed      — how fast this page loaded for you',
+        '  raw        — strip ALL css (the clean-code flex)',
         '  clear      — wipe the screen',
         { t: "Psst — hidden ones: 'hack', 'coffee', 'ping', 'sudo make me a website'.", c: 'o-dim' }
       ]);
@@ -2300,6 +2313,8 @@ var PAL = [
   { t: 'Toggle X-Ray mode', c: 'action', k: 'xray x-ray inspect wireframe markup skeleton', run: function () { window.toggleXray(); } },
   { t: 'Visit Zuberee — live project', c: 'link', k: 'zuberee work project store live', run: function () { window.open('https://zuberee.com/', '_blank', 'noopener'); } },
   { t: 'Ask TRB — chat', c: 'action', k: 'chat ask question assistant ai help message', run: function () { if (window.openAsk) window.openAsk(); } },
+  { t: 'Speed test — this page, your device', c: 'action', k: 'speed fast performance benchmark load', run: function () { var t = document.getElementById('playground'); if (t) t.scrollIntoView({ behavior: 'smooth' }); setTimeout(function () { if (typeof GT !== 'undefined' && GT.speed) { gtEcho('speed'); GT.speed(); } }, 650); } },
+  { t: 'RAW mode — strip all CSS', c: 'action', k: 'raw naked no css clean code html', run: function () { if (window.__rawMode) window.__rawMode(true); } },
   { t: 'Cycle site theme (6)', c: 'action', k: 'theme matrix green hacker color dark', run: function () { if (window.__cycleTheme) window.__cycleTheme(); } },
   { t: 'Fake-hack the site (fun)', c: 'action', k: 'hack fun easter egg glitch breach', run: function () { if (window.__fakeHack) window.__fakeHack(); } },
   { t: 'Take the project quiz', c: 'action', k: 'quiz finder wizard which package', run: function () { palGoto('quiz'); } },
@@ -2691,6 +2706,12 @@ if (hintToast) {
       en: "Psst… this site has secrets. Head to the Playground terminal and type 'hack'. And 'theme list' shows all 6 site themes.",
       bn: "Psst… এই সাইটে সিক্রেট আছে। Playground টার্মিনালে গিয়ে 'hack' লিখে দেখো। আর 'theme list' দিলে ৬টা থিমের লিস্ট আসবে।",
       acts: [{ t: 'Open the terminal →', g: 'playground' }] },
+    { r: /speed|fast|performance|load(ing)? time|\bslow\b|optimize|গতি|স্পিড|দ্রুত|লোড হতে/i, dyn: 'speed',
+      acts: [{ t: '1-min brief →', g: 'contact' }, { t: 'Run it in terminal', g: 'playground' }] },
+    { r: /raw mode|no css|without css|clean code|naked/i,
+      en: "Want proof of clean code? RAW mode strips every line of CSS from this page — same content, zero makeup:",
+      bn: "ক্লিন কোডের প্রমাণ চান? RAW mode এই পেজের সব CSS খুলে ফেলে — একই কন্টেন্ট, শূন্য সাজসজ্জা:",
+      acts: [{ t: 'Try RAW mode', raw: 1 }] },
     { r: /thank|thanks|ধন্যবাদ|শুকরিয়া/i,
       en: "Anytime! If a project is on your mind, the 1-minute brief is the fastest way to a quote.",
       bn: "স্বাগতম! মাথায় কোনো প্রজেক্ট থাকলে ১ মিনিটের brief টাই quote পাওয়ার সবচেয়ে দ্রুত রাস্তা।",
@@ -2741,6 +2762,9 @@ if (hintToast) {
           closeAsk();
           setTimeout(function () { var t = document.getElementById(a.g); if (t) t.scrollIntoView({ behavior: REDUCED ? 'auto' : 'smooth' }); }, 80);
         });
+      } else if (a.raw) {
+        el = document.createElement('button'); el.type = 'button'; el.className = 'ask-act'; el.textContent = a.t;
+        el.addEventListener('click', function () { closeAsk(); setTimeout(function () { if (window.__rawMode) window.__rawMode(true); }, 90); });
       } else {
         el = document.createElement('a'); el.className = 'ask-act'; el.textContent = a.t;
         el.href = a.m ? 'mailto:hello.therawbros@gmail.com' : WA + encodeURIComponent(a.w || ('Hi The Raw Bros! ' + (question || '')));
@@ -2758,6 +2782,7 @@ if (hintToast) {
     var bn = isBn(q), hit = null;
     for (var i = 0; i < RULES.length; i++) { if (RULES[i].r.test(q)) { hit = RULES[i]; break; } }
     var text = hit ? (bn ? hit.bn : hit.en) : (bn ? FALLBACK.bn : FALLBACK.en);
+    if (hit && hit.dyn === 'speed' && window.__speedText) text = window.__speedText(bn);
     var acts = hit ? hit.acts : [{ t: 'Send on WhatsApp →', w: 'Hi The Raw Bros! ' + q }, { t: 'Email us', m: 1 }];
     var delay = REDUCED ? 60 : Math.min(1200, 450 + text.length * 2.2);
     setTimeout(function () {
@@ -2821,6 +2846,97 @@ if (hintToast) {
     GT.ask = GT.chat = function () {
       gtPrint([{ t: 'Opening Ask TRB…', c: 'o-ok' }]);
       setTimeout(openAsk, 350);
+    };
+  }
+})();
+
+/* ---------- speed flex: real numbers from this device ---------- */
+window.__speedStats = function () {
+  try {
+    var nav = performance.getEntriesByType('navigation')[0] || {};
+    var res = performance.getEntriesByType('resource') || [];
+    var bytes = nav.transferSize || nav.encodedBodySize || 0;
+    res.forEach(function (r) { bytes += r.transferSize || r.encodedBodySize || 0; });
+    return {
+      dcl: (nav.domContentLoadedEventEnd || 0) / 1000,
+      load: (nav.loadEventEnd || nav.domContentLoadedEventEnd || 0) / 1000,
+      kb: Math.max(1, Math.round(bytes / 1024)),
+      req: res.length + 1
+    };
+  } catch (e) { return null; }
+};
+function spdFmt(x) { return x > 0 ? x.toFixed(2) + 's' : '—'; }
+window.__speedText = function (bn) {
+  var st = window.__speedStats();
+  if (!st || !st.load) return bn ? 'এই পেজটা হাতে-লেখা কোডে বানানো — কোনো page-builder ভরতি জঞ্জাল নেই, তাই লোড হয় চোখের পলকে।' : 'This page is hand-written code — no page-builder bloat, so it loads in a blink.';
+  return bn
+    ? 'এই পেজটাই আপনার ডিভাইসে লোড হয়েছে মাত্র ' + spdFmt(st.load) + '-এ (' + st.kb + ' KB, ' + st.req + 'টা রিকোয়েস্ট)। কোনো টেমপ্লেটের জঞ্জাল নেই — হাতে-লেখা কোড। আপনার সাইটও এমন স্পিড পেতে পারে।'
+    : 'This very page loaded on your device in ' + spdFmt(st.load) + ' (' + st.kb + ' KB, ' + st.req + ' requests). Zero template bloat — hand-built code. Your site could feel like this too.';
+};
+(function () {
+  var strip = document.getElementById('spdStrip');
+  function fillStrip() {
+    if (!strip) return;
+    var st = window.__speedStats();
+    if (st && st.load) strip.innerHTML = '// ⚡ this page loaded for you in <b>' + spdFmt(st.load) + '</b> · <b>' + st.kb + ' KB</b> · ' + st.req + ' requests — hand-built, zero bloat. your site could too.';
+  }
+  if (document.readyState === 'complete') setTimeout(fillStrip, 350);
+  else window.addEventListener('load', function () { setTimeout(fillStrip, 350); });
+  if (typeof GT !== 'undefined') {
+    GT.speed = GT.benchmark = GT.perf = function () {
+      var st = window.__speedStats();
+      if (!st) { gtPrint([{ t: 'Timing API unavailable on this browser.', c: 'o-warn' }]); return; }
+      var filled = Math.max(1, Math.min(10, Math.round(10 - st.load * 2)));
+      var bar = '';
+      for (var i = 0; i < 10; i++) bar += i < filled ? '█' : '░';
+      gtPrint([
+        { t: '⚡ Speed test — this device, this visit:', c: 'o-or' },
+        '  interactive (DCL) .... ' + spdFmt(st.dcl),
+        '  full load ............ ' + spdFmt(st.load),
+        '  page weight .......... ' + st.kb + ' KB · ' + st.req + ' requests',
+        '  [' + bar + '] hand-built, zero bloat',
+        { t: 'Your visitors feel speed like this. So could yours.', c: 'o-dim' }
+      ]);
+    };
+  }
+})();
+
+/* ---------- RAW mode: strip every line of CSS ---------- */
+window.__rawMode = function (on) {
+  var bar = document.getElementById('rawBar');
+  var sheet = document.querySelector('style');
+  var widgets = '.pal,#askPanel,#askFab,#askTeaser,#hackFx,.dock,#hintToast,#xrayBar,#xrayInfo,#boot,#toTop';
+  if (on) {
+    if (window.closeAsk) window.closeAsk();
+    document.querySelectorAll(widgets).forEach(function (el) { el.setAttribute('data-rawhide', el.hidden ? '1' : ''); el.hidden = true; });
+    /* cap media so phones do not shrink-to-fit zoom the raw page away */
+    document.querySelectorAll('img,canvas,video,svg').forEach(function (el) {
+      el.setAttribute('data-rawcap', el.style.cssText || '');
+      el.style.maxWidth = '100%'; el.style.height = 'auto';
+    });
+    [document.documentElement, document.body].forEach(function (el) {
+      el.setAttribute('data-rawcap', el.style.cssText || '');
+      el.style.overflowX = 'hidden';
+    });
+    if (sheet) sheet.disabled = true;
+    if (bar) { if (bar.parentNode !== document.body) document.body.appendChild(bar); bar.hidden = false; }
+    window.scrollTo(0, 0);
+    setTimeout(function () { window.scrollTo(0, 0); }, 80);
+  } else {
+    if (sheet) sheet.disabled = false;
+    document.querySelectorAll('[data-rawhide]').forEach(function (el) { el.hidden = el.getAttribute('data-rawhide') === '1'; el.removeAttribute('data-rawhide'); });
+    document.querySelectorAll('[data-rawcap]').forEach(function (el) { el.style.cssText = el.getAttribute('data-rawcap') || ''; el.removeAttribute('data-rawcap'); });
+    if (bar) bar.hidden = true;
+  }
+};
+(function () {
+  var fr = document.getElementById('footRaw'), off = document.getElementById('rawOff');
+  if (fr) fr.addEventListener('click', function () { window.__rawMode(true); });
+  if (off) off.addEventListener('click', function () { window.__rawMode(false); });
+  if (typeof GT !== 'undefined') {
+    GT.raw = function () {
+      gtPrint([{ t: 'Stripping all CSS… welcome to RAW mode.', c: 'o-warn' }]);
+      setTimeout(function () { window.__rawMode(true); }, 650);
     };
   }
 })();
