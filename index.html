@@ -947,6 +947,9 @@ body.ask-open .ask-panel{opacity:1;visibility:visible;transform:none}
 .rebuild-btn:hover{color:var(--or-2);border-color:var(--or)}
 @media (prefers-reduced-motion: reduce){.build-scan{display:none}}
 
+
+/* ---------- brief form scroll target ---------- */
+#briefForm{scroll-margin-top:92px}
 </style>
 </head>
 <body id="top">
@@ -2138,11 +2141,14 @@ if (gtEl) {
       'Taking you to the 1-minute project brief...'
     ]);
     setTimeout(function () {
-      gtGoto('contact');
-      setTimeout(function () {
-        var f = document.querySelector('#briefForm input');
-        if (f) f.focus({ preventScroll: true });
-      }, 900);
+      var form = document.getElementById('briefForm');
+      var f = form ? (form.querySelector('input[name="name"]') || form.querySelector('input, select, textarea')) : null;
+      var target = form || document.getElementById('contact');
+      if (target) target.scrollIntoView({ behavior: REDUCED ? 'auto' : 'smooth', block: 'start' });
+      var focused = false;
+      function doFocus() { if (!focused && f) { focused = true; f.focus(); } }
+      if ('onscrollend' in window) window.addEventListener('scrollend', function h() { window.removeEventListener('scrollend', h); setTimeout(doFocus, 60); });
+      setTimeout(doFocus, REDUCED ? 180 : 1600);
     }, 700);
   }
 
@@ -2753,11 +2759,11 @@ if (hintToast) {
     { r: /price|pricing|cost|quote|budget|charge|\brate\b|দাম|খরচ|টাকা লাগ|dam koto|koto lag/i,
       en: "Pricing depends on scope — pages, features and integrations. Send the 1-minute brief and you get a fixed, written quote before any work starts. No hidden costs, no surprises.",
       bn: "দাম নির্ভর করে কাজের পরিধির উপর — পেজ, ফিচার আর ইন্টিগ্রেশন অনুযায়ী। ১ মিনিটের brief টা পাঠালেই কাজ শুরুর আগে লিখিতভাবে নির্দিষ্ট quote পাবেন। কোনো hidden cost নেই।",
-      acts: [{ t: '1-min brief →', g: 'contact' }, { t: 'WhatsApp', w: 'Hi The Raw Bros! I want a quote for a website.' }] },
+      acts: [{ t: '1-min brief →', g: 'briefForm' }, { t: 'WhatsApp', w: 'Hi The Raw Bros! I want a quote for a website.' }] },
     { r: /how long|timeline|deadline|\bdays?\b|weeks|deliver|duration|কয়দিন|কতদিন|সময় লাগ|koydin|koy din|kotodin/i,
       en: "A landing page can ship in days; a full e-commerce store or web app usually takes a few weeks. Your quote always includes a clear timeline — and we share progress as we build.",
       bn: "ল্যান্ডিং পেজ কয়েক দিনেই হয়ে যায়; পূর্ণাঙ্গ স্টোর বা ওয়েব অ্যাপে সাধারণত কয়েক সপ্তাহ লাগে। quote-এর সাথেই পরিষ্কার timeline পাবেন — কাজের অগ্রগতিও নিয়মিত জানানো হয়।",
-      acts: [{ t: '1-min brief →', g: 'contact' }] },
+      acts: [{ t: '1-min brief →', g: 'briefForm' }] },
     { r: /service|what do you (do|build|make)|offer|provide|কি কি (কাজ|পারো|সার্ভিস)|ki ki|store|shop|e-?commerce|web ?app|website ban/i,
       en: "We design and build, end to end:\n01 Frontend — the face of your product\n02 Backend — the engine room\n03 UI/UX design — clarity first\n04 Deploy & maintain\nBusiness websites, e-commerce stores and web apps.",
       bn: "আমরা শুরু থেকে শেষ পর্যন্ত বানাই:\n01 Frontend — প্রোডাক্টের চেহারা\n02 Backend — ইঞ্জিন রুম\n03 UI/UX Design\n04 Deploy & Maintain\nবিজনেস ওয়েবসাইট, ই-কমার্স স্টোর আর ওয়েব অ্যাপ।",
@@ -2789,7 +2795,7 @@ if (hintToast) {
     { r: /start|get started|\border\b|hire|book|begin|বানাতে চাই|বানাবো|ওয়েবসাইট লাগবে|website lagbe|banate chai|kivabe shuru/i,
       en: "Easiest start: the 1-minute brief below. Or take the 3-tap Project Finder — it pre-fills the brief for you.",
       bn: "সবচেয়ে সহজ শুরু: নিচের ১ মিনিটের brief ফর্মটা। অথবা ৩-ট্যাপের Project Finder নিন — brief অটো-ফিল হয়ে যাবে।",
-      acts: [{ t: 'Project Finder →', g: 'quiz' }, { t: '1-min brief →', g: 'contact' }] },
+      acts: [{ t: 'Project Finder →', g: 'quiz' }, { t: '1-min brief →', g: 'briefForm' }] },
     { r: /where|location|address|office|based|কোথায়|ঠিকানা|ঢাকা|dhaka/i,
       en: "We're based in Dhaka, Bangladesh — and build for clients anywhere. Everything happens online: chat, live previews, launch.",
       bn: "আমাদের বেস ঢাকা, বাংলাদেশ — তবে ক্লায়েন্ট যেকোনো দেশের হতে পারেন। সবকিছুই অনলাইনে হয়: চ্যাট, লাইভ প্রিভিউ, লঞ্চ।",
@@ -2799,7 +2805,7 @@ if (hintToast) {
       bn: "Psst… এই সাইটে সিক্রেট আছে। Playground টার্মিনালে গিয়ে 'hack' লিখে দেখো। আর 'theme list' দিলে ৬টা থিমের লিস্ট আসবে।",
       acts: [{ t: 'Open the terminal →', g: 'playground' }] },
     { r: /speed|fast|performance|load(ing)? time|\bslow\b|optimize|গতি|স্পিড|দ্রুত|লোড হতে/i, dyn: 'speed',
-      acts: [{ t: '1-min brief →', g: 'contact' }, { t: 'Run it in terminal', g: 'playground' }] },
+      acts: [{ t: '1-min brief →', g: 'briefForm' }, { t: 'Run it in terminal', g: 'playground' }] },
     { r: /raw mode|no css|without css|clean code|naked/i,
       en: "Want proof of clean code? RAW mode strips every line of CSS from this page — same content, zero makeup:",
       bn: "ক্লিন কোডের প্রমাণ চান? RAW mode এই পেজের সব CSS খুলে ফেলে — একই কন্টেন্ট, শূন্য সাজসজ্জা:",
@@ -2807,7 +2813,7 @@ if (hintToast) {
     { r: /thank|thanks|ধন্যবাদ|শুকরিয়া/i,
       en: "Anytime! If a project is on your mind, the 1-minute brief is the fastest way to a quote.",
       bn: "স্বাগতম! মাথায় কোনো প্রজেক্ট থাকলে ১ মিনিটের brief টাই quote পাওয়ার সবচেয়ে দ্রুত রাস্তা।",
-      acts: [{ t: '1-min brief →', g: 'contact' }] },
+      acts: [{ t: '1-min brief →', g: 'briefForm' }] },
     { r: /^(hi+|hello+|hey+|yo|salam|assalamu?\s*alaikum|হ্যালো|হাই|আসসালামু)/i,
       en: "Hey! Good to see you. Ask me about pricing, timelines or services — or tap a shortcut below.",
       bn: "হ্যালো! দাম, সময় বা সার্ভিস নিয়ে জিজ্ঞেস করুন — অথবা নিচের shortcut ট্যাপ করুন।",
