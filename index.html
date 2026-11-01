@@ -565,9 +565,69 @@ h1,h2,.wordmark,.p-info h3,.svc h3,.tcard-role .name,.brand-name,.stat-n{font-fa
 /* hero code-rain background */
 .hero .code-rain{position:absolute;inset:0;width:100%;height:100%;z-index:1;pointer-events:none;opacity:.55;-webkit-mask-image:radial-gradient(85% 75% at 50% 42%, rgba(0,0,0,.30) 25%, #000 78%);mask-image:radial-gradient(85% 75% at 50% 42%, rgba(0,0,0,.30) 25%, #000 78%)}
 @media (prefers-reduced-motion:reduce){.hero .code-rain{display:none}}
+
+/* ---------- pass 3: boot loader ---------- */
+#boot{position:fixed;inset:0;z-index:200;background:var(--bg);display:flex;align-items:center;justify-content:center;transition:opacity .45s ease,visibility .45s;animation:bootKill .5s ease 2.6s forwards}
+#boot.done{opacity:0;visibility:hidden}
+.boot-card{font-family:var(--mono);font-size:13.5px;line-height:1.9;color:var(--mut);letter-spacing:.04em}
+.boot-line{opacity:0;animation:bootIn .3s ease forwards}
+.boot-line.d2{animation-delay:.28s}.boot-line.d3{animation-delay:.56s}
+.b-pmt{color:var(--org);font-weight:700}.b-ok{color:var(--txt)}
+.boot-bar{width:220px;height:3px;border-radius:99px;background:rgba(255,255,255,.09);overflow:hidden;margin-top:14px}
+.boot-bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--org),var(--org2));animation:bootFill .75s .1s ease forwards}
+@keyframes bootIn{to{opacity:1}}
+@keyframes bootFill{to{width:100%}}
+@keyframes bootKill{to{opacity:0;visibility:hidden}}
+/* ---------- pass 3: capabilities matrix ---------- */
+.caps{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:28px}
+.cap{border:1px solid var(--line);border-radius:16px;padding:18px 18px 10px;background:rgba(255,255,255,.02);transition:border-color .3s,transform .3s}
+.cap:hover{border-color:rgba(255,122,26,.4);transform:translateY(-3px)}
+.cap h3{font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--org2);display:flex;align-items:center;gap:9px;margin-bottom:8px}
+.cap h3 span{color:var(--dim);font-weight:500}
+.cap ul{list-style:none}
+.cap li{font-size:13.5px;color:var(--mut);padding:7.5px 0;border-top:1px dashed rgba(255,255,255,.07)}
+.cap li:first-child{border-top:0}
+/* ---------- pass 3: why-us band ---------- */
+.why-head{margin-top:30px;font-size:11px;letter-spacing:.2em;color:var(--dim)}
+.why-head .idx{color:var(--org)}
+.why{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:14px}
+.why-it{border:1px solid var(--line);border-radius:16px;padding:20px;background:linear-gradient(180deg,rgba(255,122,26,.05),rgba(255,255,255,.015));transition:border-color .3s,transform .3s}
+.why-it:hover{border-color:rgba(255,122,26,.4);transform:translateY(-3px)}
+.why-n{font-family:var(--mono);font-size:12px;letter-spacing:.15em;color:var(--org)}
+.why-it h3{font-family:var(--disp);font-size:16.5px;font-weight:600;margin:10px 0 6px}
+.why-it p{font-size:13px;color:var(--mut);line-height:1.6}
+/* ---------- pass 3: engagement models ---------- */
+.models{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:28px 0 8px;text-align:left}
+.model{border:1px solid var(--line);border-radius:18px;padding:22px;background:rgba(255,255,255,.02);display:flex;flex-direction:column;transition:border-color .3s,transform .3s}
+.model:hover{border-color:rgba(255,122,26,.45);transform:translateY(-3px)}
+.m-tag{font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--org2)}
+.model h3{font-family:var(--disp);font-size:20px;font-weight:600;margin:9px 0 7px}
+.model p{font-size:13.5px;color:var(--mut);line-height:1.6}
+.model ul{list-style:none;margin:13px 0 18px}
+.model li{font-size:13px;color:var(--mut);padding:4px 0 4px 20px;position:relative}
+.model li::before{content:"✓";position:absolute;left:0;color:var(--org);font-weight:700}
+.m-btn{margin-top:auto;font-family:var(--mono);font-size:11px;letter-spacing:.13em;text-transform:uppercase;text-align:center;padding:11px 14px;border:1px solid var(--line);border-radius:99px;color:var(--txt);transition:border-color .25s,color .25s,background .25s}
+.m-btn:hover{border-color:var(--org);color:var(--org2);background:rgba(255,122,26,.07)}
+/* ---------- pass 3: footer wordmark + back to top ---------- */
+.foot-word{font-family:var(--disp);font-weight:700;font-size:clamp(50px,11vw,146px);line-height:.96;text-align:center;white-space:nowrap;color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.14);margin:36px 0 4px;user-select:none;-webkit-mask-image:linear-gradient(180deg,#000 58%,transparent 98%);mask-image:linear-gradient(180deg,#000 58%,transparent 98%)}
+#toTop{position:fixed;right:18px;bottom:18px;z-index:80;font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;padding:11px 15px;border-radius:99px;border:1px solid var(--line);background:rgba(10,11,16,.85);color:var(--txt);cursor:pointer;opacity:0;visibility:hidden;transform:translateY(8px);transition:opacity .3s,transform .3s,visibility .3s,border-color .25s,color .25s}
+#toTop.show{opacity:1;visibility:visible;transform:none}
+#toTop:hover{border-color:var(--org);color:var(--org2)}
+@media(max-width:960px){.caps,.why{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:860px){.models{grid-template-columns:1fr}}
+@media(max-width:560px){.caps,.why{grid-template-columns:1fr}}
+@media (prefers-reduced-motion: reduce){#boot{display:none}.cap,.why-it,.model{transition:none}}
 </style>
 </head>
 <body id="top">
+<div id="boot" aria-hidden="true">
+  <div class="boot-card">
+    <div class="boot-line"><span class="b-pmt">$</span> therawbros --init</div>
+    <div class="boot-line d2">&#9656; building experience&hellip;</div>
+    <div class="boot-line d3 b-ok">&#10003; ready &mdash; welcome</div>
+    <div class="boot-bar"><i></i></div>
+  </div>
+</div>
 
 <!-- ================= SVG SPRITE ================= -->
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -896,6 +956,25 @@ h1,h2,.wordmark,.p-info h3,.svc h3,.tcard-role .name,.brand-name,.stat-n{font-fa
         </div>
       </div>
     </div>
+  
+    <div class="caps rv-up">
+      <div class="cap">
+        <h3><span>01</span>Frontend</h3>
+        <ul><li>React &amp; Next.js</li><li>Vue.js</li><li>TypeScript / JavaScript</li><li>Tailwind CSS &amp; SASS</li><li>Pixel-true responsive UI</li></ul>
+      </div>
+      <div class="cap">
+        <h3><span>02</span>Backend &amp; Data</h3>
+        <ul><li>Node.js</li><li>PHP &amp; Laravel</li><li>REST API &amp; GraphQL</li><li>MySQL &middot; PostgreSQL &middot; MongoDB</li><li>Prisma &middot; JWT Auth</li></ul>
+      </div>
+      <div class="cap">
+        <h3><span>03</span>Build &amp; Ship</h3>
+        <ul><li>Git &amp; GitHub</li><li>Docker</li><li>Vite &amp; Webpack</li><li>Linux &middot; VPS &middot; NGINX</li><li>Cloudflare &amp; CDN</li></ul>
+      </div>
+      <div class="cap">
+        <h3><span>04</span>Product &amp; Growth</h3>
+        <ul><li>E-Commerce systems</li><li>PWA &mdash; installable web apps</li><li>UI/UX in Figma</li><li>Technical SEO</li><li>Performance tuning</li></ul>
+      </div>
+    </div>
   </section>
 
   <!-- ================= SERVICES ================= -->
@@ -1051,6 +1130,30 @@ h1,h2,.wordmark,.p-info h3,.svc h3,.tcard-role .name,.brand-name,.stat-n{font-fa
       </span>
       <a class="link-btn plain" href="#contact">Start a project <svg><use href="#i-arrow"/></svg></a>
     </div>
+  
+    <div class="why-head mono rv-up"><span class="idx">&rarr;</span> WHY THE RAW BROS</div>
+    <div class="why rv-up">
+      <div class="why-it">
+        <span class="why-n">01</span>
+        <h3>100% custom code</h3>
+        <p>No templates, no page builders, no bloated themes &mdash; every line is written for your project.</p>
+      </div>
+      <div class="why-it">
+        <span class="why-n">02</span>
+        <h3>Direct line to the builders</h3>
+        <p>You talk to the people actually writing your code. Nothing gets lost between hand-offs.</p>
+      </div>
+      <div class="why-it">
+        <span class="why-n">03</span>
+        <h3>Everything under one roof</h3>
+        <p>Strategy, design, development and deployment &mdash; one team, from first sketch to launch.</p>
+      </div>
+      <div class="why-it">
+        <span class="why-n">04</span>
+        <h3>You own everything</h3>
+        <p>Clean handover of code, assets and access. No lock-in &mdash; your product stays yours.</p>
+      </div>
+    </div>
   </section>
   <!-- ================= FAQ ================= -->
   <section class="card reveal" id="faq">
@@ -1094,6 +1197,29 @@ h1,h2,.wordmark,.p-info h3,.svc h3,.tcard-role .name,.brand-name,.stat-n{font-fa
     <div class="sec-head">
       <h2>Have a project in mind? <span class="hl">Let&rsquo;s build it.</span></h2>
       <p class="sec-sub">Whether it&rsquo;s a brand-new site, a redesign or a web app that needs building, send us a message and we&rsquo;ll reply with a plan, a timeline and an honest price.</p>
+    </div>
+        <div class="models rv-up">
+      <div class="model">
+        <span class="m-tag mono">Fixed scope</span>
+        <h3>Project Build</h3>
+        <p>A website or online store with the scope, timeline and price agreed before we write a line of code.</p>
+        <ul><li>Clear scope &amp; fixed quote</li><li>Design + development</li><li>Launch &amp; full handover</li></ul>
+        <a class="m-btn" href="#briefForm" data-model="Project Build (fixed scope)">Start with a brief &darr;</a>
+      </div>
+      <div class="model">
+        <span class="m-tag mono">End to end</span>
+        <h3>Product Build</h3>
+        <p>For web apps and platforms &mdash; we plan, design, build and ship the whole product, like we did with Zuberee.</p>
+        <ul><li>Product planning &amp; UX</li><li>Full-stack development</li><li>Deploy, monitor &amp; iterate</li></ul>
+        <a class="m-btn" href="#briefForm" data-model="Product Build (web app)">Start with a brief &darr;</a>
+      </div>
+      <div class="model">
+        <span class="m-tag mono">Monthly</span>
+        <h3>Care Plan</h3>
+        <p>Already live? We keep your site fast, secure and improving &mdash; fixes and small features every month.</p>
+        <ul><li>Priority fixes &amp; support</li><li>Small features monthly</li><li>Updates, backups &amp; checks</li></ul>
+        <a class="m-btn" href="#briefForm" data-model="Care Plan (monthly)">Start with a brief &darr;</a>
+      </div>
     </div>
     <div class="btn-row">
       <a class="btn btn-primary" href="mailto:hello.therawbros@gmail.com">
@@ -1164,11 +1290,13 @@ h1,h2,.wordmark,.p-info h3,.svc h3,.tcard-role .name,.brand-name,.stat-n{font-fa
       </div>
       
     </div>
+    <div class="foot-word" aria-hidden="true">THE RAW BROS</div>
     <div class="f-bottom">
       <span>© <span id="year"></span> The Raw Bros. All rights reserved.</span>
       <span class="mono" style="letter-spacing:.14em">Dhaka, Bangladesh — <span id="dhakaClock">--:--</span> BST · Working Worldwide</span>
     </div>
   </footer>
+  <button id="toTop" type="button" aria-label="Back to top">&uarr; TOP</button>
 
 </div>
 
@@ -1400,6 +1528,37 @@ if (rainCv && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
   window.addEventListener('resize', function () { clearTimeout(rainT); rainT = setTimeout(sizeRain, 180); });
   if ('IntersectionObserver' in window) new IntersectionObserver(function (e) { running = e[0].isIntersecting && !document.hidden; }).observe(rainCv);
   document.addEventListener('visibilitychange', function () { running = !document.hidden; });
+}
+/* ---------- pass 3: boot loader ---------- */
+var bootEl = document.getElementById('boot');
+if (bootEl) {
+  var bootT0 = Date.now(), bootGone = false;
+  var killBoot = function () {
+    if (bootGone) return; bootGone = true;
+    bootEl.classList.add('done');
+    setTimeout(function () { if (bootEl.parentNode) bootEl.parentNode.removeChild(bootEl); }, 500);
+  };
+  var queueBoot = function () { setTimeout(killBoot, Math.max(0, 720 - (Date.now() - bootT0))); };
+  if (document.readyState === 'complete') queueBoot();
+  else window.addEventListener('load', queueBoot);
+  setTimeout(killBoot, 2800);
+}
+/* ---------- pass 3: model buttons pre-fill the brief ---------- */
+document.querySelectorAll('[data-model]').forEach(function (b) {
+  b.addEventListener('click', function () {
+    var d = document.querySelector('#briefForm textarea[name="details"]');
+    if (d && !d.value) d.value = 'Interested in: ' + b.getAttribute('data-model') + '. ';
+  });
+});
+/* ---------- pass 3: back to top ---------- */
+var toTopBtn = document.getElementById('toTop');
+if (toTopBtn) {
+  var onTopScroll = function () { toTopBtn.classList.toggle('show', window.scrollY > 650); };
+  window.addEventListener('scroll', onTopScroll, { passive: true });
+  onTopScroll();
+  toTopBtn.addEventListener('click', function () {
+    window.scrollTo({ top: 0, behavior: REDUCED ? 'auto' : 'smooth' });
+  });
 }
 </script>
 </body>
