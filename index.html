@@ -3,13 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>The Raw Bros | Web Developers | Build Better Web</title>
-<meta name="description" content="The Raw Bros is a two-person web development studio. Frontend, backend and UI/UX. Modern websites and web apps built with React, Next.js, Node.js and PostgreSQL.">
+<title>The Raw Bros — Web Development Agency | Build Better Web</title>
+<meta name="description" content="The Raw Bros is a web development agency in Dhaka, Bangladesh. We design and build fast, modern websites, e-commerce stores and web apps with React, Next.js, Node.js and PostgreSQL — 100% custom code, end to end.">
 <meta name="theme-color" content="#050507">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="The Raw Bros">
-<meta property="og:title" content="The Raw Bros | Web Developers | Build Better Web">
-<meta property="og:description" content="The Raw Bros is a web development studio. Frontend, backend and UI/UX. Modern websites and web apps built with React, Next.js, Node.js and PostgreSQL.">
+<meta property="og:title" content="The Raw Bros — Web Development Agency | Build Better Web">
+<meta property="og:description" content="The Raw Bros is a web development agency in Dhaka, Bangladesh. We design and build fast, modern websites, e-commerce stores and web apps with React, Next.js, Node.js and PostgreSQL — 100% custom code, end to end.">
 <meta property="og:url" content="https://therawbros.pages.dev/">
 <meta property="og:image" content="https://therawbros.pages.dev/img/logo.PNG">
 <link rel="icon" type="image/png" href="img/logo-icon.PNG">
@@ -378,26 +378,60 @@ h1,h2{text-wrap:balance}
   -webkit-mask-image:radial-gradient(70% 60% at 50% 38%,#000 30%,transparent 78%);
   mask-image:radial-gradient(70% 60% at 50% 38%,#000 30%,transparent 78%);
 }
-/* team cards: dev ID-badge style */
-.tcard>*{position:relative;z-index:1}
-.tcard-head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-bottom:16px;margin-bottom:22px;border-bottom:1px dashed rgba(255,255,255,.12);color:var(--dim);letter-spacing:.2em}
-.tcard-head .tcard-id{color:var(--or-2)}
-.tcard-main{display:flex;align-items:center;gap:20px}
-.avatar.sq{width:88px;height:88px;border-radius:22px}
-.avatar img{filter:grayscale(38%);transition:filter .45s ease,transform .45s ease}
-.tcard:hover .avatar img{filter:none;transform:scale(1.06)}
-.tcard-role .name{font-size:clamp(20px,2vw,24px)}
-.tcard-meta{color:var(--dim);letter-spacing:.16em;margin-top:6px;display:flex;align-items:center;gap:8px}
-.tcard-meta::before{content:"";width:16px;height:1px;background:var(--or)}
-.tcard .barcode{display:block;flex:0 0 auto;width:92px;height:30px;opacity:.5;
-  background:repeating-linear-gradient(90deg,#4A4A56 0 2px,transparent 2px 5px,#4A4A56 5px 6px,transparent 6px 10px,#4A4A56 10px 13px,transparent 13px 16px)}
-.tcard-ghost{position:absolute!important;right:6px;bottom:-28px;z-index:0!important;font-size:128px;font-weight:800;letter-spacing:-.05em;line-height:1;color:rgba(255,255,255,.035);pointer-events:none;user-select:none}
-@media (max-width:520px){.tcard .barcode{display:none}.tcard-ghost{font-size:96px;bottom:-20px}}
+/* team cards: agency portrait cards (photo + name only) */
+.tcard{padding:14px 14px 18px}
+.tphoto{position:relative;border-radius:18px;overflow:hidden;aspect-ratio:16/11;background:#101015;margin:0}
+.tphoto img{width:100%;height:100%;object-fit:cover;object-position:center 22%;filter:grayscale(45%) contrast(1.02);transition:filter .5s ease,transform .6s cubic-bezier(.2,.7,.2,1)}
+.tcard:hover .tphoto img{filter:none;transform:scale(1.045)}
+.tphoto::after{content:"";position:absolute;left:0;right:0;bottom:0;height:58%;background:linear-gradient(180deg,transparent,rgba(4,4,6,.88));pointer-events:none}
+.tnum{position:absolute;top:12px;left:12px;z-index:2;padding:5px 11px;border-radius:999px;border:1px solid rgba(255,255,255,.22);background:rgba(8,8,10,.45);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);color:#EDEDF2;letter-spacing:.18em}
+.tcap{position:absolute;left:20px;right:20px;bottom:16px;z-index:2}
+.tcap .name{font-size:clamp(22px,2.2vw,28px);font-weight:740;letter-spacing:-.025em;color:#fff;line-height:1.12}
+.tcap .tcard-meta{color:#C9C9D2;margin-top:7px}
+.tcard .tcard-links{margin-top:16px;padding:16px 8px 2px}
+@media (max-width:520px){.tphoto{aspect-ratio:4/3}}
 .svc{position:relative;transition:transform .35s ease}
 .svc:hover{transform:translateY(-3px)}
 .svc:hover .svc-ico{box-shadow:0 12px 26px -12px rgba(255,106,0,.8)}
 .svc-num{position:absolute;top:2px;right:2px;color:#33333C;letter-spacing:.14em}
 .tag.hot{color:#FFB37A;border-color:rgba(255,106,0,.5);background:rgba(255,106,0,.08)}
+/* agency system */
+.g-dot{width:7px;height:7px;border-radius:50%;background:#1FB457;box-shadow:0 0 0 4px rgba(31,180,87,.15);display:inline-block;flex:0 0 auto}
+.tb-nav{display:flex;align-items:center;gap:2px;margin-right:6px}
+.tb-nav a{font-size:13px;font-weight:550;color:var(--muted);padding:8px 11px;border-radius:999px;transition:.2s}
+.tb-nav a:hover{color:#fff;background:rgba(255,255,255,.06)}
+@media (max-width:1080px){.tb-nav{display:none}}
+h1{font-size:clamp(38px,6vw,76px)}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:9px;padding:8px 16px;border:1px solid var(--line-2);border-radius:999px;background:rgba(255,255,255,.03);color:var(--muted);margin-bottom:26px}
+.hero-avail{display:flex;align-items:center;justify-content:center;gap:9px;margin-top:24px;color:var(--dim)}
+/* editorial left-aligned section heads (CTA stays centered) */
+.sec-head{text-align:left;max-width:none;margin:0}
+h2{font-size:clamp(28px,3.8vw,46px)}
+.sec-sub{max-width:58ch}
+.cta .sec-head{text-align:center;margin:0 auto;max-width:760px}
+.cta h2{font-size:clamp(32px,4.6vw,56px)}
+.cta .sec-sub{font-size:16px;max-width:54ch;margin-left:auto;margin-right:auto}
+/* services become agency cards */
+.svc{border:1px solid var(--line);border-radius:22px;padding:26px 24px;background:linear-gradient(180deg,#101016 0%,#0A0A0D 100%)}
+.svc::before{content:"";position:absolute;inset:-1px -1px auto -1px;height:1px;background:linear-gradient(90deg,transparent,rgba(255,106,0,.55),transparent);opacity:0;transition:.35s}
+.svc:hover{border-color:rgba(255,106,0,.32)}
+.svc:hover::before{opacity:1}
+.svc-num{top:20px;right:22px}
+/* process strip */
+.process{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:clamp(26px,3.5vw,42px);padding-top:28px;border-top:1px solid var(--line)}
+.process .step .n{font-family:var(--mono);font-size:11px;letter-spacing:.18em;color:var(--or-2)}
+.process .step h4{font-size:15px;font-weight:650;letter-spacing:-.01em;margin:9px 0 5px}
+.process .step p{font-size:13px;color:var(--muted);line-height:1.55}
+@media (max-width:1080px){.process{grid-template-columns:repeat(2,1fr);row-gap:22px}}
+@media (max-width:560px){.process{grid-template-columns:1fr}}
+/* wider case-study mock */
+.project{grid-template-columns:1.12fr .88fr}
+/* footer columns */
+.f-cols{display:flex;gap:clamp(30px,5vw,76px);flex-wrap:wrap}
+.f-col{display:flex;flex-direction:column;gap:9px}
+.f-col-h{color:var(--dim);letter-spacing:.18em;margin-bottom:5px}
+.f-col a{color:var(--muted);font-size:14px;transition:.2s}
+.f-col a:hover{color:var(--txt)}
 
 /* ============ REVEAL ============ */
 .reveal{opacity:0;transform:translateY(22px);transition:opacity .75s cubic-bezier(.2,.7,.2,1), transform .75s cubic-bezier(.2,.7,.2,1)}
@@ -646,7 +680,12 @@ h1,h2{text-wrap:balance}
       </button>
     </div>
     <div class="tb-right">
-     
+      <nav class="tb-nav" aria-label="Primary">
+        <a href="#stack">Stack</a>
+        <a href="#services">Services</a>
+        <a href="#team">Team</a>
+        <a href="#projects">Work</a>
+      </nav>
       <a class="pill pill-hire" href="#contact">Contact Us <svg><use href="#i-arrow"/></svg></a>
     </div>
   </header>
@@ -670,13 +709,16 @@ h1,h2{text-wrap:balance}
           <img style="height: 130px; border-radius: 10px;"  src="img/logo.PNG" alt="">
     </div>
 
+    <div class="hero-eyebrow mono"><span class="g-dot"></span>Web Development Agency — Dhaka, Bangladesh</div>
+
     <h1>Building digital products, brands <span class="hl">and experiences.</span></h1>
-    <p class="lead">We are <strong style="color:#E6E6EA;font-weight:600">The Raw Bros</strong>, a two-developer studio crafting fast, modern websites and web apps. From the first line of code to launch day, we design it, build it and ship it.</p>
+    <p class="lead">We are <strong style="color:#E6E6EA;font-weight:600">The Raw Bros</strong>, a web development agency crafting fast, modern websites, e-commerce stores and web apps for ambitious brands. Strategy, design, code and launch — everything under one roof.</p>
 
     <div class="hero-cta">
       <a class="btn btn-primary" href="#projects">Latest Work <svg><use href="#i-arrow"/></svg></a>
       <a class="btn btn-ghost" href="#contact">Let&rsquo;s Talk</a>
     </div>
+    <p class="hero-avail mono"><span class="g-dot"></span>Currently accepting new projects — replies within 24 hours</p>
 
     <div class="hero-meta">
       <div class="col">
@@ -686,9 +728,9 @@ h1,h2{text-wrap:balance}
       <div class="roles">
         <span class="bar"></span>
         <span class="lines mono">
-          <span>Web Developer</span>
-          <span>Coder</span>
-          <span>UI/UX Designer</span>
+          <span>Web Development</span>
+          <span>E-commerce</span>
+          <span>UI/UX Design</span>
         </span>
       </div>
     </div>
@@ -751,7 +793,7 @@ h1,h2{text-wrap:balance}
     <div class="sec-head">
       <span class="eyebrow mono"><span class="idx">02 /</span> What we do</span>
       <h2>Collaborate with us to create <span class="hl">impactful results.</span></h2>
-      <p class="sec-sub">One small team, the full pipeline: design, frontend, backend and deployment under one roof.</p>
+      <p class="sec-sub">Everything your product needs, under one roof: strategy, design, development and deployment — no outsourcing, no hand-offs.</p>
     </div>
 
     <div class="divider-pill"><span class="lbl">Services</span></div>
@@ -786,6 +828,13 @@ h1,h2{text-wrap:balance}
         <div class="svc-tags"><span class="tag">Vercel</span><span class="tag">Git</span><span class="tag">SEO</span></div>
       </article>
     </div>
+  
+    <div class="process">
+      <div class="step"><span class="n">01</span><h4>Discover</h4><p>We map your goals, audience and scope into a clear, honest plan.</p></div>
+      <div class="step"><span class="n">02</span><h4>Design</h4><p>Wireframes to polished, on-brand interfaces you approve first.</p></div>
+      <div class="step"><span class="n">03</span><h4>Build</h4><p>Clean, tested, custom code — fast on every device.</p></div>
+      <div class="step"><span class="n">04</span><h4>Launch &amp; Grow</h4><p>Deployment, SEO basics and ongoing support after go-live.</p></div>
+    </div>
   </section>
 
   <!-- ================= TEAM ================= -->
@@ -798,42 +847,32 @@ h1,h2{text-wrap:balance}
 
     <div class="team-grid">
       <article class="tcard">
-        <span class="tcard-ghost" aria-hidden="true">01</span>
-        <div class="tcard-head mono"><span>The Raw Bros</span><span class="tcard-id">ID — 01</span></div>
-        <div class="tcard-main">
-          <span class="avatar sq"><img src="img/anondo.jpg" alt="GM Anondo"></span>
-          <div class="tcard-role">
+        <figure class="tphoto">
+          <img src="img/anondo.jpg" alt="GM Anondo">
+          <span class="tnum mono">01</span>
+          <figcaption class="tcap">
             <div class="name">GM Anondo</div>
             <div class="tcard-meta mono">Dhaka · Bangladesh</div>
-          </div>
-        </div>
-        <p class="bio">One half of The Raw Bros. No fixed lane here — design, code, servers, launch: we both build across the whole stack and ship complete products, end to end.</p>
-        <div class="tcard-links" style="justify-content:space-between">
-          <span style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
-            <a class="link-btn" href="https://wa.me/fr1skyfox1" target="_blank" rel="noopener">WhatsApp <svg><use href="#i-arrow"/></svg></a>
-            <a class="link-btn plain" href="mailto:hello_therawbro@gmail.com">Available for work</a>
-          </span>
-          <span class="barcode" aria-hidden="true"></span>
+          </figcaption>
+        </figure>
+        <div class="tcard-links">
+          <a class="link-btn" href="https://wa.me/fr1skyfox1" target="_blank" rel="noopener">WhatsApp <svg><use href="#i-arrow"/></svg></a>
+          <a class="link-btn plain" href="mailto:hello_therawbro@gmail.com">Available for work</a>
         </div>
       </article>
 
       <article class="tcard">
-        <span class="tcard-ghost" aria-hidden="true">02</span>
-        <div class="tcard-head mono"><span>The Raw Bros</span><span class="tcard-id">ID — 02</span></div>
-        <div class="tcard-main">
-          <span class="avatar sq alt"><img src="img/nahid.jpg" alt="Younus Ali Nahid"></span>
-          <div class="tcard-role">
+        <figure class="tphoto">
+          <img src="img/nahid.jpg" alt="Younus Ali Nahid">
+          <span class="tnum mono">02</span>
+          <figcaption class="tcap">
             <div class="name">Younus Ali Nahid</div>
             <div class="tcard-meta mono">Dhaka · Bangladesh</div>
-          </div>
-        </div>
-        <p class="bio">The other half of The Raw Bros. Nothing is split into separate silos — from the first sketch to the live website, everything is designed, built and maintained by the two of us, together.</p>
-        <div class="tcard-links" style="justify-content:space-between">
-          <span style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
-            <a class="link-btn" href="https://wa.me/mdyanahid" target="_blank" rel="noopener">WhatsApp <svg><use href="#i-arrow"/></svg></a>
-            <a class="link-btn plain" href="mailto:hello_therawbro@gmail.com">Available for work</a>
-          </span>
-          <span class="barcode" aria-hidden="true"></span>
+          </figcaption>
+        </figure>
+        <div class="tcard-links">
+          <a class="link-btn" href="https://wa.me/mdyanahid" target="_blank" rel="noopener">WhatsApp <svg><use href="#i-arrow"/></svg></a>
+          <a class="link-btn plain" href="mailto:hello_therawbro@gmail.com">Available for work</a>
         </div>
       </article>
     </div>
@@ -905,7 +944,7 @@ h1,h2{text-wrap:balance}
   <section class="card cta reveal" id="contact">
     <div class="hand"><svg style="width:26px;height:26px"><use href="#i-rings"/></svg></div>
     <div class="sec-head">
-      <h2>Tell us about your <span class="hl">next project</span></h2>
+      <h2>Have a project in mind? <span class="hl">Let&rsquo;s build it.</span></h2>
       <p class="sec-sub">Whether it&rsquo;s a brand-new site, a redesign or a web app that needs building, send us a message and we&rsquo;ll reply with a plan, a timeline and an honest price.</p>
     </div>
     <div class="btn-row">
@@ -926,16 +965,27 @@ h1,h2{text-wrap:balance}
         <div class="wordmark">The <em>Raw</em> Bros</div>
         <div class="f-tag">Build / Code / Create</div>
       </div>
-      <nav class="f-socials" aria-label="Footer links">
-        <a href="mailto:hello_therawbro@gmail.com">Email</a><span class="sep">/</span>
-        <a href="https://wa.me/fr1skyfox1" target="_blank" rel="noopener">WhatsApp</a><span class="sep">/</span>
-        <a href="#top">Back to top</a>
-      </nav>
+      <div class="f-cols">
+        <nav class="f-col" aria-label="Menu">
+          <span class="f-col-h mono">Menu</span>
+          <a href="#stack">Stack</a>
+          <a href="#services">Services</a>
+          <a href="#team">Team</a>
+          <a href="#projects">Work</a>
+          <a href="#contact">Contact</a>
+        </nav>
+        <nav class="f-col" aria-label="Get in touch">
+          <span class="f-col-h mono">Get in touch</span>
+          <a href="mailto:hello_therawbro@gmail.com">Email us</a>
+          <a href="https://wa.me/fr1skyfox1" target="_blank" rel="noopener">WhatsApp</a>
+          <a href="#top">Back to top</a>
+        </nav>
+      </div>
       
     </div>
     <div class="f-bottom">
       <span>© <span id="year"></span> The Raw Bros. All rights reserved.</span>
-      <span class="mono" style="letter-spacing:.14em">Developers in Dhaka, Bangladesh</span>
+      <span class="mono" style="letter-spacing:.14em">Dhaka, Bangladesh — Working Worldwide</span>
     </div>
   </footer>
 
