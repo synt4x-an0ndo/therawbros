@@ -194,8 +194,8 @@ h2 .hl{background:linear-gradient(180deg,#FFAE5C,#F05A00);-webkit-background-cli
   -webkit-mask-image:linear-gradient(90deg,transparent,#000 9%,#000 91%,transparent);
   mask-image:linear-gradient(90deg,transparent,#000 9%,#000 91%,transparent);
 }
-.marq-track{display:flex;width:max-content;animation:slide 42s linear infinite;will-change:transform}
-.marq[data-dir="rev"] .marq-track{animation-direction:reverse;animation-duration:52s}
+.marq-track{display:flex;width:max-content;animation:slide 96s linear infinite;will-change:transform}
+.marq[data-dir="rev"] .marq-track{animation-direction:reverse;animation-duration:132s}
 .marq:hover .marq-track{animation-play-state:paused}
 @keyframes slide{to{transform:translateX(-50%)}}
 .chip{
@@ -378,20 +378,21 @@ h1,h2{text-wrap:balance}
   -webkit-mask-image:radial-gradient(70% 60% at 50% 38%,#000 30%,transparent 78%);
   mask-image:radial-gradient(70% 60% at 50% 38%,#000 30%,transparent 78%);
 }
-/* logo plaque */
-.logo-tile{
-  position:relative;display:inline-block;line-height:0;border-radius:24px;overflow:hidden;background:#000;
-  border:1px solid rgba(255,255,255,.14);
-  box-shadow:0 0 0 8px rgba(255,255,255,.02), 0 34px 80px -34px rgba(255,106,0,.55), 0 18px 44px -22px rgba(0,0,0,.9);
-}
-.logo-tile img{height:clamp(108px,16vw,148px);width:auto}
-.logo-tile::after{
-  content:"";position:absolute;left:10%;right:10%;bottom:0;height:2px;
-  background:linear-gradient(90deg,transparent,#FF8A2B,transparent);opacity:.85;
-}
-.badge-chip{right:-30px;bottom:-16px;z-index:3}
-.badge-chip .dot{width:7px;height:7px;border-radius:50%;background:#1FB457;box-shadow:0 0 0 4px rgba(31,180,87,.18);flex:0 0 auto}
-@media (max-width:760px){.badge-chip{bottom:auto}}
+/* team cards: dev ID-badge style */
+.tcard>*{position:relative;z-index:1}
+.tcard-head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-bottom:16px;margin-bottom:22px;border-bottom:1px dashed rgba(255,255,255,.12);color:var(--dim);letter-spacing:.2em}
+.tcard-head .tcard-id{color:var(--or-2)}
+.tcard-main{display:flex;align-items:center;gap:20px}
+.avatar.sq{width:88px;height:88px;border-radius:22px}
+.avatar img{filter:grayscale(38%);transition:filter .45s ease,transform .45s ease}
+.tcard:hover .avatar img{filter:none;transform:scale(1.06)}
+.tcard-role .name{font-size:clamp(20px,2vw,24px)}
+.tcard-meta{color:var(--dim);letter-spacing:.16em;margin-top:6px;display:flex;align-items:center;gap:8px}
+.tcard-meta::before{content:"";width:16px;height:1px;background:var(--or)}
+.tcard .barcode{display:block;flex:0 0 auto;width:92px;height:30px;opacity:.5;
+  background:repeating-linear-gradient(90deg,#4A4A56 0 2px,transparent 2px 5px,#4A4A56 5px 6px,transparent 6px 10px,#4A4A56 10px 13px,transparent 13px 16px)}
+.tcard-ghost{position:absolute!important;right:6px;bottom:-28px;z-index:0!important;font-size:128px;font-weight:800;letter-spacing:-.05em;line-height:1;color:rgba(255,255,255,.035);pointer-events:none;user-select:none}
+@media (max-width:520px){.tcard .barcode{display:none}.tcard-ghost{font-size:96px;bottom:-20px}}
 .svc{position:relative;transition:transform .35s ease}
 .svc:hover{transform:translateY(-3px)}
 .svc:hover .svc-ico{box-shadow:0 12px 26px -12px rgba(255,106,0,.8)}
@@ -559,6 +560,72 @@ h1,h2{text-wrap:balance}
       <path d="M12 3.4 13.7 9l5.6 1.7-5.6 1.7L12 18l-1.7-5.6L4.7 10.7 10.3 9z" stroke-linejoin="round"/>
       <path d="M18.6 3.6v3.2M17 5.2h3.2M5.2 16.6v2.8M3.8 18h2.8" stroke-linecap="round"/>
     </symbol>
+    <symbol id="i-js" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3">
+      <rect x="2.6" y="2.6" width="18.8" height="18.8" rx="4.2"/>
+      <text x="12" y="15.9" text-anchor="middle" font-size="8.6" font-weight="700" font-family="Arial,Helvetica,sans-serif" fill="currentColor" stroke="none">JS</text>
+    </symbol>
+    <symbol id="i-python" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3">
+      <rect x="5" y="3.2" width="13.5" height="8.8" rx="4"/>
+      <rect x="5.5" y="12" width="13.5" height="8.8" rx="4"/>
+      <circle cx="9.6" cy="7.6" r="1.15" fill="currentColor" stroke="none"/>
+      <circle cx="14.4" cy="16.4" r="1.15" fill="currentColor" stroke="none"/>
+    </symbol>
+    <symbol id="i-github" viewBox="0 0 24 24">
+      <path fill="currentColor" d="M12 2.6a9.4 9.4 0 0 0-3 18.32c.47.09.64-.2.64-.45v-1.6c-2.6.57-3.15-1.25-3.15-1.25-.42-1.08-1.04-1.37-1.04-1.37-.85-.58.07-.57.07-.57.94.07 1.43.96 1.43.96.84 1.43 2.19 1.02 2.73.78.08-.61.33-1.02.59-1.25-2.08-.24-4.26-1.04-4.26-4.62 0-1.02.36-1.86.96-2.51-.1-.24-.42-1.19.09-2.48 0 0 .78-.25 2.57.96a8.94 8.94 0 0 1 4.66 0c1.79-1.21 2.57-.96 2.57-.96.51 1.29.19 2.24.09 2.48.6.65.96 1.49.96 2.51 0 3.59-2.19 4.38-4.27 4.61.34.29.64.87.64 1.75v2.6c0 .25.16.55.64.45A9.4 9.4 0 0 0 12 2.6z"/>
+    </symbol>
+    <symbol id="i-flame" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round">
+      <path d="M12.2 3.2c.7 3-.7 4.6-1.9 6.1-1.1 1.4-2.5 2.8-2.5 5A4.4 4.4 0 0 0 12.2 18.7a4.4 4.4 0 0 0 4.4-4.4c0-1.8-.9-3-1.8-4.3-.3 1-.9 1.7-1.7 2.1.3-2.8-.2-6-1.3-8.9z"/>
+    </symbol>
+    <symbol id="i-cloud" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round">
+      <path d="M7.2 18.4h9.3a4.1 4.1 0 0 0 1-8A6.1 6.1 0 0 0 5.6 11.8a3.9 3.9 0 0 0 1.6 6.6z"/>
+    </symbol>
+    <symbol id="i-express" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3">
+      <rect x="2.6" y="2.6" width="18.8" height="18.8" rx="4.2"/>
+      <text x="12" y="15.9" text-anchor="middle" font-size="8.4" font-weight="700" font-family="Arial,Helvetica,sans-serif" fill="currentColor" stroke="none">ex</text>
+    </symbol>
+    <symbol id="i-cpp" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3">
+      <path d="M12 2.4 20.4 7.2v9.6L12 21.6 3.6 16.8V7.2z" stroke-linejoin="round"/>
+      <text x="12" y="14.8" text-anchor="middle" font-size="6.2" font-weight="700" font-family="Arial,Helvetica,sans-serif" fill="currentColor" stroke="none">C++</text>
+    </symbol>
+    <symbol id="i-bolt" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round">
+      <path d="M13.2 2.8 5.4 13.4h4.9l-1.5 7.8 7.8-10.6h-4.9z"/>
+    </symbol>
+    <symbol id="i-terminal" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="3" y="4.6" width="18" height="14.8" rx="2.6"/>
+      <path d="m7 9.2 3.6 3.3L7 15.8M13 16h5"/>
+    </symbol>
+    <symbol id="i-api" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M3.6 7.4h13M13.4 4l3.4 3.4-3.4 3.4M20.4 16.6h-13M10.6 13.2l-3.4 3.4 3.4 3.4"/>
+    </symbol>
+    <symbol id="i-c" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+      <path d="M19.6 7.2A8.2 8.2 0 1 0 19.6 16.8"/>
+    </symbol>
+    <symbol id="i-ps" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3">
+      <rect x="2.6" y="2.6" width="18.8" height="18.8" rx="4.2"/>
+      <text x="12" y="15.9" text-anchor="middle" font-size="8.4" font-weight="700" font-family="Arial,Helvetica,sans-serif" fill="currentColor" stroke="none">Ps</text>
+    </symbol>
+    <symbol id="i-film" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3">
+      <rect x="3" y="5" width="18" height="14" rx="2.2"/>
+      <path d="M7.4 5v14M16.6 5v14M3 9.6h4.4M3 14.4h4.4M16.6 9.6H21M16.6 14.4H21"/>
+    </symbol>
+    <symbol id="i-palette" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3">
+      <circle cx="12" cy="12" r="8.6"/>
+      <circle cx="8.7" cy="9.6" r="1.15" fill="currentColor" stroke="none"/>
+      <circle cx="12.2" cy="7.6" r="1.15" fill="currentColor" stroke="none"/>
+      <circle cx="15.6" cy="10.2" r="1.15" fill="currentColor" stroke="none"/>
+      <circle cx="15" cy="15.6" r="1.5"/>
+    </symbol>
+    <symbol id="i-bootstrap" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3">
+      <rect x="2.6" y="2.6" width="18.8" height="18.8" rx="5"/>
+      <text x="12" y="16.2" text-anchor="middle" font-size="10" font-weight="800" font-family="Arial,Helvetica,sans-serif" fill="currentColor" stroke="none">B</text>
+    </symbol>
+    <symbol id="i-plane" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round">
+      <path d="M21 3.2 10.6 13.6M21 3.2l-6.7 17.6-3.7-7.2L3.4 9.9z"/>
+    </symbol>
+    <symbol id="i-gem" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round">
+      <path d="M7.5 3.6h9L21 9l-9 11.4L3 9z"/>
+      <path d="M3 9h18M12 20.4 8.6 9l2.1-5.4M12 20.4 15.4 9l-2.1-5.4"/>
+    </symbol>
   </defs>
 </svg>
 
@@ -600,10 +667,7 @@ h1,h2{text-wrap:balance}
     </div>
 
     <div class="hero-badge">
-      <div class="logo-tile">
-        <img src="img/logo.PNG" alt="The Raw Bros logo">
-      </div>
-      <span class="badge-chip"><span class="dot"></span>Available for new projects</span>
+          <img style="height: 130px; border-radius: 10px;"  src="img/logo.PNG" alt="">
     </div>
 
     <h1>Building digital products, brands <span class="hl">and experiences.</span></h1>
@@ -643,21 +707,40 @@ h1,h2{text-wrap:balance}
         <div class="marq-track">
           <span class="chip"><svg><use href="#i-react"/></svg>React</span>
           <span class="chip"><svg><use href="#i-next"/></svg>Next.js</span>
-          <span class="chip"><svg><use href="#i-tailwind"/></svg>Tailwind CSS</span>
+          <span class="chip"><svg><use href="#i-js"/></svg>JavaScript</span>
           <span class="chip"><svg><use href="#i-ts"/></svg>TypeScript</span>
           <span class="chip"><svg><use href="#i-node"/></svg>Node.js</span>
+          <span class="chip"><svg><use href="#i-express"/></svg>Express.js</span>
+          <span class="chip"><svg><use href="#i-python"/></svg>Python</span>
           <span class="chip"><svg><use href="#i-postgres"/></svg>PostgreSQL</span>
+          <span class="chip"><svg><use href="#i-postgres"/></svg>SQL</span>
           <span class="chip"><svg><use href="#i-mongo"/></svg>MongoDB</span>
+          <span class="chip"><svg><use href="#i-flame"/></svg>Firebase</span>
+          <span class="chip"><svg><use href="#i-postgres"/></svg>Firestore</span>
+          <span class="chip"><svg><use href="#i-api"/></svg>REST APIs</span>
+          <span class="chip"><svg><use href="#i-tailwind"/></svg>Tailwind CSS</span>
+          <span class="chip"><svg><use href="#i-bootstrap"/></svg>Bootstrap</span>
+          <span class="chip"><svg><use href="#i-bolt"/></svg>Vite</span>
         </div>
       </div>
       <div class="marq" data-dir="rev" aria-label="Design and deployment tools we use">
         <div class="marq-track">
           <span class="chip"><svg><use href="#i-git"/></svg>Git</span>
+          <span class="chip"><svg><use href="#i-github"/></svg>GitHub</span>
           <span class="chip"><svg><use href="#i-vscode"/></svg>VS Code</span>
           <span class="chip"><svg><use href="#i-figma"/></svg>Figma</span>
           <span class="chip"><svg><use href="#i-vercel"/></svg>Vercel</span>
+          <span class="chip"><svg><use href="#i-gem"/></svg>Netlify</span>
+          <span class="chip"><svg><use href="#i-cloud"/></svg>Cloudflare</span>
           <span class="chip"><svg><use href="#i-docker"/></svg>Docker</span>
-          <span class="chip"><svg><use href="#i-wp"/></svg>WordPress</span>
+          <span class="chip"><svg><use href="#i-plane"/></svg>Postman</span>
+          <span class="chip"><svg><use href="#i-c"/></svg>C</span>
+          <span class="chip"><svg><use href="#i-cpp"/></svg>C++</span>
+          <span class="chip"><svg><use href="#i-terminal"/></svg>Kali Linux</span>
+          <span class="chip"><svg><use href="#i-spark"/></svg>XGBoost</span>
+          <span class="chip"><svg><use href="#i-ps"/></svg>Photoshop</span>
+          <span class="chip"><svg><use href="#i-film"/></svg>Premiere Pro</span>
+          <span class="chip"><svg><use href="#i-palette"/></svg>Canva</span>
         </div>
       </div>
     </div>
@@ -715,43 +798,48 @@ h1,h2{text-wrap:balance}
 
     <div class="team-grid">
       <article class="tcard">
-        <span class="tcard-num mono">01 / Frontend</span>
-        <div class="tcard-top">
-          <span class="avatar"><img src="img/anondo.jpg" alt="GM Anondo"></span>
+        <span class="tcard-ghost" aria-hidden="true">01</span>
+        <div class="tcard-head mono"><span>The Raw Bros</span><span class="tcard-id">ID — 01</span></div>
+        <div class="tcard-main">
+          <span class="avatar sq"><img src="img/anondo.jpg" alt="GM Anondo"></span>
           <div class="tcard-role">
             <div class="name">GM Anondo</div>
-            <div class="role">Frontend Developer</div>
+            <div class="tcard-meta mono">Dhaka · Bangladesh</div>
           </div>
         </div>
         <p class="bio">Turns designs into pixel-perfect, responsive interfaces. React &amp; Next.js specialist who cares about clean code, smooth motion and pages that load in a blink.</p>
         <div class="svc-tags">
           <span class="tag">React</span><span class="tag">Next.js</span><span class="tag">Tailwind</span><span class="tag">UI/UX</span>
         </div>
-        <div class="tcard-links">
-          <!-- TODO: replace with Anondo's real portfolio URL -->
-          
-         <a class="link-btn" href="https://wa.me/fr1skyfox1" target="_blank" rel="noopener">WhatsApp <svg><use href="#i-arrow"/></svg></a>
-          <a class="link-btn plain" href="mailto:hello_therawbro@gmail.com">Available for work</a>
+        <div class="tcard-links" style="justify-content:space-between">
+          <span style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+            <a class="link-btn" href="https://wa.me/fr1skyfox1" target="_blank" rel="noopener">WhatsApp <svg><use href="#i-arrow"/></svg></a>
+            <a class="link-btn plain" href="mailto:hello_therawbro@gmail.com">Available for work</a>
+          </span>
+          <span class="barcode" aria-hidden="true"></span>
         </div>
       </article>
 
       <article class="tcard">
-        <span class="tcard-num mono">02 / Backend</span>
-        <div class="tcard-top">
-          <span class="avatar alt"><img src="img/nahid.jpg" alt="Younus Ali Nahid"></span>
+        <span class="tcard-ghost" aria-hidden="true">02</span>
+        <div class="tcard-head mono"><span>The Raw Bros</span><span class="tcard-id">ID — 02</span></div>
+        <div class="tcard-main">
+          <span class="avatar sq alt"><img src="img/nahid.jpg" alt="Younus Ali Nahid"></span>
           <div class="tcard-role">
             <div class="name">Younus Ali Nahid</div>
-            <div class="role">Backend Developer</div>
+            <div class="tcard-meta mono">Dhaka · Bangladesh</div>
           </div>
         </div>
         <p class="bio">Builds the engine behind the product: secure REST APIs, databases, authentication and integrations that stay reliable and scale as the site grows.</p>
         <div class="svc-tags">
           <span class="tag">Node.js</span><span class="tag">PostgreSQL</span><span class="tag">MongoDB</span><span class="tag">REST API</span>
         </div>
-        <div class="tcard-links">
-          <!-- TODO: replace with Nahid's real portfolio URL -->
-          <a class="link-btn" href="https://wa.me/mdyanahid" target="_blank" rel="noopener">WhatsApp <svg><use href="#i-arrow"/></svg></a>
-          <a class="link-btn plain" href="mailto:hello_therawbro@gmail.com">Available for work</a>
+        <div class="tcard-links" style="justify-content:space-between">
+          <span style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+            <a class="link-btn" href="https://wa.me/mdyanahid" target="_blank" rel="noopener">WhatsApp <svg><use href="#i-arrow"/></svg></a>
+            <a class="link-btn plain" href="mailto:hello_therawbro@gmail.com">Available for work</a>
+          </span>
+          <span class="barcode" aria-hidden="true"></span>
         </div>
       </article>
     </div>
