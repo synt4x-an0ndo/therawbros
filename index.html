@@ -630,12 +630,25 @@ h1,h2,.wordmark,.p-info h3,.svc h3,.tcard-role .name,.brand-name,.stat-n{font-fa
 @media(max-width:560px){.caps,.why{grid-template-columns:1fr}}
 @media (prefers-reduced-motion: reduce){#boot{display:none}.cap,.why-it,.model{transition:none}}
 
-/* ---------- services: editor-window cards ---------- */
-.grid-4 .svc{overflow:hidden;transition:transform .35s ease,border-color .35s ease,box-shadow .35s ease}
-.grid-4 .svc:hover{transform:translateY(-4px);border-color:rgba(255,72,0,.5);box-shadow:0 24px 50px -20px rgba(255,72,0,.35)}
-.svc-head{display:flex;align-items:center;gap:7px;margin:-26px -24px 20px;padding:12px 16px;border-bottom:1px solid var(--line);background:rgba(255,255,255,.025)}
-.svc-file{margin-left:7px;font-size:10.5px;letter-spacing:.14em;color:var(--dim)}
-.grid-4 .svc-num{position:static;margin-left:auto;color:var(--dim)}
+/* ---------- services: editorial rows ---------- */
+.svc-rows{border-top:1px solid var(--line)}
+.svr{display:grid;grid-template-columns:66px 54px 1fr 1.15fr 44px;grid-template-areas:"num ico main desc arrow";gap:22px;align-items:center;padding:27px 12px;border-bottom:1px solid var(--line);position:relative;transition:background .3s ease,padding-left .3s ease}
+.svr::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;border-radius:99px;background:linear-gradient(180deg,var(--or),var(--or-2));transform:scaleY(0);transition:transform .35s ease}
+.svr:hover{background:rgba(255,255,255,.02);padding-left:20px}
+.svr:hover::before{transform:scaleY(1)}
+.svr-num{grid-area:num;font-family:var(--disp);font-size:32px;font-weight:700;line-height:1;color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.28);transition:-webkit-text-stroke .3s}
+.svr:hover .svr-num{-webkit-text-stroke:1px rgba(255,72,0,.85)}
+.svr .svc-ico{grid-area:ico}
+.svr:hover .svc-ico{box-shadow:0 12px 26px -12px rgba(255,106,0,.8)}
+.svr-main{grid-area:main}
+.svr-main h3{font-family:var(--disp);font-size:21px;font-weight:600;margin-bottom:6px}
+.svr-keys{font-size:10px;letter-spacing:.16em;color:var(--or-2)}
+.svr p{grid-area:desc;font-size:14px;color:var(--muted);line-height:1.65}
+.svr-arrow{grid-area:arrow;width:40px;height:40px;border:1px solid var(--line);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--dim);transition:background .3s,color .3s,border-color .3s,transform .3s}
+.svr-arrow svg{width:16px;height:16px}
+.svr:hover .svr-arrow{background:var(--or);border-color:var(--or);color:#0B0B0F;transform:rotate(45deg)}
+@media(max-width:900px){.svr{grid-template-columns:54px 50px 1fr 40px;grid-template-areas:"num ico main arrow" "num ico desc arrow";row-gap:8px}}
+@media(max-width:560px){.svr{grid-template-columns:42px 46px 1fr;grid-template-areas:"num ico main" "desc desc desc";row-gap:10px;padding:22px 6px}.svr:hover{padding-left:12px}.svr-arrow{display:none}.svr-num{font-size:24px}.svr-main h3{font-size:18px}.svr-keys{letter-spacing:.1em}}
 </style>
 </head>
 <body id="top">
@@ -1013,34 +1026,34 @@ h1,h2,.wordmark,.p-info h3,.svc h3,.tcard-role .name,.brand-name,.stat-n{font-fa
 
     <div class="divider-pill"><span class="lbl">Services</span></div>
 
-    <div class="grid-4">
-      <article class="svc reveal">
-        <div class="svc-head"><span class="b-dot"></span><span class="b-dot"></span><span class="b-dot"></span><span class="svc-file mono">frontend.tsx</span><span class="svc-num mono">01</span></div>
+    <div class="svc-rows">
+      <article class="svr reveal">
+        <span class="svr-num">01</span>
         <div class="svc-ico"><svg><use href="#i-code"/></svg></div>
-        <h3>Frontend Development</h3>
-        <p>Responsive, accessible and pixel-perfect interfaces built with React &amp; Next.js, fast on every screen and every connection.</p>
-        <div class="svc-tags"><span class="tag">React</span><span class="tag">Next.js</span><span class="tag">TypeScript</span><span class="tag">JavaScript</span><span class="tag">Tailwind CSS</span><span class="tag">Bootstrap</span></div>
+        <div class="svr-main"><h3>Frontend Development</h3><span class="svr-keys mono">Responsive &middot; Pixel-true &middot; Accessible</span></div>
+        <p>The face of your product — fast, responsive interfaces that feel effortless on every screen, true to the design down to the last pixel and smooth even on slow connections.</p>
+        <span class="svr-arrow"><svg><use href="#i-arrow"/></svg></span>
       </article>
-      <article class="svc reveal">
-        <div class="svc-head"><span class="b-dot"></span><span class="b-dot"></span><span class="b-dot"></span><span class="svc-file mono">backend.ts</span><span class="svc-num mono">02</span></div>
+      <article class="svr reveal">
+        <span class="svr-num">02</span>
         <div class="svc-ico"><svg><use href="#i-server"/></svg></div>
-        <h3>Backend Development</h3>
-        <p>Secure APIs, databases, authentication and integrations that stay stable and fast as your product grows.</p>
-        <div class="svc-tags"><span class="tag">Node.js</span><span class="tag">Express.js</span><span class="tag">Python</span><span class="tag">REST APIs</span><span class="tag">PostgreSQL</span><span class="tag">MongoDB</span><span class="tag">Firebase</span></div>
+        <div class="svr-main"><h3>Backend Development</h3><span class="svr-keys mono">Secure &middot; Scalable &middot; Reliable</span></div>
+        <p>The engine room — secure logins, databases and integrations that stay stable as you grow, quietly keeping your business running and your data safe.</p>
+        <span class="svr-arrow"><svg><use href="#i-arrow"/></svg></span>
       </article>
-      <article class="svc reveal">
-        <div class="svc-head"><span class="b-dot"></span><span class="b-dot"></span><span class="b-dot"></span><span class="svc-file mono">ui-ux.fig</span><span class="svc-num mono">03</span></div>
+      <article class="svr reveal">
+        <span class="svr-num">03</span>
         <div class="svc-ico"><svg><use href="#i-layers"/></svg></div>
-        <h3>UI/UX Design</h3>
-        <p>Wireframes, prototypes and design systems that turn rough ideas into clear, usable, on-brand experiences.</p>
-        <div class="svc-tags"><span class="tag">Figma</span><span class="tag">Design System</span><span class="tag">Photoshop</span><span class="tag">Canva</span></div>
+        <div class="svr-main"><h3>UI/UX Design</h3><span class="svr-keys mono">Research &middot; Wireframes &middot; Polished UI</span></div>
+        <p>Clarity first — wireframes and polished designs shaped around your customers, so every click feels obvious and every page guides visitors to act.</p>
+        <span class="svr-arrow"><svg><use href="#i-arrow"/></svg></span>
       </article>
-      <article class="svc reveal">
-        <div class="svc-head"><span class="b-dot"></span><span class="b-dot"></span><span class="b-dot"></span><span class="svc-file mono">deploy.yml</span><span class="svc-num mono">04</span></div>
+      <article class="svr reveal">
+        <span class="svr-num">04</span>
         <div class="svc-ico"><svg><use href="#i-rocket"/></svg></div>
-        <h3>Deploy &amp; Maintain</h3>
-        <p>Hosting, deployment, performance tuning, SEO basics and ongoing support. We keep it live, fast and healthy.</p>
-        <div class="svc-tags"><span class="tag">Vercel</span><span class="tag">Netlify</span><span class="tag">Cloudflare</span><span class="tag">Docker</span><span class="tag">Git &amp; GitHub</span><span class="tag">SEO</span></div>
+        <div class="svr-main"><h3>Deploy &amp; Maintain</h3><span class="svr-keys mono">Hosting &middot; Monitoring &middot; Support</span></div>
+        <p>Live, fast and healthy — we launch your product, keep it secure and performing, and stay one message away for fixes and improvements.</p>
+        <span class="svr-arrow"><svg><use href="#i-arrow"/></svg></span>
       </article>
     </div>
   
