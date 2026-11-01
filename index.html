@@ -440,6 +440,22 @@ h2{font-size:clamp(28px,3.8vw,46px)}
 .f-col-h{color:var(--dim);letter-spacing:.18em;margin-bottom:5px}
 .f-col a{color:var(--muted);font-size:14px;transition:.2s}
 .f-col a:hover{color:var(--txt)}
+/* coder-animation layer */
+.buildbar{position:fixed;top:0;left:0;z-index:80;width:100%;height:3px;transform:scaleX(0);transform-origin:0 50%;background:linear-gradient(90deg,#FF8A2B,#E14E00);pointer-events:none}
+.typed-line{margin-top:24px;color:var(--muted);font-size:13px;letter-spacing:.08em;text-transform:none}
+.typed-line .tp-prompt{color:var(--or)}
+.typed-line .tp-word{color:#EDEDF2}
+.tp-caret{display:inline-block;width:8px;height:14px;background:var(--or);vertical-align:-2px;margin-left:3px;animation:blink 1.05s steps(1) infinite}
+.hero .hglyph{position:absolute;z-index:1;font-family:var(--mono);font-size:15px;letter-spacing:0;color:rgba(255,138,43,.30);pointer-events:none;animation:floaty 7s ease-in-out infinite}
+@keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+@media (max-width:760px){.hglyph{display:none}}
+/* hero code decorations become an editor + terminal window */
+.code-tr{border-left:none;border:1px solid var(--line-2);border-radius:14px;background:rgba(10,10,14,.85);padding:36px 18px 14px;box-shadow:0 24px 50px -30px rgba(0,0,0,.9);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+.code-tr::before{content:"● ● ●   team.config.ts";position:absolute;top:0;left:0;right:0;padding:8px 12px;border-bottom:1px solid var(--line);font-size:9.5px;letter-spacing:.14em;color:#5F5F6B}
+.code-tl{border:1px solid var(--line);border-radius:12px;background:rgba(9,9,12,.72);padding:12px 14px;box-shadow:0 18px 40px -30px rgba(0,0,0,.9)}
+.mock-console{text-transform:none;font-size:9.5px;letter-spacing:.06em;color:#6E6E7A;border-top:1px solid var(--line);padding-top:9px}
+.mock-console .ok{color:#57D37A}
+@media (prefers-reduced-motion:reduce){.hglyph{animation:none}.tp-caret{animation:none}}
 
 /* ============ REVEAL ============ */
 .reveal{opacity:0;transform:translateY(22px);transition:opacity .75s cubic-bezier(.2,.7,.2,1), transform .75s cubic-bezier(.2,.7,.2,1)}
@@ -672,6 +688,7 @@ h2{font-size:clamp(28px,3.8vw,46px)}
 </svg>
 
 <div class="page">
+  <div class="buildbar" id="buildbar" aria-hidden="true"></div>
 
   <!-- ================= TOP BAR ================= -->
   <header class="topbar">
@@ -713,6 +730,12 @@ h2{font-size:clamp(28px,3.8vw,46px)}
       <div><span class="p">};</span></div>
     </div>
 
+    <span class="hglyph" style="top:24%;left:5%" aria-hidden="true">{ }</span>
+    <span class="hglyph" style="top:66%;left:9%;animation-delay:1.4s" aria-hidden="true">&lt;/&gt;</span>
+    <span class="hglyph" style="top:32%;right:6%;animation-delay:.7s" aria-hidden="true">=&gt;</span>
+    <span class="hglyph" style="top:72%;right:11%;animation-delay:2.1s" aria-hidden="true">;</span>
+    <span class="hglyph" style="top:84%;left:22%;animation-delay:2.8s" aria-hidden="true">&amp;&amp;</span>
+
     <div class="hero-badge">
           <img style="height: 130px; border-radius: 10px;"  src="img/logo.PNG" alt="">
     </div>
@@ -721,6 +744,7 @@ h2{font-size:clamp(28px,3.8vw,46px)}
 
     <h1>Building digital products, brands <span class="hl">and experiences.</span></h1>
     <p class="lead">We are <strong style="color:#E6E6EA;font-weight:600">The Raw Bros</strong>, a web development agency crafting fast, modern websites, e-commerce stores and web apps for ambitious brands. Strategy, design, code and launch — everything under one roof.</p>
+    <p class="typed-line mono"><span class="tp-prompt">&gt;_</span> we build <span class="tp-word" id="typed">e-commerce stores</span><span class="tp-caret"></span></p>
 
     <div class="hero-cta">
       <a class="btn btn-primary" href="#projects">Latest Work <svg><use href="#i-arrow"/></svg></a>
@@ -747,7 +771,7 @@ h2{font-size:clamp(28px,3.8vw,46px)}
   <!-- ================= TOOLS MARQUEE ================= -->
   <section class="card tools reveal" id="stack">
     <div class="sec-head">
-      <span class="eyebrow mono"><span class="idx">01 /</span> Our Stack</span>
+      <span class="eyebrow mono"><span class="idx">// 01</span> Our Stack</span>
       <h2>Tools we <span class="hl">build with</span></h2>
       <p class="sec-sub">Modern, battle-tested tech. The same tools used by the world&rsquo;s best product teams.</p>
     </div>
@@ -799,7 +823,7 @@ h2{font-size:clamp(28px,3.8vw,46px)}
   <!-- ================= SERVICES ================= -->
   <section class="card reveal" id="services">
     <div class="sec-head">
-      <span class="eyebrow mono"><span class="idx">02 /</span> What we do</span>
+      <span class="eyebrow mono"><span class="idx">// 02</span> What we do</span>
       <h2>Collaborate with us to create <span class="hl">impactful results.</span></h2>
       <p class="sec-sub">Everything your product needs, under one roof: strategy, design, development and deployment — no outsourcing, no hand-offs.</p>
     </div>
@@ -848,7 +872,7 @@ h2{font-size:clamp(28px,3.8vw,46px)}
   <!-- ================= TEAM ================= -->
   <section class="card reveal" id="team">
     <div class="sec-head">
-      <span class="eyebrow mono"><span class="idx">03 /</span> The Team</span>
+      <span class="eyebrow mono"><span class="idx">// 03</span> The Team</span>
       <h2>The people behind <span class="hl">The Raw Bros.</span></h2>
       <p class="sec-sub">You work directly with the developers building your product — no account managers, no hand-offs, no lost context. Clear communication, honest timelines and production-grade code.</p>
     </div>
@@ -899,7 +923,7 @@ h2{font-size:clamp(28px,3.8vw,46px)}
   <!-- ================= PROJECTS ================= -->
   <section class="card reveal" id="projects">
     <div class="sec-head">
-      <span class="eyebrow mono"><span class="idx">04 /</span> Selected Work</span>
+      <span class="eyebrow mono"><span class="idx">// 04</span> Selected Work</span>
       <h2>Projects we&rsquo;ve <span class="hl">shipped.</span></h2>
       <p class="sec-sub">Real products, live on the web, built, tested and launched by us.</p>
     </div>
@@ -920,6 +944,7 @@ h2{font-size:clamp(28px,3.8vw,46px)}
               <div class="mock-prod"><i></i><b></b></div>
             </div>
             <div class="mock-lines"><i></i><i></i></div>
+            <div class="mock-console mono"><span class="ok">200</span> GET /api/products · 42ms</div>
           </div>
         </div>
       </a>
@@ -1090,6 +1115,41 @@ document.querySelectorAll('a[href^="#"]').forEach(function (a) {
     window.scrollTo({ top: y, behavior: 'smooth' });
   });
 });
+/* ---------- console greeting (for fellow devs) ---------- */
+try { console.log('%cTHE RAW BROS%c build. code. create. — hello.therawbro@gmail.com', 'font:700 13px monospace;color:#FF8A2B', 'font:11px monospace;color:#9B9BA7'); } catch (e) {}
+
+/* ---------- build-progress bar ---------- */
+var bb = document.getElementById('buildbar');
+if (bb) {
+  var bbTick = false;
+  var bbUpd = function () {
+    var h = document.documentElement;
+    var max = h.scrollHeight - h.clientHeight;
+    var p = max > 0 ? (h.scrollTop || document.body.scrollTop) / max : 0;
+    bb.style.transform = 'scaleX(' + p + ')';
+    bbTick = false;
+  };
+  window.addEventListener('scroll', function () { if (!bbTick) { bbTick = true; requestAnimationFrame(bbUpd); } }, { passive: true });
+  bbUpd();
+}
+
+/* ---------- hero typewriter ---------- */
+var tw = document.getElementById('typed');
+if (tw) {
+  var TW_WORDS = ['e-commerce stores', 'web apps', 'admin dashboards', 'landing pages', 'REST APIs', 'PWAs'];
+  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    var wi = 0, ci = 0, del = false;
+    (function step() {
+      var w = TW_WORDS[wi];
+      ci += del ? -1 : 1;
+      tw.textContent = w.slice(0, ci);
+      var t = del ? 36 : 78;
+      if (!del && ci === w.length) { t = 1500; del = true; }
+      else if (del && ci === 0) { del = false; wi = (wi + 1) % TW_WORDS.length; t = 350; }
+      setTimeout(step, t);
+    })();
+  }
+}
 </script>
 </body>
 </html>
