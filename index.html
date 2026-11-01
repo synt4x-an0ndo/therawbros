@@ -567,52 +567,64 @@ h1,h2,.wordmark,.p-info h3,.svc h3,.tcard-role .name,.brand-name,.stat-n{font-fa
 @media (prefers-reduced-motion:reduce){.hero .code-rain{display:none}}
 
 /* ---------- pass 3: boot loader ---------- */
-#boot{position:fixed;inset:0;z-index:200;background:var(--bg);display:flex;align-items:center;justify-content:center;transition:opacity .45s ease,visibility .45s;animation:bootKill .5s ease 2.6s forwards}
+#boot{position:fixed;inset:0;z-index:200;background:var(--bg);display:flex;align-items:center;justify-content:center;padding:20px;cursor:pointer;transition:opacity .45s ease,visibility .45s;animation:bootKill .5s ease 3.4s forwards}
 #boot.done{opacity:0;visibility:hidden}
-.boot-card{font-family:var(--mono);font-size:13.5px;line-height:1.9;color:var(--mut);letter-spacing:.04em}
-.boot-line{opacity:0;animation:bootIn .3s ease forwards}
-.boot-line.d2{animation-delay:.28s}.boot-line.d3{animation-delay:.56s}
-.b-pmt{color:var(--org);font-weight:700}.b-ok{color:var(--txt)}
-.boot-bar{width:220px;height:3px;border-radius:99px;background:rgba(255,255,255,.09);overflow:hidden;margin-top:14px}
-.boot-bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--org),var(--org2));animation:bootFill .75s .1s ease forwards}
+.boot-card{width:min(430px,88vw);border:1px solid var(--line);border-radius:16px;background:rgba(255,255,255,.025);padding:16px 20px 15px;font-family:var(--mono);font-size:13px;line-height:1.85;color:var(--muted);letter-spacing:.03em;box-shadow:0 30px 80px rgba(0,0,0,.5)}
+.boot-head{display:flex;align-items:center;gap:7px;padding-bottom:11px;margin-bottom:11px;border-bottom:1px solid var(--line)}
+.b-dot{width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.16)}
+.b-dot:first-child{background:rgba(255,122,26,.8)}
+.boot-title{margin-left:7px;font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--dim)}
+.boot-line{opacity:0;animation:bootIn .35s ease forwards}
+.boot-line.l2{animation-delay:.5s}.boot-line.l3{animation-delay:1s}.boot-line.l4{animation-delay:1.5s}
+.b-pmt{color:var(--or);font-weight:700}.b-ok{color:var(--txt)}
+.boot-load{margin-top:16px}
+.boot-bar{height:5px;border-radius:99px;background:rgba(255,255,255,.09);overflow:hidden}
+.boot-bar i{display:block;height:100%;width:0;border-radius:99px;background:linear-gradient(90deg,var(--or),var(--or-2));animation:bootFillCss 2.1s .1s ease forwards}
+.boot-row{display:flex;justify-content:space-between;align-items:center;margin-top:9px}
+.boot-loading{font-size:10.5px;letter-spacing:.28em;color:var(--dim)}
+.b-dots i{font-style:normal;animation:bootDot 1.2s infinite}
+.b-dots i:nth-child(2){animation-delay:.2s}.b-dots i:nth-child(3){animation-delay:.4s}
+.boot-pct{font-size:15px;font-weight:700;color:var(--or-2)}
+.boot-skip{margin-top:11px;font-size:9.5px;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.28);text-align:center}
 @keyframes bootIn{to{opacity:1}}
-@keyframes bootFill{to{width:100%}}
+@keyframes bootFillCss{to{width:100%}}
+@keyframes bootDot{0%,60%,100%{opacity:.2}30%{opacity:1}}
 @keyframes bootKill{to{opacity:0;visibility:hidden}}
 /* ---------- pass 3: capabilities matrix ---------- */
 .caps{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:28px}
 .cap{border:1px solid var(--line);border-radius:16px;padding:18px 18px 10px;background:rgba(255,255,255,.02);transition:border-color .3s,transform .3s}
 .cap:hover{border-color:rgba(255,122,26,.4);transform:translateY(-3px)}
-.cap h3{font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--org2);display:flex;align-items:center;gap:9px;margin-bottom:8px}
+.cap h3{font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--or-2);display:flex;align-items:center;gap:9px;margin-bottom:8px}
 .cap h3 span{color:var(--dim);font-weight:500}
 .cap ul{list-style:none}
-.cap li{font-size:13.5px;color:var(--mut);padding:7.5px 0;border-top:1px dashed rgba(255,255,255,.07)}
+.cap li{font-size:13.5px;color:var(--muted);padding:7.5px 0;border-top:1px dashed rgba(255,255,255,.07)}
 .cap li:first-child{border-top:0}
 /* ---------- pass 3: why-us band ---------- */
 .why-head{margin-top:30px;font-size:11px;letter-spacing:.2em;color:var(--dim)}
-.why-head .idx{color:var(--org)}
+.why-head .idx{color:var(--or)}
 .why{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:14px}
 .why-it{border:1px solid var(--line);border-radius:16px;padding:20px;background:linear-gradient(180deg,rgba(255,122,26,.05),rgba(255,255,255,.015));transition:border-color .3s,transform .3s}
 .why-it:hover{border-color:rgba(255,122,26,.4);transform:translateY(-3px)}
-.why-n{font-family:var(--mono);font-size:12px;letter-spacing:.15em;color:var(--org)}
+.why-n{font-family:var(--mono);font-size:12px;letter-spacing:.15em;color:var(--or)}
 .why-it h3{font-family:var(--disp);font-size:16.5px;font-weight:600;margin:10px 0 6px}
-.why-it p{font-size:13px;color:var(--mut);line-height:1.6}
+.why-it p{font-size:13px;color:var(--muted);line-height:1.6}
 /* ---------- pass 3: engagement models ---------- */
 .models{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:28px 0 8px;text-align:left}
 .model{border:1px solid var(--line);border-radius:18px;padding:22px;background:rgba(255,255,255,.02);display:flex;flex-direction:column;transition:border-color .3s,transform .3s}
 .model:hover{border-color:rgba(255,122,26,.45);transform:translateY(-3px)}
-.m-tag{font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--org2)}
+.m-tag{font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--or-2)}
 .model h3{font-family:var(--disp);font-size:20px;font-weight:600;margin:9px 0 7px}
-.model p{font-size:13.5px;color:var(--mut);line-height:1.6}
+.model p{font-size:13.5px;color:var(--muted);line-height:1.6}
 .model ul{list-style:none;margin:13px 0 18px}
-.model li{font-size:13px;color:var(--mut);padding:4px 0 4px 20px;position:relative}
-.model li::before{content:"✓";position:absolute;left:0;color:var(--org);font-weight:700}
+.model li{font-size:13px;color:var(--muted);padding:4px 0 4px 20px;position:relative}
+.model li::before{content:"✓";position:absolute;left:0;color:var(--or);font-weight:700}
 .m-btn{margin-top:auto;font-family:var(--mono);font-size:11px;letter-spacing:.13em;text-transform:uppercase;text-align:center;padding:11px 14px;border:1px solid var(--line);border-radius:99px;color:var(--txt);transition:border-color .25s,color .25s,background .25s}
-.m-btn:hover{border-color:var(--org);color:var(--org2);background:rgba(255,122,26,.07)}
+.m-btn:hover{border-color:var(--or);color:var(--or-2);background:rgba(255,122,26,.07)}
 /* ---------- pass 3: footer wordmark + back to top ---------- */
 .foot-word{font-family:var(--disp);font-weight:700;font-size:clamp(50px,11vw,146px);line-height:.96;text-align:center;white-space:nowrap;color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.14);margin:36px 0 4px;user-select:none;-webkit-mask-image:linear-gradient(180deg,#000 58%,transparent 98%);mask-image:linear-gradient(180deg,#000 58%,transparent 98%)}
 #toTop{position:fixed;right:18px;bottom:18px;z-index:80;font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;padding:11px 15px;border-radius:99px;border:1px solid var(--line);background:rgba(10,11,16,.85);color:var(--txt);cursor:pointer;opacity:0;visibility:hidden;transform:translateY(8px);transition:opacity .3s,transform .3s,visibility .3s,border-color .25s,color .25s}
 #toTop.show{opacity:1;visibility:visible;transform:none}
-#toTop:hover{border-color:var(--org);color:var(--org2)}
+#toTop:hover{border-color:var(--or);color:var(--or-2)}
 @media(max-width:960px){.caps,.why{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:860px){.models{grid-template-columns:1fr}}
 @media(max-width:560px){.caps,.why{grid-template-columns:1fr}}
@@ -620,12 +632,18 @@ h1,h2,.wordmark,.p-info h3,.svc h3,.tcard-role .name,.brand-name,.stat-n{font-fa
 </style>
 </head>
 <body id="top">
-<div id="boot" aria-hidden="true">
+<div id="boot" aria-hidden="true" title="Skip intro">
   <div class="boot-card">
-    <div class="boot-line"><span class="b-pmt">$</span> therawbros --init</div>
-    <div class="boot-line d2">&#9656; building experience&hellip;</div>
-    <div class="boot-line d3 b-ok">&#10003; ready &mdash; welcome</div>
-    <div class="boot-bar"><i></i></div>
+    <div class="boot-head"><span class="b-dot"></span><span class="b-dot"></span><span class="b-dot"></span><span class="boot-title">therawbros &mdash; boot sequence</span></div>
+    <div class="boot-line l1"><span class="b-pmt">$</span> therawbros --init</div>
+    <div class="boot-line l2">&#9656; loading stack &mdash; react &middot; next &middot; node</div>
+    <div class="boot-line l3">&#9656; compiling experience&hellip;</div>
+    <div class="boot-line l4 b-ok">&#10003; ready &mdash; welcome to The Raw Bros</div>
+    <div class="boot-load">
+      <div class="boot-bar"><i id="bootFill"></i></div>
+      <div class="boot-row"><span class="boot-loading">LOADING<span class="b-dots"><i>.</i><i>.</i><i>.</i></span></span><span class="boot-pct" id="bootPct">0%</span></div>
+    </div>
+    <div class="boot-skip">click to skip</div>
   </div>
 </div>
 
@@ -960,19 +978,19 @@ h1,h2,.wordmark,.p-info h3,.svc h3,.tcard-role .name,.brand-name,.stat-n{font-fa
     <div class="caps rv-up">
       <div class="cap">
         <h3><span>01</span>Frontend</h3>
-        <ul><li>React &amp; Next.js</li><li>Vue.js</li><li>TypeScript / JavaScript</li><li>Tailwind CSS &amp; SASS</li><li>Pixel-true responsive UI</li></ul>
+        <ul><li>React &amp; Next.js</li><li>TypeScript / JavaScript</li><li>Tailwind CSS &amp; Bootstrap</li><li>Vite</li><li>Pixel-true responsive UI</li></ul>
       </div>
       <div class="cap">
         <h3><span>02</span>Backend &amp; Data</h3>
-        <ul><li>Node.js</li><li>PHP &amp; Laravel</li><li>REST API &amp; GraphQL</li><li>MySQL &middot; PostgreSQL &middot; MongoDB</li><li>Prisma &middot; JWT Auth</li></ul>
+        <ul><li>Node.js &amp; Express.js</li><li>Python</li><li>REST APIs</li><li>PostgreSQL &middot; SQL &middot; MongoDB</li><li>Firebase &amp; Firestore</li></ul>
       </div>
       <div class="cap">
         <h3><span>03</span>Build &amp; Ship</h3>
-        <ul><li>Git &amp; GitHub</li><li>Docker</li><li>Vite &amp; Webpack</li><li>Linux &middot; VPS &middot; NGINX</li><li>Cloudflare &amp; CDN</li></ul>
+        <ul><li>Git &amp; GitHub</li><li>Docker</li><li>Vercel &amp; Netlify</li><li>Cloudflare &amp; CDN</li><li>Postman &mdash; API testing</li></ul>
       </div>
       <div class="cap">
         <h3><span>04</span>Product &amp; Growth</h3>
-        <ul><li>E-Commerce systems</li><li>PWA &mdash; installable web apps</li><li>UI/UX in Figma</li><li>Technical SEO</li><li>Performance tuning</li></ul>
+        <ul><li>UI/UX in Figma</li><li>Photoshop &amp; Canva assets</li><li>Premiere Pro &mdash; video edits</li><li>Technical SEO</li><li>Performance tuning</li></ul>
       </div>
     </div>
   </section>
@@ -994,28 +1012,28 @@ h1,h2,.wordmark,.p-info h3,.svc h3,.tcard-role .name,.brand-name,.stat-n{font-fa
         <div class="svc-ico"><svg><use href="#i-code"/></svg></div>
         <h3>Frontend Development</h3>
         <p>Responsive, accessible and pixel-perfect interfaces built with React &amp; Next.js, fast on every screen and every connection.</p>
-        <div class="svc-tags"><span class="tag">React</span><span class="tag">Next.js</span><span class="tag">Tailwind</span></div>
+        <div class="svc-tags"><span class="tag">React</span><span class="tag">Next.js</span><span class="tag">TypeScript</span><span class="tag">JavaScript</span><span class="tag">Tailwind CSS</span><span class="tag">Bootstrap</span></div>
       </article>
       <article class="svc reveal">
         <span class="svc-num mono">02</span>
         <div class="svc-ico"><svg><use href="#i-server"/></svg></div>
         <h3>Backend Development</h3>
         <p>Secure APIs, databases, authentication and integrations that stay stable and fast as your product grows.</p>
-        <div class="svc-tags"><span class="tag">Node.js</span><span class="tag">REST API</span><span class="tag">PostgreSQL</span></div>
+        <div class="svc-tags"><span class="tag">Node.js</span><span class="tag">Express.js</span><span class="tag">Python</span><span class="tag">REST APIs</span><span class="tag">PostgreSQL</span><span class="tag">MongoDB</span><span class="tag">Firebase</span></div>
       </article>
       <article class="svc reveal">
         <span class="svc-num mono">03</span>
         <div class="svc-ico"><svg><use href="#i-layers"/></svg></div>
         <h3>UI/UX Design</h3>
         <p>Wireframes, prototypes and design systems that turn rough ideas into clear, usable, on-brand experiences.</p>
-        <div class="svc-tags"><span class="tag">Figma</span><span class="tag">Design system</span></div>
+        <div class="svc-tags"><span class="tag">Figma</span><span class="tag">Design System</span><span class="tag">Photoshop</span><span class="tag">Canva</span></div>
       </article>
       <article class="svc reveal">
         <span class="svc-num mono">04</span>
         <div class="svc-ico"><svg><use href="#i-rocket"/></svg></div>
         <h3>Deploy &amp; Maintain</h3>
-        <p>Hosting, CI/CD, performance tuning, SEO basics and ongoing support. We keep it live, fast and healthy.</p>
-        <div class="svc-tags"><span class="tag">Vercel</span><span class="tag">Git</span><span class="tag">SEO</span></div>
+        <p>Hosting, deployment, performance tuning, SEO basics and ongoing support. We keep it live, fast and healthy.</p>
+        <div class="svc-tags"><span class="tag">Vercel</span><span class="tag">Netlify</span><span class="tag">Cloudflare</span><span class="tag">Docker</span><span class="tag">Git &amp; GitHub</span><span class="tag">SEO</span></div>
       </article>
     </div>
   
@@ -1532,16 +1550,30 @@ if (rainCv && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
 /* ---------- pass 3: boot loader ---------- */
 var bootEl = document.getElementById('boot');
 if (bootEl) {
-  var bootT0 = Date.now(), bootGone = false;
+  var bootT0 = Date.now(), bootGone = false, BOOT_MIN = 1950;
+  var bootPctEl = document.getElementById('bootPct');
+  var bootFillEl = document.getElementById('bootFill');
   var killBoot = function () {
     if (bootGone) return; bootGone = true;
     bootEl.classList.add('done');
     setTimeout(function () { if (bootEl.parentNode) bootEl.parentNode.removeChild(bootEl); }, 500);
   };
-  var queueBoot = function () { setTimeout(killBoot, Math.max(0, 720 - (Date.now() - bootT0))); };
+  if (bootFillEl) bootFillEl.style.animation = 'none';
+  var tickBoot = function () {
+    if (bootGone) return;
+    var p = Math.min(1, (Date.now() - bootT0) / 1900);
+    var e = 1 - Math.pow(1 - p, 2);
+    var v = Math.round(e * 100);
+    if (bootPctEl) bootPctEl.textContent = v + '%';
+    if (bootFillEl) bootFillEl.style.width = v + '%';
+    if (p < 1) requestAnimationFrame(tickBoot);
+  };
+  requestAnimationFrame(tickBoot);
+  var queueBoot = function () { setTimeout(killBoot, Math.max(0, BOOT_MIN - (Date.now() - bootT0))); };
   if (document.readyState === 'complete') queueBoot();
   else window.addEventListener('load', queueBoot);
-  setTimeout(killBoot, 2800);
+  bootEl.addEventListener('click', killBoot);
+  setTimeout(killBoot, 4200);
 }
 /* ---------- pass 3: model buttons pre-fill the brief ---------- */
 document.querySelectorAll('[data-model]').forEach(function (b) {
