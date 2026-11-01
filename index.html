@@ -630,25 +630,39 @@ h1,h2,.wordmark,.p-info h3,.svc h3,.tcard-role .name,.brand-name,.stat-n{font-fa
 @media(max-width:560px){.caps,.why{grid-template-columns:1fr}}
 @media (prefers-reduced-motion: reduce){#boot{display:none}.cap,.why-it,.model{transition:none}}
 
-/* ---------- services: editorial rows ---------- */
-.svc-rows{border-top:1px solid var(--line)}
-.svr{display:grid;grid-template-columns:66px 54px 1fr 1.15fr 44px;grid-template-areas:"num ico main desc arrow";gap:22px;align-items:center;padding:27px 12px;border-bottom:1px solid var(--line);position:relative;transition:background .3s ease,padding-left .3s ease}
-.svr::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;border-radius:99px;background:linear-gradient(180deg,var(--or),var(--or-2));transform:scaleY(0);transition:transform .35s ease}
-.svr:hover{background:rgba(255,255,255,.02);padding-left:20px}
-.svr:hover::before{transform:scaleY(1)}
-.svr-num{grid-area:num;font-family:var(--disp);font-size:32px;font-weight:700;line-height:1;color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.28);transition:-webkit-text-stroke .3s}
-.svr:hover .svr-num{-webkit-text-stroke:1px rgba(255,72,0,.85)}
-.svr .svc-ico{grid-area:ico}
-.svr:hover .svc-ico{box-shadow:0 12px 26px -12px rgba(255,106,0,.8)}
-.svr-main{grid-area:main}
-.svr-main h3{font-family:var(--disp);font-size:21px;font-weight:600;margin-bottom:6px}
-.svr-keys{font-size:10px;letter-spacing:.16em;color:var(--or-2)}
-.svr p{grid-area:desc;font-size:14px;color:var(--muted);line-height:1.65}
-.svr-arrow{grid-area:arrow;width:40px;height:40px;border:1px solid var(--line);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--dim);transition:background .3s,color .3s,border-color .3s,transform .3s}
-.svr-arrow svg{width:16px;height:16px}
-.svr:hover .svr-arrow{background:var(--or);border-color:var(--or);color:#0B0B0F;transform:rotate(45deg)}
-@media(max-width:900px){.svr{grid-template-columns:54px 50px 1fr 40px;grid-template-areas:"num ico main arrow" "num ico desc arrow";row-gap:8px}}
-@media(max-width:560px){.svr{grid-template-columns:42px 46px 1fr;grid-template-areas:"num ico main" "desc desc desc";row-gap:10px;padding:22px 6px}.svr:hover{padding-left:12px}.svr-arrow{display:none}.svr-num{font-size:24px}.svr-main h3{font-size:18px}.svr-keys{letter-spacing:.1em}}
+/* ---------- services: terminal window ---------- */
+.term{border:1px solid var(--line);border-radius:18px;background:linear-gradient(180deg,#101016,#0A0A0E);overflow:hidden;box-shadow:0 30px 70px -30px rgba(0,0,0,.7)}
+.term-head{display:flex;align-items:flex-end;gap:7px;padding:12px 16px 0;border-bottom:1px solid var(--line);background:rgba(255,255,255,.02);flex-wrap:wrap}
+.term-head .b-dot{margin-bottom:13px}
+.term-tabs{display:flex;gap:6px;margin-left:10px;flex-wrap:wrap}
+.term-tab{font-family:var(--mono);font-size:11.5px;letter-spacing:.05em;color:var(--dim);background:transparent;border:1px solid transparent;border-bottom:0;border-radius:9px 9px 0 0;padding:8px 14px;cursor:pointer;transition:color .25s,background .25s}
+.term-tab:hover{color:var(--txt)}
+.term-tab.is-on{color:var(--or-2);background:#0A0A0E;border-color:var(--line);box-shadow:inset 0 2px 0 var(--or)}
+.term-title{margin-left:auto;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--dim);padding-bottom:11px}
+.term-body{display:flex}
+.term-side{padding:20px 0 20px 18px;font-family:var(--mono);font-size:13px;line-height:1.95;color:rgba(255,255,255,.18);text-align:right;user-select:none}
+.term-main{flex:1;min-width:0;padding:20px 22px 6px}
+.term-panel{display:none}
+.term-panel.is-on{display:block;animation:termIn .35s ease}
+@keyframes termIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.term-code{font-family:var(--mono);font-size:13px;line-height:1.95;color:#D6D6DE;white-space:pre;overflow-x:auto;margin:0;padding-bottom:4px}
+.tk-k{color:var(--or)}
+.tk-f{color:#FFE1B8}
+.tk-p{color:#B9A7F9}
+.tk-s{color:#FFB37A}
+.tk-c{color:var(--dim);font-style:italic}
+.term-desc{margin:14px 0 16px;font-size:14.5px;color:var(--muted);line-height:1.65;max-width:580px}
+.term-foot{display:flex;justify-content:space-between;gap:12px;padding:11px 18px;border-top:1px solid var(--line);background:rgba(255,255,255,.015);font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--dim)}
+.term-foot .ok{color:#4ADE80}
+/* ---------- process: timeline restyle ---------- */
+.process{position:relative;border-top:0;padding-top:6px}
+.process::before{content:"";position:absolute;top:25px;left:26px;right:26px;height:1px;background:linear-gradient(90deg,rgba(255,255,255,.02),rgba(255,255,255,.16) 10%,rgba(255,255,255,.16) 90%,rgba(255,255,255,.02))}
+.process .step .n{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:50%;border:1px solid rgba(255,72,0,.55);background:#0B0B0F;position:relative;z-index:1;font-size:11px;color:var(--or-2)}
+.process .step:last-child .n{background:var(--or);border-color:var(--or);color:#0B0B0F;font-weight:700}
+.process .step h4{margin-top:14px}
+@media(max-width:1080px){.process::before{display:none}}
+@media(max-width:640px){.term-side{display:none}.term-main{padding:16px 16px 4px}.term-code{font-size:11.5px}.term-title{display:none}.term-tab{padding:7px 10px;font-size:10.5px}.term-head{padding:10px 12px 0}}
+@media (prefers-reduced-motion: reduce){.term-panel.is-on{animation:none}}
 </style>
 </head>
 <body id="top">
@@ -1026,35 +1040,70 @@ h1,h2,.wordmark,.p-info h3,.svc h3,.tcard-role .name,.brand-name,.stat-n{font-fa
 
     <div class="divider-pill"><span class="lbl">Services</span></div>
 
-    <div class="svc-rows">
-      <article class="svr reveal">
-        <span class="svr-num">01</span>
-        <div class="svc-ico"><svg><use href="#i-code"/></svg></div>
-        <div class="svr-main"><h3>Frontend Development</h3><span class="svr-keys mono">Responsive &middot; Pixel-true &middot; Accessible</span></div>
-        <p>The face of your product — fast, responsive interfaces that feel effortless on every screen, true to the design down to the last pixel and smooth even on slow connections.</p>
-        <span class="svr-arrow"><svg><use href="#i-arrow"/></svg></span>
-      </article>
-      <article class="svr reveal">
-        <span class="svr-num">02</span>
-        <div class="svc-ico"><svg><use href="#i-server"/></svg></div>
-        <div class="svr-main"><h3>Backend Development</h3><span class="svr-keys mono">Secure &middot; Scalable &middot; Reliable</span></div>
-        <p>The engine room — secure logins, databases and integrations that stay stable as you grow, quietly keeping your business running and your data safe.</p>
-        <span class="svr-arrow"><svg><use href="#i-arrow"/></svg></span>
-      </article>
-      <article class="svr reveal">
-        <span class="svr-num">03</span>
-        <div class="svc-ico"><svg><use href="#i-layers"/></svg></div>
-        <div class="svr-main"><h3>UI/UX Design</h3><span class="svr-keys mono">Research &middot; Wireframes &middot; Polished UI</span></div>
-        <p>Clarity first — wireframes and polished designs shaped around your customers, so every click feels obvious and every page guides visitors to act.</p>
-        <span class="svr-arrow"><svg><use href="#i-arrow"/></svg></span>
-      </article>
-      <article class="svr reveal">
-        <span class="svr-num">04</span>
-        <div class="svc-ico"><svg><use href="#i-rocket"/></svg></div>
-        <div class="svr-main"><h3>Deploy &amp; Maintain</h3><span class="svr-keys mono">Hosting &middot; Monitoring &middot; Support</span></div>
-        <p>Live, fast and healthy — we launch your product, keep it secure and performing, and stay one message away for fixes and improvements.</p>
-        <span class="svr-arrow"><svg><use href="#i-arrow"/></svg></span>
-      </article>
+    <div class="term rv-up" id="svcTerm">
+      <div class="term-head">
+        <span class="b-dot"></span><span class="b-dot"></span><span class="b-dot"></span>
+        <div class="term-tabs" role="tablist" aria-label="Our services">
+          <button type="button" class="term-tab is-on" role="tab" aria-selected="true">frontend.tsx</button>
+          <button type="button" class="term-tab" role="tab" aria-selected="false">backend.ts</button>
+          <button type="button" class="term-tab" role="tab" aria-selected="false">design.fig</button>
+          <button type="button" class="term-tab" role="tab" aria-selected="false">deploy.yml</button>
+        </div>
+        <span class="term-title mono">services — therawbros</span>
+      </div>
+      <div class="term-body">
+        <div class="term-side" aria-hidden="true">1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9</div>
+        <div class="term-main">
+        <div class="term-panel is-on" role="tabpanel">
+          <pre class="term-code"><span class="tk-k">export const</span> <span class="tk-f">frontend</span> = {
+  <span class="tk-p">title</span>: <span class="tk-s">"Frontend Development"</span>,
+  <span class="tk-p">mission</span>: <span class="tk-s">"The face of your product"</span>,
+  <span class="tk-p">you_get</span>: [
+    <span class="tk-s">"Pixel-true, responsive interfaces"</span>,
+    <span class="tk-s">"Accessible to every visitor"</span>,
+    <span class="tk-s">"Smooth &amp; fast on any connection"</span>,
+  ],
+};</pre>
+          <p class="term-desc">Interfaces that feel effortless on every screen — true to the design down to the last pixel, and quick even on slow connections.</p>
+        </div>
+        <div class="term-panel" role="tabpanel">
+          <pre class="term-code"><span class="tk-k">export const</span> <span class="tk-f">backend</span> = {
+  <span class="tk-p">title</span>: <span class="tk-s">"Backend Development"</span>,
+  <span class="tk-p">mission</span>: <span class="tk-s">"The engine room"</span>,
+  <span class="tk-p">you_get</span>: [
+    <span class="tk-s">"Secure logins &amp; user accounts"</span>,
+    <span class="tk-s">"Databases that scale with you"</span>,
+    <span class="tk-s">"Integrations that just work"</span>,
+  ],
+};</pre>
+          <p class="term-desc">The invisible systems that keep your business running — stable, secure, and ready to grow when you are.</p>
+        </div>
+        <div class="term-panel" role="tabpanel">
+          <pre class="term-code"><span class="tk-k">export const</span> <span class="tk-f">design</span> = {
+  <span class="tk-p">title</span>: <span class="tk-s">"UI/UX Design"</span>,
+  <span class="tk-p">mission</span>: <span class="tk-s">"Clarity first"</span>,
+  <span class="tk-p">you_get</span>: [
+    <span class="tk-s">"Wireframes before pixels"</span>,
+    <span class="tk-s">"Shaped around your customers"</span>,
+    <span class="tk-s">"A look unmistakably yours"</span>,
+  ],
+};</pre>
+          <p class="term-desc">Every click feels obvious and every page guides your visitors to act — no confusion, no dead ends.</p>
+        </div>
+        <div class="term-panel" role="tabpanel">
+          <pre class="term-code"><span class="tk-c"># deploy.yml — go live, stay live</span>
+<span class="tk-p">service</span>: <span class="tk-s">Deploy &amp; Maintain</span>
+<span class="tk-p">mission</span>: <span class="tk-s">Live, fast and healthy</span>
+<span class="tk-p">you_get</span>:
+  - <span class="tk-s">Launched &amp; configured for you</span>
+  - <span class="tk-s">Watched, updated &amp; secured</span>
+  - <span class="tk-s">Support one message away</span>
+<span class="tk-p">status</span>: <span class="tk-s">always_on</span></pre>
+          <p class="term-desc">We launch it, keep it fast and secure, and stay on call for fixes &amp; improvements — you focus on the business.</p>
+        </div>
+        </div>
+      </div>
+      <div class="term-foot"><span>&gt;_ services — therawbros</span><span class="ok">&#9679; ready to build</span></div>
     </div>
   
     <div class="process">
@@ -1339,6 +1388,8 @@ h1,h2,.wordmark,.p-info h3,.svc h3,.tcard-role .name,.brand-name,.stat-n{font-fa
 </div>
 
 <script>
+var REDUCED = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
 /* ---------- year ---------- */
 document.getElementById('year').textContent = new Date().getFullYear();
 
@@ -1611,6 +1662,31 @@ if (toTopBtn) {
   toTopBtn.addEventListener('click', function () {
     window.scrollTo({ top: 0, behavior: REDUCED ? 'auto' : 'smooth' });
   });
+}
+/* ---------- services terminal tabs ---------- */
+var svcTerm = document.getElementById('svcTerm');
+if (svcTerm) {
+  var svcTabs = svcTerm.querySelectorAll('.term-tab');
+  var svcPanels = svcTerm.querySelectorAll('.term-panel');
+  var svcCur = 0, svcAuto = null;
+  var showSvc = function (i) {
+    svcCur = i;
+    svcTabs.forEach(function (t, k) {
+      t.classList.toggle('is-on', k === i);
+      t.setAttribute('aria-selected', k === i ? 'true' : 'false');
+    });
+    svcPanels.forEach(function (pnl, k) { pnl.classList.toggle('is-on', k === i); });
+  };
+  var stopSvcAuto = function () { if (svcAuto) { clearInterval(svcAuto); svcAuto = null; } };
+  svcTabs.forEach(function (t, k) {
+    t.addEventListener('click', function () { stopSvcAuto(); showSvc(k); });
+  });
+  if (!REDUCED && svcPanels.length > 1) {
+    svcAuto = setInterval(function () {
+      if (!document.hidden) showSvc((svcCur + 1) % svcPanels.length);
+    }, 5000);
+    svcTerm.addEventListener('pointerdown', stopSvcAuto);
+  }
 }
 </script>
 </body>
