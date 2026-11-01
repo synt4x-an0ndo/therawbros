@@ -779,37 +779,22 @@ html[data-theme="cyber"] .code-rain{filter:hue-rotate(165deg) saturate(1.2)}
 html[data-theme="royal"] .code-rain{filter:hue-rotate(238deg) saturate(1.15)}
 html[data-theme="crimson"] .code-rain{filter:hue-rotate(-28deg) saturate(1.25)}
 html[data-theme="gold"] .code-rain{filter:hue-rotate(18deg) saturate(1.15)}
-/* ---------- fake hack sequence ---------- */
-#hackFx{position:fixed;inset:0;z-index:140;display:none;pointer-events:none;background:radial-gradient(120% 90% at 50% 40%,rgba(24,5,2,.52),rgba(6,2,2,.9))}
-body.hacked #hackFx{display:block}
-body.hacked{--or:#FF3B30;--or-2:#FF7A6E;--grad-a:#FF8A7A;--grad-b:#E02412}
-.hack-frame{position:absolute;inset:12px;border:1px solid rgba(255,59,48,.45);border-radius:8px}
-body.hacked .hack-frame{animation:hackPulse 1.1s ease-in-out infinite}
-.hack-scan{position:absolute;inset:0;background:repeating-linear-gradient(0deg,rgba(255,255,255,.022) 0 2px,transparent 2px 6px)}
-.hack-dump{position:absolute;top:28px;left:28px;right:28px;font-family:var(--mono);font-size:11px;line-height:2;letter-spacing:.04em;color:#FFB37A;text-shadow:0 0 12px rgba(255,122,26,.3)}
-.hack-dump span{display:block;opacity:0}
-body.hacked .hack-dump span{animation:hackLine .2s ease forwards}
-body.hacked .hack-dump span:nth-child(2){animation-delay:.35s}
-body.hacked .hack-dump span:nth-child(3){animation-delay:.7s}
-body.hacked .hack-dump span:nth-child(4){animation-delay:1.1s}
-body.hacked .hack-dump span:nth-child(5){animation-delay:1.6s}
-body.hacked .hack-dump span:nth-child(6){animation-delay:2.2s}
-.hack-core{position:absolute;top:33%;left:0;width:100%;text-align:center;padding:0 20px}
-.hack-kicker{font-family:var(--mono);font-size:10.5px;letter-spacing:.42em;text-transform:uppercase;color:#FF7A6E;margin-bottom:15px}
-.hack-title{font-family:var(--disp);font-weight:700;font-size:clamp(34px,8.5vw,74px);letter-spacing:.1em;color:#FFF4EE;text-shadow:2px 0 rgba(255,59,48,.55),-2px 0 rgba(0,229,255,.45)}
-body.hacked .hack-title{animation:hackGlitch 1.6s steps(1) infinite}
-.hack-bar{width:min(320px,64vw);height:3px;margin:24px auto 13px;background:rgba(255,255,255,.12);border-radius:99px;overflow:hidden}
-.hack-bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,#FF7A6E,#FF3B30);border-radius:99px}
-body.hacked .hack-bar i{animation:hackBar 3.15s linear forwards}
-.hack-sub{font-family:var(--mono);font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:rgba(255,255,255,.55)}
-body.hacked .card{animation:hackShake .45s linear 1}
-body.hacked h1,body.hacked h2{text-shadow:1.5px 0 rgba(255,59,48,.5),-1.5px 0 rgba(0,229,255,.45)}
-@keyframes hackPulse{0%,100%{opacity:.45}50%{opacity:1}}
-@keyframes hackBar{to{width:100%}}
-@keyframes hackLine{to{opacity:1}}
-@keyframes hackShake{0%{transform:translate(0)}20%{transform:translate(1px,-1px)}40%{transform:translate(-1.5px,1px)}60%{transform:translate(1px,1px)}80%{transform:translate(-1px,0)}100%{transform:translate(0)}}
-@keyframes hackGlitch{0%,86%,100%{transform:translate(0);clip-path:inset(0)}87%{transform:translate(-3px,0);clip-path:inset(12% 0 55% 0)}90%{transform:translate(3px,0);clip-path:inset(60% 0 8% 0)}93%{transform:translate(-1px,0);clip-path:inset(30% 0 30% 0)}96%{transform:translate(0);clip-path:inset(0)}}
-@media (prefers-reduced-motion: reduce){body.hacked .card,body.hacked .hack-title,body.hacked .hack-frame{animation:none}}
+/* ---------- fake hack: full-screen black console ---------- */
+#hackFx{position:fixed;inset:0;z-index:200;background:#000;opacity:0;visibility:hidden;transition:opacity .35s,visibility .35s;pointer-events:none;cursor:pointer}
+#hackFx::after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(0deg,rgba(255,255,255,.025) 0 1px,transparent 1px 4px);pointer-events:none}
+body.hacked #hackFx{opacity:1;visibility:visible;pointer-events:auto}
+body.hacked{overflow:hidden}
+.hack-con{position:absolute;inset:0;padding:24px 18px 64px;display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden;font-family:var(--mono);font-size:clamp(10.5px,2.9vw,13.5px);line-height:1.9;color:#46ff7d;text-shadow:0 0 8px rgba(70,255,125,.35);white-space:pre-wrap;word-break:break-all}
+.hack-con .h-dim{color:#1d9e4b}
+.hack-con .h-warn{color:#ffb347;text-shadow:0 0 8px rgba(255,179,71,.4)}
+.hack-con .h-wht{color:#eafff0}
+.hack-con .h-p{color:#ff7a1a;text-shadow:0 0 8px rgba(255,122,26,.45)}
+.hack-cur{display:inline-block;width:8px;height:14px;margin-left:3px;background:#46ff7d;vertical-align:-2px;animation:bootDot 1s steps(2) infinite}
+.hack-stamp{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) scale(1.14);text-align:center;border:2px solid #46ff7d;border-radius:10px;padding:22px 32px;background:rgba(0,18,5,.85);box-shadow:0 0 46px rgba(70,255,125,.28);opacity:0;transition:opacity .25s,transform .25s;pointer-events:none}
+.hack-stamp.on{opacity:1;transform:translate(-50%,-50%) scale(1)}
+.hack-stamp b{display:block;font-family:var(--disp);font-weight:700;font-size:clamp(25px,7vw,44px);letter-spacing:.14em;color:#eafff0;text-shadow:0 0 18px rgba(70,255,125,.65)}
+.hack-stamp span{display:block;margin-top:9px;font-family:var(--mono);font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;color:#46ff7d}
+.hack-skip{position:absolute;bottom:20px;left:0;width:100%;text-align:center;font-family:var(--mono);font-size:9.5px;letter-spacing:.28em;text-transform:uppercase;color:rgba(120,255,165,.42)}
 
 /* ---------- hidden hints + toast ---------- */
 .hero-hint{margin-top:24px;font-size:10px;color:var(--dim);text-decoration:none;transition:color .25s}
@@ -1621,22 +1606,9 @@ body.hacked h1,body.hacked h2{text-shadow:1.5px 0 rgba(255,59,48,.5),-1.5px 0 rg
     <a class="dock-btn dock-wa" href="https://wa.me/fr1skyfox1" target="_blank" rel="noopener">WhatsApp</a>
   </div>
   <div id="hackFx" aria-hidden="true">
-    <div class="hack-scan"></div>
-    <div class="hack-frame"></div>
-    <div class="hack-dump">
-      <span>&gt; intrusion detected — tracing source</span>
-      <span>&gt; firewall integrity ......... 98%</span>
-      <span>&gt; isolating affected pixels ....... done</span>
-      <span>&gt; attacker identified: a very curious visitor</span>
-      <span>&gt; countermeasure: deploying raw talent</span>
-      <span>&gt; restoring system .......</span>
-    </div>
-    <div class="hack-core">
-      <div class="hack-kicker">/// Simulated Breach</div>
-      <div class="hack-title">SYSTEM BREACH</div>
-      <div class="hack-bar"><i></i></div>
-      <div class="hack-sub">auto-restoring — stand by</div>
-    </div>
+    <div class="hack-con" id="hackCon"></div>
+    <div class="hack-stamp" id="hackStamp"><b>ACCESS GRANTED</b><span>simulated by The Raw Bros</span></div>
+    <div class="hack-skip">tap anywhere to exit</div>
   </div>
 
   <div id="hintToast" role="status">
@@ -2465,14 +2437,86 @@ window.__cycleTheme = function () {
 var ftBtn = document.getElementById('footTheme');
 if (ftBtn) ftBtn.addEventListener('click', function () { window.__cycleTheme(); });
 
-/* ---------- fake hack sequence (auto-restores) ---------- */
+/* ---------- fake hack: black-screen code console (tap/Esc exits) ---------- */
 window.__fakeHack = function (done) {
   if (document.body.classList.contains('hacked')) return;
-  document.body.classList.add('hacked');
-  setTimeout(function () {
+  var fx = document.getElementById('hackFx'), con = document.getElementById('hackCon'), stamp = document.getElementById('hackStamp');
+  if (!fx || !con) { if (done) done(); return; }
+  var timers = [], finished = false;
+  function later(fn, ms) { timers.push(setTimeout(fn, ms)); }
+  function fin() {
+    if (finished) return; finished = true;
+    timers.forEach(function (id) { clearTimeout(id); clearInterval(id); });
     document.body.classList.remove('hacked');
+    fx.removeEventListener('pointerdown', fin);
+    document.removeEventListener('keydown', esc);
+    setTimeout(function () { con.innerHTML = ''; stamp.classList.remove('on'); }, 420);
     if (done) done();
-  }, REDUCED ? 1800 : 3600);
+  }
+  function esc(e) { if (e.key === 'Escape') fin(); }
+  function addLine(text, cls) {
+    var d = document.createElement('div');
+    if (cls) d.className = cls;
+    d.textContent = text;
+    con.appendChild(d);
+    while (con.children.length > 42) con.removeChild(con.firstChild);
+  }
+  var LINES = [
+    { cmd: './breach --target therawbros.pages.dev --stealth' },
+    { t: '[*] resolving therawbros.pages.dev .......... OK' },
+    { t: '[*] TLS 1.3 handshake ...................... accepted' },
+    { t: '[*] scanning ports 22 / 80 / 443 ........... open' },
+    { t: '    fingerprint: SHA256:rAwBr05/h4nd-bu1lt', c: 'h-dim' },
+    { cmd: 'sudo inject payload.bin --force' },
+    { t: '[>] uploading payload [████████████████] 100%' },
+    { t: '[>] bypassing firewall ..................... OK' },
+    { t: '[>] escalating privileges .................. root' },
+    { t: '[!] intrusion detection sniffing ........... spoofed', c: 'h-warn' },
+    { t: '[>] dumping credentials .................... encrypted' },
+    { t: '[>] cracking hash $6$rawbros$ [██████░░░░] 61%' },
+    { t: '[>] cracking hash $6$rawbros$ [██████████] 100%', g: 260 },
+    { t: '    password found: "hand-built-with-love"', c: 'h-wht' },
+    { t: '[>] downloading secret sauce (2.4 MB) ...... done' },
+    { t: '[>] wiping access logs ..................... clean' },
+    { cmd: 'whoami' },
+    { t: 'a very curious visitor', c: 'h-wht' },
+    { t: '[*] closing connection ..................... bye', c: 'h-dim' }
+  ];
+  con.innerHTML = ''; stamp.classList.remove('on');
+  document.body.classList.add('hacked');
+  fx.addEventListener('pointerdown', fin);
+  document.addEventListener('keydown', esc);
+  if (REDUCED) {
+    LINES.forEach(function (L) { addLine(L.cmd ? 'root@trb:~# ' + L.cmd : L.t, L.c || (L.cmd ? 'h-wht' : '')); });
+    later(function () { stamp.classList.add('on'); }, 450);
+    later(fin, 1900);
+    return;
+  }
+  var t = 260;
+  LINES.forEach(function (L) {
+    if (L.cmd) {
+      (function (cmd, start) {
+        later(function () {
+          var row = document.createElement('div');
+          row.innerHTML = '<span class="h-p">root@trb:~#</span> <span class="h-wht"></span><span class="hack-cur"></span>';
+          con.appendChild(row);
+          while (con.children.length > 42) con.removeChild(con.firstChild);
+          var span = row.children[1], i = 0;
+          var iv = setInterval(function () {
+            i += 1; span.textContent = cmd.slice(0, i);
+            if (i >= cmd.length) { clearInterval(iv); var cu = row.querySelector('.hack-cur'); if (cu && cu.parentNode) cu.parentNode.removeChild(cu); }
+          }, 13);
+          timers.push(iv);
+        }, start);
+      })(L.cmd, t);
+      t += L.cmd.length * 13 + 240;
+    } else {
+      (function (Lt, lc, start) { later(function () { addLine(Lt, lc); }, start); })(L.t, L.c || '', t);
+      t += L.g || 115;
+    }
+  });
+  later(function () { stamp.classList.add('on'); }, t + 160);
+  later(fin, t + 1500);
 };
 /* ---------- x-ray inspector ---------- */
 var xrInfo = document.getElementById('xrayInfo'), xrLast = null;
