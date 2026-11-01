@@ -686,6 +686,68 @@ h1,h2,.wordmark,.p-info h3,.svc h3,.tcard-role .name,.brand-name,.stat-n{font-fa
 .gt-chip::before{content:"$ ";color:var(--or);font-weight:700}
 .gt-chip:hover{border-color:var(--or);color:var(--or-2);background:rgba(255,72,0,.06)}
 @media(max-width:640px){.gt-out{height:262px;font-size:12px;padding:14px 14px 2px}.gt-inrow{padding:8px 14px 14px}.gt-input{font-size:16px}.gt-title{font-size:10.5px}}
+
+/* ---------- command palette ---------- */
+.kbd-btn{font-family:var(--mono);font-size:11px;letter-spacing:.05em;color:var(--muted)}
+.pal{position:fixed;inset:0;z-index:150;display:none}
+.pal.open{display:block}
+.pal-back{position:absolute;inset:0;background:rgba(4,4,6,.72);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+.pal-card{position:relative;width:min(560px,92vw);margin:11vh auto 0;border:1px solid var(--line-2);border-radius:16px;background:#0D0D12;box-shadow:0 40px 90px -20px rgba(0,0,0,.85);overflow:hidden;animation:palIn .18s ease}
+@keyframes palIn{from{opacity:0;transform:translateY(-8px) scale(.985)}to{opacity:1;transform:none}}
+.pal-inrow{display:flex;align-items:center;gap:10px;padding:14px 16px;border-bottom:1px solid var(--line)}
+.pal-inrow input{flex:1;min-width:0;background:transparent;border:0;outline:0;color:var(--txt);font-family:var(--mono);font-size:14px}
+.pal-inrow kbd{font-family:var(--mono);font-size:10px;color:var(--dim);border:1px solid var(--line-2);border-bottom-width:2px;border-radius:6px;padding:2px 6px}
+.pal-list{max-height:330px;overflow-y:auto;padding:8px}
+.pal-item{display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%;text-align:left;padding:11px 12px;border-radius:10px;font-size:13.5px;color:var(--muted);cursor:pointer;border:0;background:transparent}
+.pal-cat{font-family:var(--mono);font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--dim);flex:0 0 auto}
+.pal-item.is-act{background:rgba(255,72,0,.13);color:var(--txt)}
+.pal-item.is-act .pal-cat{color:var(--or-2)}
+.pal-empty{padding:18px 12px;color:var(--dim);font-family:var(--mono);font-size:12px}
+.pal-foot{display:flex;gap:16px;padding:10px 16px;border-top:1px solid var(--line);font-family:var(--mono);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim)}
+/* ---------- x-ray mode ---------- */
+body.xray .page *{outline:1px solid rgba(255,72,0,.20);outline-offset:-1px}
+body.xray img{filter:grayscale(1)}
+body.xray section[id]::before{content:"# " attr(id);position:absolute;top:12px;left:14px;z-index:6;font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.14em;background:var(--or);color:#140800;padding:4px 10px;border-radius:99px}
+#xrayBar{position:fixed;left:50%;bottom:18px;z-index:120;display:flex;align-items:center;gap:14px;transform:translate(-50%,90px);opacity:0;visibility:hidden;transition:transform .35s ease,opacity .35s,visibility .35s;background:rgba(10,11,16,.92);border:1px solid rgba(255,72,0,.5);border-radius:99px;padding:10px 10px 10px 18px;font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--txt);white-space:nowrap;max-width:94vw}
+body.xray #xrayBar{transform:translate(-50%,0);opacity:1;visibility:visible}
+#xrayOff{background:var(--or);color:#140800;font-weight:700;border:0;border-radius:99px;padding:7px 13px;font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;flex:0 0 auto}
+/* ---------- footer action buttons + terminal matrix theme ---------- */
+.f-btn{display:block;background:none;border:0;padding:0;font:inherit;color:var(--muted);cursor:pointer;text-align:left;transition:color .2s}
+.f-btn:hover{color:var(--txt)}
+#gterm.gt-matrix .gt-out{color:#8CF5A6}
+#gterm.gt-matrix .gt-out .o-or{color:#4ADE80}
+#gterm.gt-matrix .gt-pe{color:#4ADE80}
+#gterm.gt-matrix .gt-input{caret-color:#4ADE80}
+@media(max-width:900px){.kbd-btn{display:none}}
+@media(max-width:560px){#xrayBar{font-size:8.5px;gap:9px;padding-left:13px}.pal-card{margin-top:8vh}}
+@media (prefers-reduced-motion: reduce){.pal-card{animation:none}}
+
+/* ---------- floating action dock (phone-first) ---------- */
+.dock{position:fixed;left:50%;bottom:14px;transform:translateX(-50%);z-index:85;display:none;gap:6px;background:rgba(10,11,16,.9);border:1px solid var(--line-2);border-radius:99px;padding:6px;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);box-shadow:0 18px 40px -18px rgba(0,0,0,.85);transition:transform .3s ease,opacity .3s}
+.dock-btn{display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:11px;letter-spacing:.05em;padding:10px 14px;border-radius:99px;border:0;background:transparent;color:var(--muted);cursor:pointer;white-space:nowrap;text-decoration:none}
+.dock-btn:active{background:rgba(255,72,0,.16);color:var(--or-2)}
+.dock-wa{color:#4ADE80}
+body.kb-open .dock{transform:translate(-50%,150%);opacity:0}
+/* ---------- project finder quiz ---------- */
+.q-body{padding:22px}
+.q-q{font-family:var(--disp);font-size:20px;font-weight:600;margin-bottom:16px}
+.q-opts{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.q-opt{display:flex;align-items:center;gap:11px;text-align:left;padding:15px 16px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.02);color:var(--txt);font-size:14px;cursor:pointer;transition:border-color .2s,background .2s,transform .15s}
+.q-opt:hover{border-color:rgba(255,72,0,.55);background:rgba(255,72,0,.06)}
+.q-opt:active{transform:scale(.985);border-color:var(--or)}
+.q-key{font-family:var(--mono);font-size:10px;font-weight:700;border:1px solid var(--line-2);border-radius:7px;padding:3px 7px;color:var(--or-2);flex:0 0 auto}
+.q-fade{animation:termIn .3s ease}
+.q-res{text-align:center;padding:6px 0 2px}
+.q-ck{width:54px;height:54px;border-radius:50%;background:rgba(255,72,0,.14);border:1px solid rgba(255,72,0,.45);display:inline-flex;align-items:center;justify-content:center;margin-bottom:12px}
+.q-ck svg{width:24px;height:24px;color:var(--or-2)}
+.q-rec-lbl{font-size:10px;letter-spacing:.2em;color:var(--dim)}
+.q-rec{font-family:var(--disp);font-size:27px;font-weight:700;margin:6px 0 8px}
+.q-why{color:var(--muted);font-size:14px;line-height:1.65;max-width:540px;margin:0 auto}
+.q-actions{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:19px}
+.q-retake{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;padding:13px 18px;border:1px solid var(--line);border-radius:99px;background:transparent;color:var(--muted);cursor:pointer}
+.q-retake:hover{color:var(--txt);border-color:var(--line-2)}
+@media(max-width:900px){.dock{display:flex}#toTop{bottom:80px}#xrayBar{bottom:80px}.pal-inrow input{font-size:16px}}
+@media(max-width:640px){.q-opts{grid-template-columns:1fr}.q-body{padding:18px 16px}.q-q{font-size:18px}}
 </style>
 </head>
 <body id="top">
@@ -915,6 +977,7 @@ h1,h2,.wordmark,.p-info h3,.svc h3,.tcard-role .name,.brand-name,.stat-n{font-fa
         <a href="#projects">Work</a>
         <a href="#faq">FAQ</a>
       </nav>
+      <button type="button" class="pill kbd-btn" id="kbdBtn" aria-label="Open command palette" title="Command palette (Ctrl+K)">&#8984;K</button>
       <a class="pill pill-hire" href="#contact">Contact Us <svg><use href="#i-arrow"/></svg></a>
     </div>
   </header>
@@ -1334,6 +1397,25 @@ h1,h2,.wordmark,.p-info h3,.svc h3,.tcard-role .name,.brand-name,.stat-n{font-fa
     </div>
   </section>
 
+  <!-- ================= PROJECT FINDER QUIZ ================= -->
+  <section class="card reveal" id="quiz">
+    <span class="sec-ghost" aria-hidden="true">?</span>
+    <div class="sec-head">
+      <span class="eyebrow mono"><span class="idx">//</span> Project Finder</span>
+      <h2>Not sure what you <span class="hl">need?</span></h2>
+      <p class="sec-sub">Answer 3 quick questions — we&rsquo;ll point you to the right starting point. Takes about 10 seconds.</p>
+    </div>
+
+    <div class="term rv-up" id="quizWin">
+      <div class="gt-head">
+        <span class="b-dot"></span><span class="b-dot"></span><span class="b-dot"></span>
+        <span class="gt-title">setup-wizard — project-finder</span>
+        <span class="gt-live" id="qStep">STEP 1/3</span>
+      </div>
+      <div class="q-body" id="qBody"></div>
+    </div>
+  </section>
+
   <!-- ================= CTA ================= -->
   <section class="card cta reveal" id="contact">
     <div class="hand"><svg style="width:26px;height:26px"><use href="#i-rings"/></svg></div>
@@ -1428,6 +1510,8 @@ h1,h2,.wordmark,.p-info h3,.svc h3,.tcard-role .name,.brand-name,.stat-n{font-fa
           <span class="f-col-h mono">Get in touch</span>
           <a href="mailto:hello.therawbros@gmail.com">Email us</a>
           <a href="https://wa.me/fr1skyfox1" target="_blank" rel="noopener">WhatsApp</a>
+          <button type="button" class="f-btn" id="footPal">Command palette</button>
+          <button type="button" class="f-btn" id="footXray">X-Ray mode</button>
           <a href="#top">Back to top</a>
         </nav>
       </div>
@@ -1440,6 +1524,22 @@ h1,h2,.wordmark,.p-info h3,.svc h3,.tcard-role .name,.brand-name,.stat-n{font-fa
     </div>
   </footer>
   <button id="toTop" type="button" aria-label="Back to top">&uarr; TOP</button>
+
+  <div class="pal" id="pal" aria-hidden="true">
+    <div class="pal-back" id="palBack"></div>
+    <div class="pal-card" role="dialog" aria-modal="true" aria-label="Command palette">
+      <div class="pal-inrow"><span class="gt-pe">&gt;</span><input id="palIn" type="text" placeholder="Type a command or search..." autocomplete="off" autocapitalize="off" spellcheck="false"><kbd>esc</kbd></div>
+      <div class="pal-list" id="palList" role="listbox"></div>
+      <div class="pal-foot"><span>&uarr;&darr; navigate</span><span>&crarr; run</span><span>esc close</span></div>
+    </div>
+  </div>
+
+  <div id="xrayBar"><span>X-Ray mode — hand-built markup, zero templates</span><button type="button" id="xrayOff">exit</button></div>
+  <div class="dock" id="dock">
+    <button type="button" class="dock-btn" id="dockTerm"><span class="gt-pe">&gt;_</span> Terminal</button>
+    <button type="button" class="dock-btn" id="dockPal">&#8984; Menu</button>
+    <a class="dock-btn dock-wa" href="https://wa.me/fr1skyfox1" target="_blank" rel="noopener">WhatsApp</a>
+  </div>
 
 </div>
 
@@ -1889,6 +1989,53 @@ if (gtEl) {
     exit: function () { gtPrint([{ t: "logout failed: this terminal likes you. Type 'hire-us' to escape productively.", c: 'o-warn' }]); },
     clear: function () { gtOut.innerHTML = ''; gtQueue = []; }
   };
+  GT.hack = function () {
+    gtPrint([
+      'Initializing hack.exe...',
+      'Bypassing mainframe [##--------] 20%',
+      'Bypassing mainframe [######----] 60%',
+      'Bypassing mainframe [##########] 100%',
+      { t: "Just kidding — we build things, not break them. (But we do secure them.)", c: 'o-ok' }
+    ]);
+  };
+  GT.coffee = function () {
+    gtPrint([
+      '     ( (',
+      '      ) )',
+      '   +--------+',
+      '   |        |]',
+      '   +--------+',
+      { t: 'Fuel of every great build. Deploy responsibly.', c: 'o-dim' }
+    ]);
+  };
+  GT.ping = function () {
+    gtPrint(['PING therawbros (Dhaka, BD)', '64 bytes: time<24h — that is our reply time, by the way.']);
+  };
+  GT.rm = function () {
+    gtPrint([{ t: 'rm: permission denied — this site is protected by pure confidence.', c: 'o-warn' }]);
+  };
+  GT.version = function () { gtPrint(['trb-terminal v1.1 — now with 100% more easter eggs.']); };
+  GT.fortune = function () {
+    var f = ['Ship early. Ship often. Refactor always.',
+      'First, solve the problem. Then, write the code.',
+      'Make it work. Make it right. Make it fast.',
+      'Clean code reads like well-written prose.',
+      'The best UI is the one nobody notices.'];
+    gtPrint([{ t: f[Math.floor(Math.random() * f.length)], c: 'o-or' }]);
+  };
+  GT.theme = function () {
+    var on = gtEl.classList.toggle('gt-matrix');
+    gtPrint([{ t: on ? 'Theme: matrix. Type theme again to go raw.' : 'Theme: raw (default).', c: 'o-ok' }]);
+  };
+  GT.palette = function () {
+    gtPrint(['Opening command palette...']);
+    if (window.openPalette) setTimeout(window.openPalette, 450);
+  };
+  GT.xray = function () {
+    if (window.toggleXray) window.toggleXray();
+    gtPrint(['X-Ray toggled. Look around — hand-built markup everywhere.']);
+  };
+  GT.quiz = function () { gtPrint(['Opening the project finder...']); gtGoto('quiz'); };
   GT.projects = GT.work;
   GT.pricing = GT.price;
   GT.hire = gtHire; GT['hire-us'] = gtHire; GT.start = gtHire;
@@ -1956,6 +2103,226 @@ if (gtEl) {
     gtIO.observe(gtEl);
     setTimeout(gtBoot, 4000);
   } else gtBoot();
+}
+/* ---------- command palette + x-ray + shortcuts ---------- */
+var palEl = document.getElementById('pal');
+var palIn = document.getElementById('palIn');
+var palList = document.getElementById('palList');
+function palGoto(id) {
+  var el = document.getElementById(id);
+  if (el) el.scrollIntoView({ behavior: REDUCED ? 'auto' : 'smooth', block: 'start' });
+}
+window.toggleXray = function (force) {
+  if (typeof force === 'boolean') document.body.classList.toggle('xray', force);
+  else document.body.classList.toggle('xray');
+};
+var PAL = [
+  { t: 'Go to Stack', c: 'section', k: 'stack tools goto', run: function () { palGoto('stack'); } },
+  { t: 'Go to Services', c: 'section', k: 'services what we do goto', run: function () { palGoto('services'); } },
+  { t: 'Go to Team', c: 'section', k: 'team people goto', run: function () { palGoto('team'); } },
+  { t: 'Go to Work', c: 'section', k: 'work projects portfolio goto', run: function () { palGoto('projects'); } },
+  { t: 'Go to Playground terminal', c: 'section', k: 'playground terminal console play goto', run: function () { palGoto('playground'); } },
+  { t: 'Go to FAQ', c: 'section', k: 'faq questions goto', run: function () { palGoto('faq'); } },
+  { t: 'Send a project brief', c: 'action', k: 'hire contact form brief start project', run: function () {
+      palGoto('contact');
+      setTimeout(function () { var f = document.querySelector('#briefForm input'); if (f) f.focus({ preventScroll: true }); }, 900);
+    } },
+  { t: 'Copy email address', c: 'action', k: 'email copy mail contact', run: function () { var b = document.getElementById('copyBtn'); if (b) b.click(); } },
+  { t: 'Chat on WhatsApp', c: 'action', k: 'whatsapp chat message talk', run: function () { window.open('https://wa.me/fr1skyfox1', '_blank', 'noopener'); } },
+  { t: 'Focus guest terminal', c: 'action', k: 'terminal console playground type commands', run: function () {
+      palGoto('playground');
+      setTimeout(function () { var i = document.getElementById('gtIn'); if (i) i.focus({ preventScroll: true }); }, 800);
+    } },
+  { t: 'Toggle X-Ray mode', c: 'action', k: 'xray x-ray inspect wireframe markup skeleton', run: function () { window.toggleXray(); } },
+  { t: 'Visit Zuberee — live project', c: 'link', k: 'zuberee work project store live', run: function () { window.open('https://zuberee.com/', '_blank', 'noopener'); } },
+  { t: 'Take the project quiz', c: 'action', k: 'quiz finder wizard which package', run: function () { palGoto('quiz'); } },
+  { t: 'Back to top', c: 'action', k: 'top home up', run: function () { window.scrollTo({ top: 0, behavior: REDUCED ? 'auto' : 'smooth' }); } }
+];
+var palItems = [], palAct = 0;
+function palRender(q) {
+  q = (q || '').trim().toLowerCase();
+  palItems = PAL.filter(function (a) { return !q || (a.t + ' ' + a.k).toLowerCase().indexOf(q) > -1; });
+  palAct = 0;
+  palList.innerHTML = '';
+  if (!palItems.length) {
+    var e = document.createElement('div'); e.className = 'pal-empty'; e.textContent = 'No results. Try "services" or "hire".';
+    palList.appendChild(e); return;
+  }
+  palItems.forEach(function (a, i) {
+    var b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'pal-item' + (i === 0 ? ' is-act' : '');
+    var t = document.createElement('span'); t.textContent = a.t;
+    var c = document.createElement('span'); c.className = 'pal-cat'; c.textContent = a.c;
+    b.appendChild(t); b.appendChild(c);
+    b.addEventListener('mouseenter', function () { palSetAct(i); });
+    b.addEventListener('click', function () { palRun(i); });
+    palList.appendChild(b);
+  });
+}
+function palSetAct(i) {
+  palAct = i;
+  palList.querySelectorAll('.pal-item').forEach(function (el, k) { el.classList.toggle('is-act', k === i); });
+}
+function palRun(i) {
+  var a = palItems[i];
+  closePalette();
+  if (a) setTimeout(a.run, 30);
+}
+function openPalette() {
+  palEl.classList.add('open');
+  palEl.setAttribute('aria-hidden', 'false');
+  document.body.style.overflow = 'hidden';
+  palIn.value = '';
+  palRender('');
+  palIn.focus();
+}
+function closePalette() {
+  palEl.classList.remove('open');
+  if (document.activeElement === palIn) palIn.blur();
+  palEl.setAttribute('aria-hidden', 'true');
+  document.body.style.overflow = '';
+}
+window.openPalette = openPalette;
+if (palEl) {
+  palIn.addEventListener('input', function () { palRender(palIn.value); });
+  palIn.addEventListener('keydown', function (e) {
+    if (e.key === 'ArrowDown') { e.preventDefault(); if (palItems.length) palSetAct(Math.min(palAct + 1, palItems.length - 1)); }
+    else if (e.key === 'ArrowUp') { e.preventDefault(); if (palItems.length) palSetAct(Math.max(palAct - 1, 0)); }
+    else if (e.key === 'Enter') { e.preventDefault(); palRun(palAct); }
+    else if (e.key === 'Escape') { closePalette(); }
+  });
+  document.getElementById('palBack').addEventListener('click', closePalette);
+  var kb = document.getElementById('kbdBtn'); if (kb) kb.addEventListener('click', openPalette);
+  var fp = document.getElementById('footPal'); if (fp) fp.addEventListener('click', openPalette);
+}
+var fx = document.getElementById('footXray'); if (fx) fx.addEventListener('click', function () { window.toggleXray(); });
+var xo = document.getElementById('xrayOff'); if (xo) xo.addEventListener('click', function () { window.toggleXray(false); });
+document.addEventListener('keydown', function (e) {
+  if ((e.ctrlKey || e.metaKey) && (e.key === 'k' || e.key === 'K')) {
+    e.preventDefault();
+    if (palEl.classList.contains('open')) closePalette(); else openPalette();
+    return;
+  }
+  if (e.key === 'Escape' && palEl && palEl.classList.contains('open')) { closePalette(); return; }
+  var tag = (e.target && e.target.tagName) || '';
+  if (tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT' || e.ctrlKey || e.metaKey || e.altKey) return;
+  if (e.key === '`' || e.key === '~') {
+    e.preventDefault();
+    palGoto('playground');
+    setTimeout(function () { var i = document.getElementById('gtIn'); if (i) i.focus({ preventScroll: true }); }, 800);
+  }
+});
+/* ---------- floating dock ---------- */
+var dockTermBtn = document.getElementById('dockTerm');
+if (dockTermBtn) dockTermBtn.addEventListener('click', function () {
+  palGoto('playground');
+  setTimeout(function () { var i = document.getElementById('gtIn'); if (i) i.focus({ preventScroll: true }); }, 800);
+});
+var dockPalBtn = document.getElementById('dockPal');
+if (dockPalBtn) dockPalBtn.addEventListener('click', function () { if (window.openPalette) window.openPalette(); });
+document.addEventListener('focusin', function (e) {
+  var tag = (e.target && e.target.tagName) || '';
+  if (tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT') document.body.classList.add('kb-open');
+});
+document.addEventListener('focusout', function () { document.body.classList.remove('kb-open'); });
+
+/* ---------- project finder quiz ---------- */
+var qBody = document.getElementById('qBody');
+var qStepEl = document.getElementById('qStep');
+if (qBody) {
+  var QUIZ = [
+    { q: 'What do you want to build?', opts: [
+      ['website', 'A brand-new website'],
+      ['store', 'An online store'],
+      ['webapp', 'A web app / platform'],
+      ['fix', 'Fix or improve my current site']
+    ]},
+    { q: 'How soon do you want to launch?', opts: [
+      ['asap', 'As soon as possible'],
+      ['month', 'Within a month or so'],
+      ['exploring', 'Just exploring for now']
+    ]},
+    { q: 'What matters most to you?', opts: [
+      ['premium', 'Looking premium'],
+      ['sell', 'Selling more'],
+      ['speed', 'Speed & reliability'],
+      ['support', 'Ongoing help after launch']
+    ]}
+  ];
+  var TYPEMAP = { website: 'Business website', store: 'E-commerce store', webapp: 'Web app / dashboard', fix: 'Redesign / fix existing site' };
+  var qAns = [], qStep = 0;
+
+  function qLabel(step, val) {
+    var o = QUIZ[step].opts.find(function (x) { return x[0] === val; });
+    return o ? o[1] : val;
+  }
+  function qRender() {
+    qBody.innerHTML = '';
+    var wrap = document.createElement('div');
+    wrap.className = 'q-fade';
+    if (qStep < QUIZ.length) {
+      qStepEl.textContent = 'STEP ' + (qStep + 1) + '/' + QUIZ.length;
+      var h = document.createElement('div');
+      h.className = 'q-q'; h.textContent = QUIZ[qStep].q;
+      var grid = document.createElement('div');
+      grid.className = 'q-opts';
+      QUIZ[qStep].opts.forEach(function (o, i) {
+        var b = document.createElement('button');
+        b.type = 'button'; b.className = 'q-opt';
+        var k = document.createElement('span'); k.className = 'q-key'; k.textContent = 'ABCD'[i];
+        var t = document.createElement('span'); t.textContent = o[1];
+        b.appendChild(k); b.appendChild(t);
+        b.addEventListener('click', function () { qAns[qStep] = o[0]; qStep++; qRender(); });
+        grid.appendChild(b);
+      });
+      wrap.appendChild(h); wrap.appendChild(grid);
+    } else {
+      qStepEl.textContent = 'DONE';
+      var build = qAns[0], prio = qAns[2];
+      var model = build === 'fix' ? 'Care Plan' : (build === 'webapp' ? 'Product Build' : 'Project Build');
+      var why = {
+        'Project Build': 'A fixed-scope build with the price agreed upfront — design, development and launch, all included.',
+        'Product Build': 'We plan, design and ship your whole product end to end — like we did with Zuberee.',
+        'Care Plan': 'Your site stays fast, secure and improving — priority fixes and small features every month.'
+      }[model];
+      var flavor = {
+        premium: 'And yes — it will look unmistakably premium.',
+        sell: 'Built to turn visitors into customers.',
+        speed: 'Speed and reliability baked in from day one.',
+        support: 'And we stay one message away after launch.'
+      }[prio] || '';
+      var res = document.createElement('div');
+      res.className = 'q-res';
+      res.innerHTML = '<span class="q-ck"><svg><use href="#i-check"/></svg></span>' +
+        '<div class="q-rec-lbl mono">Our recommendation</div>' +
+        '<div class="q-rec"></div><p class="q-why"></p>';
+      res.querySelector('.q-rec').textContent = model;
+      res.querySelector('.q-why').textContent = why + (flavor ? ' ' + flavor : '');
+      var acts = document.createElement('div');
+      acts.className = 'q-actions';
+      var go = document.createElement('button');
+      go.type = 'button'; go.className = 'btn btn-primary'; go.textContent = 'Start with this brief ↓';
+      go.addEventListener('click', function () {
+        var sel = document.querySelector('#briefForm select[name="type"]');
+        if (sel && TYPEMAP[build]) sel.value = TYPEMAP[build];
+        var det = document.querySelector('#briefForm textarea[name="details"]');
+        var note = 'Quiz answers — Build: ' + qLabel(0, qAns[0]) + '. Timeline: ' + qLabel(1, qAns[1]) +
+                   '. Priority: ' + qLabel(2, qAns[2]) + '. Recommended: ' + model + '. ';
+        if (det && (!det.value || det.value.indexOf('Quiz answers') === 0)) det.value = note;
+        palGoto('contact');
+        setTimeout(function () { var f = document.querySelector('#briefForm input'); if (f) f.focus({ preventScroll: true }); }, 900);
+      });
+      var re = document.createElement('button');
+      re.type = 'button'; re.className = 'q-retake'; re.textContent = '↺ Retake';
+      re.addEventListener('click', function () { qAns = []; qStep = 0; qRender(); });
+      acts.appendChild(go); acts.appendChild(re);
+      res.appendChild(acts);
+      wrap.appendChild(res);
+    }
+    qBody.appendChild(wrap);
+  }
+  qRender();
 }
 </script>
 </body>
