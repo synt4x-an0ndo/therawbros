@@ -562,6 +562,9 @@ h1,h2,.wordmark,.p-info h3,.svc h3,.tcard-role .name,.brand-name,.stat-n{font-fa
 .brief-actions{display:flex;gap:12px;margin-top:18px;flex-wrap:wrap;justify-content:center}
 .brief-note{margin-top:16px;text-align:center;color:var(--dim);font-size:10.5px}
 @media (max-width:640px){.brief-grid{grid-template-columns:1fr}.brief-actions .btn{flex:1 1 100%;justify-content:center}}
+/* hero code-rain background */
+.hero .code-rain{position:absolute;inset:0;width:100%;height:100%;z-index:1;pointer-events:none;opacity:.55;-webkit-mask-image:radial-gradient(85% 75% at 50% 42%, rgba(0,0,0,.30) 25%, #000 78%);mask-image:radial-gradient(85% 75% at 50% 42%, rgba(0,0,0,.30) 25%, #000 78%)}
+@media (prefers-reduced-motion:reduce){.hero .code-rain{display:none}}
 </style>
 </head>
 <body id="top">
@@ -763,7 +766,7 @@ h1,h2,.wordmark,.p-info h3,.svc h3,.tcard-role .name,.brand-name,.stat-n{font-fa
         <span class="brand-name">The <em>Raw</em> Bros</span>
       </a>
       <a class="pill pill-mail" href="mailto:hello_therawbro@gmail.com" id="mailLink">
-        <svg><use href="#i-mail"/></svg><span>hello.therawbro@gmail.com</span>
+        <svg><use href="#i-mail"/></svg><span>hello_therawbro@gmail.com</span>
       </a>
       <button class="pill pill-copy" id="copyBtn" type="button" aria-label="Copy email address">
         <svg><use href="#i-copy"/></svg>Copy
@@ -783,6 +786,7 @@ h1,h2,.wordmark,.p-info h3,.svc h3,.tcard-role .name,.brand-name,.stat-n{font-fa
 
   <!-- ================= HERO ================= -->
   <section class="card hero" id="hero">
+    <canvas class="code-rain" id="codeRain" aria-hidden="true"></canvas>
     <div class="code code-tl">
       <div><span class="p">&gt;_</span> <span class="tag">TheRawBros</span></div>
       <div><span class="c">// Web Developers</span></div>
@@ -1251,7 +1255,7 @@ document.querySelectorAll('a[href^="#"]').forEach(function (a) {
   });
 });
 /* ---------- console greeting (for fellow devs) ---------- */
-try { console.log('%cTHE RAW BROS%c build. code. create. — hello.therawbro@gmail.com', 'font:700 13px monospace;color:#FF8A2B', 'font:11px monospace;color:#9B9BA7'); } catch (e) {}
+try { console.log('%cTHE RAW BROS%c build. code. create. — hello_therawbro@gmail.com', 'font:700 13px monospace;color:#FF8A2B', 'font:11px monospace;color:#9B9BA7'); } catch (e) {}
 
 /* ---------- build-progress bar ---------- */
 var bb = document.getElementById('buildbar');
@@ -1352,6 +1356,50 @@ if (briefForm) {
       window.open('https://wa.me/fr1skyfox1?text=' + encodeURIComponent(msg), '_blank', 'noopener');
     }
   });
+}
+/* ---------- hero code-rain background ---------- */
+var rainCv = document.getElementById('codeRain');
+if (rainCv && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  var rctx = rainCv.getContext('2d');
+  var GLYPHS = ['{', '}', '<', '>', '/', 'const', 'let', '=>', '&&', '||', '===', '</>', '();', '[]', '::', '200', '404', 'git', 'npm', 'await', 'async', 'return', 'if', 'for', '++', '!=', ';', '$_', '.js', '.ts'];
+  var FS = 14, cols = [], W = 0, H = 0, running = true;
+  function sizeRain() {
+    var r = rainCv.parentElement.getBoundingClientRect();
+    var dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+    W = Math.max(1, Math.round(r.width)); H = Math.max(1, Math.round(r.height));
+    rainCv.width = W * dpr; rainCv.height = H * dpr;
+    rctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    rctx.font = FS + 'px "JetBrains Mono", monospace';
+    rctx.textBaseline = 'top';
+    var n = Math.max(6, Math.floor(W / (FS * 2.6)));
+    cols = [];
+    for (var i = 0; i < n; i++) cols.push({ x: (i + 0.5) * (W / n), y: Math.random() * (H / FS), spd: 90 + Math.random() * 110, next: 0, trail: 7 + (Math.random() * 8 | 0) });
+  }
+  function drawRain(t) {
+    requestAnimationFrame(drawRain);
+    if (!running) return;
+    rctx.clearRect(0, 0, W, H);
+    for (var i = 0; i < cols.length; i++) {
+      var c = cols[i];
+      if (t >= c.next) {
+        c.y += 1; c.next = t + c.spd;
+        if ((c.y - c.trail) * FS > H) { c.y = -Math.random() * 12; c.spd = 90 + Math.random() * 110; }
+      }
+      for (var k = 0; k < c.trail; k++) {
+        var yy = (c.y - k) * FS;
+        if (yy < -FS || yy > H + FS) continue;
+        var a = k === 0 ? 0.5 : Math.max(0, 0.30 * (1 - k / c.trail));
+        rctx.fillStyle = k === 0 ? 'rgba(255,174,92,' + a + ')' : 'rgba(255,120,40,' + a + ')';
+        rctx.fillText(GLYPHS[(Math.random() * GLYPHS.length) | 0], c.x, yy);
+      }
+    }
+  }
+  sizeRain();
+  requestAnimationFrame(drawRain);
+  var rainT;
+  window.addEventListener('resize', function () { clearTimeout(rainT); rainT = setTimeout(sizeRain, 180); });
+  if ('IntersectionObserver' in window) new IntersectionObserver(function (e) { running = e[0].isIntersecting && !document.hidden; }).observe(rainCv);
+  document.addEventListener('visibilitychange', function () { running = !document.hidden; });
 }
 </script>
 </body>
