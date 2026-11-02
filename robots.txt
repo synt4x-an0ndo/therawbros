@@ -1,4 +1,4 @@
-# The Raw Bros — https://therawbros.pages.dev
+# The Raw Bros — https://therawbros.tech
 # Single-page site: no admin areas, member paths, carts or
 # private routes to protect, so everything is crawlable.
 
@@ -9,4 +9,4 @@ Allow: /
 # Google ignores it but rate-limits itself regardless).
 Crawl-delay: 10
 
-Sitemap: https://therawbros.pages.dev/sitemap.xml
+Sitemap: https://therawbros.tech/sitemap.xml

@@ -1,1 +1,6 @@
+# Canonical domain: https://therawbros.tech
+# www → apex 301 so search engines see one canonical host
+www.therawbros.tech/*   therawbros.tech/$1  301
+
+# Canonical URL: no trailing /index.html
 /index.html  /  301
