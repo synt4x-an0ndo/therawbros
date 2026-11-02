@@ -1815,7 +1815,7 @@ body.ask-open .ask-panel{opacity:1;visibility:visible;transform:none}
     <div class="ask-msgs" id="askMsgs"></div>
     <div class="ask-chips" id="askChips"></div>
     <form class="ask-form" id="askForm">
-      <input class="ask-in" id="askIn" type="text" placeholder="Ask about pricing, timelines…" autocomplete="off" aria-label="Type your question">
+      <input class="ask-in" id="askIn" type="text" placeholder="Ask me anything…" autocomplete="off" aria-label="Type your question">
       <button class="ask-send" type="submit" aria-label="Send">&#10148;</button>
     </form>
   </div>
@@ -2844,6 +2844,14 @@ if (hintToast) {
       en: "Want proof of clean code? RAW mode strips every line of CSS from this page — same content, zero makeup:",
       bn: "ক্লিন কোডের প্রমাণ চান? RAW mode এই পেজের সব CSS খুলে ফেলে — একই কন্টেন্ট, শূন্য সাজসজ্জা:",
       acts: [{ t: 'Try RAW mode', raw: 1 }] },
+    { r: /^(bye+|good ?bye|see (you|ya)|tata|allah hafez|আল্লাহ হাফেজ|বিদায়|বাই)\W*$/i,
+      en: "Bye! Come back anytime.",
+      bn: "আচ্ছা, ভালো থাকবেন! দরকার হলে আবার আসবেন।",
+      acts: [] },
+    { r: /^(ok+|okay|k+|hmm+|got it|nice|cool|acha|accha|thik ache|ঠিক আছে|আচ্ছা|ওকে)\W*$/i,
+      en: "Great. Anything else you'd like to know?",
+      bn: "আচ্ছা। আর কিছু জানতে চান?",
+      acts: [] },
     { r: /thank|thanks|ধন্যবাদ|শুকরিয়া/i,
       en: "Anytime! If a project is on your mind, the 1-minute brief is the fastest way to a quote.",
       bn: "স্বাগতম! মাথায় কোনো প্রজেক্ট থাকলে ১ মিনিটের brief টাই quote পাওয়ার সবচেয়ে দ্রুত রাস্তা।",
@@ -2854,10 +2862,10 @@ if (hintToast) {
       acts: [] }
   ];
   var FALLBACK = {
-    en: "Good question — that one deserves a human. Send it to us on WhatsApp and we'll reply within 24 hours:",
-    bn: "ভালো প্রশ্ন — এটার উত্তর মানুষের কাছ থেকেই ভালো হবে। WhatsApp-এ পাঠিয়ে দিন, ২৪ ঘণ্টার মধ্যে উত্তর পাবেন:"
+    en: "I can't answer that right now. Send it to us on WhatsApp and we'll reply within 24 hours:",
+    bn: "এই মুহূর্তে এটার উত্তর দিতে পারছি না। WhatsApp-এ পাঠিয়ে দিন, ২৪ ঘণ্টার মধ্যে উত্তর পাবেন:"
   };
-  var WELCOME = "Hi! I'm the TRB assistant. Ask me about pricing, timelines or services — English, বাংলা or বাংলিশ, all work.";
+  var WELCOME = "Hi! I'm Ask TRB, the AI built by The Raw Bros. Ask me anything — your project, tech advice, or whatever's on your mind. English, বাংলা or বাংলিশ, all work.";
   var CHIPS = ['Pricing?', 'How long does it take?', 'Services', 'দাম কত?', 'See our work', 'WhatsApp number?'];
 
   function isBn(t) {
@@ -2906,11 +2914,57 @@ if (hintToast) {
     });
     host.appendChild(row); scrollDown();
   }
+  var AI_ACTS = {
+    brief: { t: '1-min brief →', g: 'briefForm' }, finder: { t: 'Project Finder →', g: 'quiz' },
+    work: { t: 'See the work →', g: 'projects' }, services: { t: 'See services →', g: 'services' },
+    team: { t: 'Meet the team →', g: 'team' }, stack: { t: 'Our stack →', g: 'stack' },
+    whatsapp: { t: 'WhatsApp', w: 'Hi The Raw Bros!' }, email: { t: 'Email us', m: 1 }
+  };
+  function stripTags(s) { return s.replace(/\s*\[\[\w*\]\]/g, '').replace(/\s*\[\[?\w*$/, '').replace(/\s+$/, ''); }
+  function askAI(typing, q) {
+    var history = log.slice(-12).map(function (m) { return { role: m.f === 'me' ? 'user' : 'assistant', content: m.t }; });
+    var ctrl = window.AbortController ? new AbortController() : null;
+    var timer = ctrl ? setTimeout(function () { ctrl.abort(); }, 45000) : 0;
+    var raw = '', b = null;
+    function show() {
+      var text = stripTags(raw);
+      if (!text) return;
+      if (!b) { if (typing.parentNode) typing.parentNode.removeChild(typing); b = bubble('bot', text, true); }
+      else { b.textContent = text; scrollDown(); }
+    }
+    fetch('/api/ask', {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ messages: history }), signal: ctrl ? ctrl.signal : undefined
+    }).then(function (res) {
+      if (!res.ok || !res.body) throw new Error('ask ' + res.status);
+      var reader = res.body.getReader(), dec = new TextDecoder();
+      return (function pump() {
+        return reader.read().then(function (r) {
+          if (r.done) return;
+          raw += dec.decode(r.value, { stream: true }); show();
+          return pump();
+        });
+      })();
+    }).catch(function () {}).then(function () {
+      clearTimeout(timer);
+      var text = stripTags(raw);
+      if (!text) { localReply(typing, q); return; }
+      show();
+      log.push({ f: 'bot', t: text }); save(log);
+      var acts = (raw.match(/\[\[(\w+)\]\]/g) || []).map(function (m) { return AI_ACTS[m.slice(2, -2)]; }).filter(Boolean).slice(0, 2);
+      addActs(b, acts, q);
+      busy = false;
+    });
+  }
   function botReply(q) {
     busy = true;
     var typing = document.createElement('div');
     typing.className = 'ask-type'; typing.innerHTML = '<i></i><i></i><i></i>';
     msgs.appendChild(typing); scrollDown();
+    askAI(typing, q);
+  }
+  /* offline replies: used only when /api/ask has no answer */
+  function localReply(typing, q) {
     var bn = isBn(q), hit = null;
     for (var i = 0; i < RULES.length; i++) { if (RULES[i].r.test(q)) { hit = RULES[i]; break; } }
     var text = hit ? (bn ? hit.bn : hit.en) : (bn ? FALLBACK.bn : FALLBACK.en);
