@@ -1,9 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://therawbros.pages.dev/</loc>
-    <lastmod>2026-11-01</lastmod>
-    <changefreq>monthly</changefreq>
+    <lastmod>2026-11-02</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://therawbros.pages.dev/img/og-card.jpg</image:loc>
+      <image:title>The Raw Bros — web development agency in Dhaka, Bangladesh</image:title>
+      <image:caption>Custom websites, e-commerce stores and web apps built with 100% custom code.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://therawbros.pages.dev/img/logo.PNG</image:loc>
+      <image:title>The Raw Bros logo</image:title>
+    </image:image>
   </url>
 </urlset>

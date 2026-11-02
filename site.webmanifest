@@ -1,0 +1,13 @@
+{
+  "name": "The Raw Bros — Web Development Agency Dhaka",
+  "short_name": "The Raw Bros",
+  "description": "Web development agency in Dhaka, Bangladesh. Custom websites, e-commerce stores and web apps — 100% custom code.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#050507",
+  "theme_color": "#050507",
+  "icons": [
+    { "src": "/img/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/img/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" }
+  ]
+}

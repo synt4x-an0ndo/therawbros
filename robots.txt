@@ -1,4 +1,12 @@
+# The Raw Bros — https://therawbros.pages.dev
+# Single-page site: no admin areas, member paths, carts or
+# private routes to protect, so everything is crawlable.
+
 User-agent: *
 Allow: /
+
+# Politeness for smaller crawlers (Bing honours Crawl-delay;
+# Google ignores it but rate-limits itself regardless).
+Crawl-delay: 10
 
 Sitemap: https://therawbros.pages.dev/sitemap.xml
