@@ -507,8 +507,14 @@ h1,h2{text-wrap:balance}
 .avatar img{filter:grayscale(38%);transition:filter .45s ease,transform .45s ease}
 .tcard:hover .avatar img{filter:none;transform:scale(1.06)}
 .tcard-role .name{font-size:clamp(21px,2vw,25px)}
+.tcard-tag{color:var(--muted);letter-spacing:.18em;margin-top:7px;font-size:10.5px;text-transform:uppercase}
 .tcard-meta{color:var(--dim);letter-spacing:.16em;margin-top:6px;display:flex;align-items:center;gap:8px}
 .tcard-meta::before{content:"";width:16px;height:1px;background:var(--or)}
+.tcard-spec.owner{color:var(--or);letter-spacing:.22em}
+.tcard.lead{grid-column:1/-1;border-color:rgba(255,72,0,.38)}
+.tcard.lead .avatar.sq{width:118px;height:118px;border-radius:28px}
+.tcard.lead .name{font-size:clamp(24px,2.6vw,32px)}
+@media(max-width:640px){.tcard.lead .avatar.sq{width:92px;height:92px;border-radius:24px}}
 .tcard-spec{margin-top:20px;color:var(--dim);letter-spacing:.14em}
 .tcard .tcard-links{justify-content:space-between}
 .tcard-links .lft{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
@@ -1456,14 +1462,35 @@ body.ask-open .ask-panel{opacity:1;visibility:visible;transform:none}
 
     <button type="button" class="rebuild-btn mono" id="rebuildBtn">// &#8635; rebuild this section</button>
     <div class="team-grid">
-      <article class="tcard reveal bld">
+      <article class="tcard reveal bld lead">
         <span class="tcard-ghost" aria-hidden="true">01</span>
         <span class="bld-tag mono" aria-hidden="true">&#10003; mounted</span>
         <div class="tcard-head mono"><span>The Raw Bros</span><span class="tcard-id">ID — 01</span></div>
         <div class="tcard-main">
+          <span class="avatar sq"><img src="img/father.jpg" alt="Mohammad Anwar Hossain Gazi — The Raw Bros" loading="lazy" decoding="async"></span>
+          <div class="tcard-role">
+            <div class="name">Mohammad Anwar Hossain Gazi</div>
+            <div class="tcard-meta mono">Dhaka · Bangladesh</div>
+          </div>
+        </div>
+        <p class="tcard-spec mono owner">Main Owner</p>
+        <div class="tcard-links">
+          <span class="lft">
+            <a class="link-btn plain" href="mailto:hello.therawbros@gmail.com">Available for work</a>
+          </span>
+          <span class="barcode" aria-hidden="true"></span>
+        </div>
+      </article>
+
+      <article class="tcard reveal bld">
+        <span class="tcard-ghost" aria-hidden="true">02</span>
+        <span class="bld-tag mono" aria-hidden="true">&#10003; mounted</span>
+        <div class="tcard-head mono"><span>The Raw Bros</span><span class="tcard-id">ID — 02</span></div>
+        <div class="tcard-main">
           <span class="avatar sq"><img src="img/anondo.jpg" alt="Gm Anondo — The Raw Bros" loading="lazy" decoding="async"></span>
           <div class="tcard-role">
             <div class="name">Gm Anondo</div>
+            <div class="tcard-tag mono">Engineer · Developer</div>
             <div class="tcard-meta mono">Dhaka · Bangladesh</div>
           </div>
         </div>
@@ -1478,13 +1505,14 @@ body.ask-open .ask-panel{opacity:1;visibility:visible;transform:none}
       </article>
 
       <article class="tcard reveal bld">
-        <span class="tcard-ghost" aria-hidden="true">02</span>
+        <span class="tcard-ghost" aria-hidden="true">03</span>
         <span class="bld-tag mono" aria-hidden="true">&#10003; mounted</span>
-        <div class="tcard-head mono"><span>The Raw Bros</span><span class="tcard-id">ID — 02</span></div>
+        <div class="tcard-head mono"><span>The Raw Bros</span><span class="tcard-id">ID — 03</span></div>
         <div class="tcard-main">
           <span class="avatar sq alt"><img src="img/nahid.jpg" alt="Younus Ali Nahid — The Raw Bros" loading="lazy" decoding="async"></span>
           <div class="tcard-role">
             <div class="name">Younus Ali Nahid</div>
+            <div class="tcard-tag mono">Engineer · Developer</div>
             <div class="tcard-meta mono">Dhaka · Bangladesh</div>
           </div>
         </div>
@@ -3177,6 +3205,7 @@ window.__rawMode = function (on) {
     addStep(q('.tcard-head', card), 'type', 9);
     addStep(q('.avatar img', card), 'img', 0, 240);
     addStep(q('.tcard-role .name', card), 'type', 14);
+    addStep(q('.tcard-tag', card), 'type', 10);
     addStep(q('.tcard-meta', card), 'type', 10);
     addStep(q('.tcard-spec', card), 'type', 8);
     addStep(q('.tcard-links', card), 'pop', 0, 170);
