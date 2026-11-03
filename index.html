@@ -16,9 +16,12 @@
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="The Raw Bros — web development agency in Dhaka, Bangladesh">
-<link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32.png">
-<link rel="icon" type="image/png" sizes="192x192" href="img/icon-192.png">
-<link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" type="image/png" sizes="128x128" href="/img/favicon-128.png?v=2">
+<link rel="icon" type="image/png" sizes="48x48" href="/img/favicon-48.png?v=2">
+<link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32.png?v=2">
+<link rel="icon" type="image/png" sizes="192x192" href="/img/icon-192.png?v=2">
+<link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png?v=2">
 <link rel="canonical" href="https://therawbros.tech/">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="The Raw Bros — Web Development Agency in Dhaka, Bangladesh">
@@ -37,8 +40,6 @@
 <meta name="msapplication-TileColor" content="#050507">
 <meta name="color-scheme" content="dark">
 <link rel="manifest" href="/site.webmanifest">
-<link rel="icon" type="image/svg+xml" href="img/favicon.svg">
-<link rel="mask-icon" href="img/favicon.svg" color="#050507">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"ProfessionalService","name":"The Raw Bros","url":"https://therawbros.tech/","logo":"https://therawbros.tech/img/logo.PNG","image":"https://therawbros.tech/img/logo.PNG","email":"hello.therawbros@gmail.com","description":"Web development agency in Dhaka, Bangladesh building custom websites, e-commerce stores and web apps.","address":{"@type":"PostalAddress","addressLocality":"Dhaka","addressCountry":"BD"},"areaServed":"Worldwide","knowsAbout":["Web Development","E-commerce","UI/UX Design","React","Next.js","Node.js","PostgreSQL","PWA"]}
 </script>
@@ -113,7 +114,7 @@
   "@graph": [
     {
       "@type": "Person",
-      "name": "Gm Anondo",
+      "name": "G.M. Millat (Anondo)",
       "image": "https://therawbros.tech/img/anondo.jpg",
       "url": "https://therawbros.tech/"
     },
@@ -940,7 +941,7 @@ body.ask-open .ask-panel{opacity:1;visibility:visible;transform:none}
 @media(max-width:700px){.ask-panel{left:10px;right:10px;bottom:10px;width:auto;height:min(72dvh,620px);border-radius:22px;transform-origin:50% 100%}}
 .ask-head{display:flex;align-items:center;gap:12px;padding:14px 16px;background:linear-gradient(180deg,color-mix(in srgb,var(--or) 13%,#0b0c11),#0b0c11);border-bottom:1px solid var(--line)}
 .ask-ava{width:42px;height:42px;border-radius:50%;padding:2px;background:linear-gradient(140deg,var(--grad-a),var(--grad-b));flex:none}
-.ask-ava img{width:100%;height:100%;border-radius:50%;background:#0b0c11;object-fit:cover;display:block}
+.ask-ava svg{width:100%;height:100%;border-radius:50%;background:#0b0c11;color:var(--or-2);padding:8px;display:block}
 .ask-head h4{font-family:var(--disp);font-size:15.5px}
 .ask-head p{font-size:11px;color:var(--muted);display:flex;align-items:center;gap:6px;margin-top:2px}
 .ask-live{width:7px;height:7px;border-radius:50%;background:#2bff7d;animation:bootDot 1.7s steps(2) infinite;flex:none}
@@ -1467,9 +1468,10 @@ body.ask-open .ask-panel{opacity:1;visibility:visible;transform:none}
         <span class="bld-tag mono" aria-hidden="true">&#10003; mounted</span>
         <div class="tcard-head mono"><span>The Raw Bros</span><span class="tcard-id">ID — 01</span></div>
         <div class="tcard-main">
-          <span class="avatar sq"><img src="img/father.jpg" alt="Mohammad Anwar Hossain Gazi — The Raw Bros" loading="lazy" decoding="async"></span>
+          <span class="avatar sq"><img src="img/father.jpg" alt="Md. Anwar Hossain Gazi — The Raw Bros" loading="lazy" decoding="async"></span>
           <div class="tcard-role">
-            <div class="name">Mohammad Anwar Hossain Gazi</div>
+            <div class="name">Md. Anwar Hossain Gazi</div>
+            <div class="tcard-tag mono" style="text-transform:none">B.Sc, M.Ed</div>
             <div class="tcard-meta mono">Dhaka · Bangladesh</div>
           </div>
         </div>
@@ -1486,9 +1488,9 @@ body.ask-open .ask-panel{opacity:1;visibility:visible;transform:none}
         <span class="bld-tag mono" aria-hidden="true">&#10003; mounted</span>
         <div class="tcard-head mono"><span>The Raw Bros</span><span class="tcard-id">ID — 02</span></div>
         <div class="tcard-main">
-          <span class="avatar sq"><img src="img/anondo.jpg" alt="Gm Anondo — The Raw Bros" loading="lazy" decoding="async"></span>
+          <span class="avatar sq"><img src="img/anondo.jpg" alt="G.M. Millat (Anondo) — The Raw Bros" loading="lazy" decoding="async"></span>
           <div class="tcard-role">
-            <div class="name">Gm Anondo</div>
+            <div class="name">G.M. Millat (Anondo)</div>
             <div class="tcard-tag mono">Engineer · Developer</div>
             <div class="tcard-meta mono">Dhaka · Bangladesh</div>
           </div>
@@ -1840,7 +1842,7 @@ body.ask-open .ask-panel{opacity:1;visibility:visible;transform:none}
   <div class="ask-teaser" id="askTeaser">Questions? Ask me — I reply instantly.</div>
   <div class="ask-panel" id="askPanel" role="dialog" aria-label="Ask The Raw Bros" aria-hidden="true">
     <div class="ask-head">
-      <span class="ask-ava"><img src="img/logo-icon.PNG" alt=""></span>
+      <span class="ask-ava"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 8l-4.5 4L8 16M16 8l4.5 4L16 16M13.5 6.5l-3 11"/></svg></span>
       <div><h4>Ask TRB</h4><p><span class="ask-live"></span> online — replies instantly</p></div>
       <button type="button" class="ask-x ask-clear" id="askClear" aria-label="Clear chat" title="Clear chat"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h18M8 6V4h8v2M6 6l1 14h10l1-14M10 11v5M14 11v5"/></svg></button>
       <button type="button" class="ask-x" id="askClose" aria-label="Close chat">&times;</button>
@@ -2285,7 +2287,7 @@ if (gtEl) {
     team: function () {
       gtPrint([
         { t: 'The humans:', c: 'o-or' },
-        'Gm Anondo & Younus Ali Nahid.',
+        'G.M. Millat (Anondo) & Younus Ali Nahid.',
         "Titles? We don't split hairs — both of us design, build and deploy, end to end.",
         'You always talk to the people actually writing your code.'
       ]);
@@ -2856,9 +2858,9 @@ if (hintToast) {
       en: "Fastest is WhatsApp — we reply within 24 hours. Email works too: hello.therawbros@gmail.com",
       bn: "সবচেয়ে দ্রুত মাধ্যম WhatsApp — ২৪ ঘণ্টার মধ্যে উত্তর দিই। ইমেইলেও পাবেন: hello.therawbros@gmail.com",
       acts: [{ t: 'WhatsApp', w: 'Hi The Raw Bros!' }, { t: 'Email us', m: 1 }] },
-    { r: /team|who are you|anondo|nahid|founder|owner|কারা|তোমরা কারা|members/i,
-      en: "The Raw Bros is Gm Anondo & Younus Ali Nahid — a two-dev studio from Dhaka. Design, build, deploy: the people you talk to are the people who ship your site.",
-      bn: "The Raw Bros মানে Gm Anondo ও Younus Ali Nahid — ঢাকার ছোট্ট ডেভ স্টুডিও। ডিজাইন, বিল্ড, ডিপ্লয় — যাদের সাথে কথা বলবেন, তারাই আপনার সাইট বানাবেন।",
+    { r: /team|who are you|anondo|millat|nahid|founder|owner|কারা|তোমরা কারা|members/i,
+      en: "The Raw Bros is G.M. Millat (Anondo) & Younus Ali Nahid — a two-dev studio from Dhaka. Design, build, deploy: the people you talk to are the people who ship your site.",
+      bn: "The Raw Bros মানে G.M. Millat (Anondo) ও Younus Ali Nahid — ঢাকার ছোট্ট ডেভ স্টুডিও। ডিজাইন, বিল্ড, ডিপ্লয় — যাদের সাথে কথা বলবেন, তারাই আপনার সাইট বানাবেন।",
       acts: [{ t: 'Meet the team →', g: 'team' }] },
     { r: /wordpress|template|wix|shopify|page ?builder|technology|\bstack\b|react|টেমপ্লেট/i,
       en: "No templates and no page builders — everything we ship is 100% custom code (React / Next.js, Node, PostgreSQL…). Faster load times, better security, and a site that grows with you.",
