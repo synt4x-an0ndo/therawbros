@@ -1,12 +1,9 @@
+
 # The Raw Bros — https://therawbros.tech
-# Single-page site: no admin areas, member paths, carts or
-# private routes to protect, so everything is crawlable.
+# Allow all search engine crawlers and indexing bots.
 
 User-agent: *
 Allow: /
 
-# Politeness for smaller crawlers (Bing honours Crawl-delay;
-# Google ignores it but rate-limits itself regardless).
-Crawl-delay: 10
-
+# XML Sitemap
 Sitemap: https://therawbros.tech/sitemap.xml
