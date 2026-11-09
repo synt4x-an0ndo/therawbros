@@ -3299,6 +3299,13 @@ window.__rawMode = function (on) {
     setTimeout(function () { ran = true; window.__buildTeam(); }, 650);
   };
 })();
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('/sw.js').catch(function (error) {
+      console.warn('PWA service worker registration failed:', error);
+    });
+  });
+}
 </script>
 </body>
 </html>
