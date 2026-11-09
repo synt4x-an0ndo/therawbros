@@ -1,5 +1,5 @@
-const CACHE_NAME = 'therawbros-v1';
-const APP_SHELL = ['/', '/index.html', '/site.webmanifest', '/img/icon-192.png', '/img/icon-512.png'];
+const CACHE_NAME = 'therawbros-v2';
+const APP_SHELL = ['/', '/index.html', '/site.webmanifest', '/img/app-icon-192-v2.png', '/img/app-icon-512-v2.png'];
 
 self.addEventListener('install', event => {
   event.waitUntil(
