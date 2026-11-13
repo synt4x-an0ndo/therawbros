@@ -117,12 +117,6 @@
       "name": "G.M. Millat (Anondo)",
       "image": "https://therawbros.tech/img/anondo.jpg",
       "url": "https://therawbros.tech/"
-    },
-    {
-      "@type": "Person",
-      "name": "Younus Ali Nahid",
-      "image": "https://therawbros.tech/img/nahid.jpg",
-      "url": "https://therawbros.tech/"
     }
   ]
 }
@@ -521,6 +515,10 @@ h1,h2{text-wrap:balance}
 .tcard-links .lft{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
 .tcard .barcode{display:block;flex:0 0 auto;width:92px;height:30px;opacity:.5;
   background:repeating-linear-gradient(90deg,#4A4A56 0 2px,transparent 2px 5px,#4A4A56 5px 6px,transparent 6px 10px,#4A4A56 10px 13px,transparent 13px 16px)}
+.tcard.ex,.tcard.ex.reveal.in{opacity:.62}
+.tcard.ex .tcard-id{color:var(--dim)}
+.tcard.ex .avatar img,.tcard.ex:hover .avatar img{filter:grayscale(1)}
+.ex-badge{display:inline-flex;align-items:center;padding:6px 12px;border-radius:999px;border:1px dashed rgba(255,255,255,.18);color:var(--dim);font-size:10.5px;letter-spacing:.18em;text-transform:uppercase}
 .tcard-ghost{position:absolute!important;right:6px;bottom:-28px;z-index:0!important;font-size:128px;font-weight:800;letter-spacing:-.05em;line-height:1;color:rgba(255,255,255,.035);pointer-events:none;user-select:none}
 @media (max-width:520px){.tcard .barcode{display:none}.tcard-ghost{font-size:96px;bottom:-20px}}
 .svc{position:relative;transition:transform .35s ease}
@@ -1505,23 +1503,22 @@ body.ask-open .ask-panel{opacity:1;visibility:visible;transform:none}
         </div>
       </article>
 
-      <article class="tcard reveal bld">
+      <article class="tcard reveal bld ex">
         <span class="tcard-ghost" aria-hidden="true">03</span>
         <span class="bld-tag mono" aria-hidden="true">&#10003; mounted</span>
-        <div class="tcard-head mono"><span>The Raw Bros</span><span class="tcard-id">ID — 03</span></div>
+        <div class="tcard-head mono"><span>The Raw Bros</span><span class="tcard-id">ID — 03 · EX</span></div>
         <div class="tcard-main">
-          <span class="avatar sq alt"><img src="img/nahid.jpg" alt="Younus Ali Nahid — The Raw Bros" loading="lazy" decoding="async"></span>
+          <span class="avatar sq alt"><img src="img/nahid.jpg" alt="Younus Ali Nahid — former member of The Raw Bros" loading="lazy" decoding="async"></span>
           <div class="tcard-role">
             <div class="name">Younus Ali Nahid</div>
-            <div class="tcard-tag mono">Engineer · Developer</div>
+            <div class="tcard-tag mono">Former Engineer · Developer</div>
             <div class="tcard-meta mono">Dhaka · Bangladesh</div>
           </div>
         </div>
-        <p class="tcard-spec mono">Design · Build · Deploy — End to End</p>
+        <p class="tcard-spec mono">Ex-member — no longer with the team</p>
         <div class="tcard-links">
           <span class="lft">
-            <a class="link-btn" href="https://wa.me/mdyanahid" target="_blank" rel="noopener">WhatsApp <svg><use href="#i-arrow"/></svg></a>
-            <a class="link-btn plain" href="mailto:hello.therawbros@gmail.com">Available for work</a>
+            <span class="ex-badge mono">Alumni</span>
           </span>
           <span class="barcode" aria-hidden="true"></span>
         </div>
@@ -1537,6 +1534,41 @@ body.ask-open .ask-panel{opacity:1;visibility:visible;transform:none}
       <h2>Projects we&rsquo;ve <span class="hl">shipped.</span></h2>
       <p class="sec-sub">Real products, live on the web, built, tested and launched by us.</p>
     </div>
+
+    <article class="project reveal">
+      <a class="mock" href="https://tazzybd.com/" target="_blank" rel="noopener" aria-label="Open TAZZY website">
+        <div class="mock-bar">
+          <span class="dot o"></span><span class="dot"></span><span class="dot"></span>
+          <span class="url">https://tazzybd.com</span>
+        </div>
+        <img class="mock-shot" src="img/tazzy-shot.webp" alt="TAZZY — fashion and footwear online store designed and built by The Raw Bros" loading="lazy" decoding="async" width="1280" height="820">
+        <div class="mock-console mono"><span class="ok">200</span> GET /shop · 38ms</div>
+      </a>
+
+      <div class="p-info">
+        <div class="p-kicker mono">
+          <span class="live"><i></i>Live</span>
+          <span>E-commerce Store</span>
+        </div>
+        <h3>TAZZY</h3>
+        <p class="p-tagline">Premium Fashion &amp; Footwear in Bangladesh</p>
+        <p class="p-desc">An online store for fashion and footwear, built for shoppers across Bangladesh. We designed and custom-built the whole storefront — no WordPress, no page builders. Customers browse by category, search products, add to cart and order with cash on delivery to all 64 districts, with order tracking and WhatsApp support one tap away.</p>
+        <ul class="feat">
+          <li><svg><use href="#i-check"/></svg>Category catalog with product search</li>
+          <li><svg><use href="#i-check"/></svg>Cart, checkout and customer accounts</li>
+          <li><svg><use href="#i-check"/></svg>Cash on delivery across all 64 districts, with order tracking</li>
+          <li><svg><use href="#i-check"/></svg>WhatsApp order support, size guide and returns pages</li>
+          <li><svg><use href="#i-check"/></svg>Installable PWA, mobile-first and SEO-friendly</li>
+        </ul>
+        <div class="svc-tags">
+          <span class="tag hot">100% Custom Code</span><span class="tag">Next.js</span><span class="tag">React</span><span class="tag">PWA</span>
+        </div>
+        <div class="p-actions">
+          <a class="btn btn-primary" href="https://tazzybd.com/" target="_blank" rel="noopener">Visit tazzybd.com <svg><use href="#i-arrow"/></svg></a>
+          <a class="btn btn-ghost" href="#contact">Build something like this</a>
+        </div>
+      </div>
+    </article>
 
     <article class="project reveal">
       <a class="mock" href="https://zuberee.com/" target="_blank" rel="noopener" aria-label="Open Zuberee website">
@@ -2287,14 +2319,18 @@ if (gtEl) {
     team: function () {
       gtPrint([
         { t: 'The humans:', c: 'o-or' },
-        'G.M. Millat (Anondo) & Younus Ali Nahid.',
-        "Titles? We don't split hairs — both of us design, build and deploy, end to end.",
+        'Md. Anwar Hossain Gazi (owner) & G.M. Millat (Anondo), developer.',
+        'Anondo designs, builds and deploys, end to end.',
+        { t: 'Alumni: Younus Ali Nahid (ex-member).', c: 'o-dim' },
         'You always talk to the people actually writing your code.'
       ]);
     },
     work: function () {
       gtPrint([
-        { t: 'Latest launch: Zuberee', c: 'o-or' },
+        { t: 'Latest launch: TAZZY', c: 'o-or' },
+        'A custom fashion & footwear store for Bangladesh — cash on delivery to all 64 districts, order tracking, PWA.',
+        { html: 'Visit it live: <a href="https://tazzybd.com/" target="_blank" rel="noopener">tazzybd.com</a>' },
+        { t: 'Also live: Zuberee', c: 'o-or' },
         'A full custom e-commerce store for premium imported goods — storefront, admin, payments, PWA and more.',
         { html: 'Visit it live: <a href="https://zuberee.com/" target="_blank" rel="noopener">zuberee.com</a>' },
         { t: "Yours could be next — type 'hire-us'.", c: 'o-dim' }
@@ -2491,6 +2527,7 @@ var PAL = [
       setTimeout(function () { var i = document.getElementById('gtIn'); if (i) i.focus({ preventScroll: true }); }, 800);
     } },
   { t: 'Toggle X-Ray mode', c: 'action', k: 'xray x-ray inspect wireframe markup skeleton', run: function () { window.toggleXray(); } },
+  { t: 'Visit TAZZY — live project', c: 'link', k: 'tazzy work project store live fashion footwear', run: function () { window.open('https://tazzybd.com/', '_blank', 'noopener'); } },
   { t: 'Visit Zuberee — live project', c: 'link', k: 'zuberee work project store live', run: function () { window.open('https://zuberee.com/', '_blank', 'noopener'); } },
   { t: 'Ask TRB — chat', c: 'action', k: 'chat ask question assistant ai help message', run: function () { if (window.openAsk) window.openAsk(); } },
   { t: 'Speed test — this page, your device', c: 'action', k: 'speed fast performance benchmark load', run: function () { var t = document.getElementById('playground'); if (t) t.scrollIntoView({ behavior: 'smooth' }); setTimeout(function () { if (typeof GT !== 'undefined' && GT.speed) { gtEcho('speed'); GT.speed(); } }, 650); } },
@@ -2850,17 +2887,17 @@ if (hintToast) {
       en: "We design and build, end to end:\n01 Frontend — the face of your product\n02 Backend — the engine room\n03 UI/UX design — clarity first\n04 Deploy & maintain\nBusiness websites, e-commerce stores and web apps.",
       bn: "আমরা শুরু থেকে শেষ পর্যন্ত বানাই:\n01 Frontend — প্রোডাক্টের চেহারা\n02 Backend — ইঞ্জিন রুম\n03 UI/UX Design\n04 Deploy & Maintain\nবিজনেস ওয়েবসাইট, ই-কমার্স স্টোর আর ওয়েব অ্যাপ।",
       acts: [{ t: 'See services →', g: 'services' }] },
-    { r: /portfolio|sample|example|previous work|zuberee|কাজ দেখ|পোর্টফোলিও|\bwork\b/i,
-      en: "Recent build: Zuberee — a full e-commerce platform for a Dhaka fashion store. Storefront, admin panel, orders, payments — the whole engine, hand-built.",
-      bn: "সাম্প্রতিক কাজ: Zuberee — ঢাকার একটি ফ্যাশন স্টোরের পূর্ণ ই-কমার্স প্ল্যাটফর্ম। স্টোরফ্রন্ট, admin panel, অর্ডার, পেমেন্ট — পুরোটাই হাতে বানানো।",
+    { r: /portfolio|sample|example|previous work|zuberee|tazzy|কাজ দেখ|পোর্টফোলিও|\bwork\b/i,
+      en: "Recent builds: TAZZY (tazzybd.com) — a fashion & footwear store with cash on delivery across Bangladesh; and Zuberee (zuberee.com) — a full e-commerce platform with storefront, admin panel, orders and payments. All hand-built.",
+      bn: "সাম্প্রতিক কাজ: TAZZY (tazzybd.com) — সারা বাংলাদেশে ক্যাশ অন ডেলিভারিসহ ফ্যাশন ও ফুটওয়্যার স্টোর; আর Zuberee (zuberee.com) — স্টোরফ্রন্ট, admin panel, অর্ডার, পেমেন্টসহ পূর্ণ ই-কমার্স প্ল্যাটফর্ম। পুরোটাই হাতে বানানো।",
       acts: [{ t: 'See the work →', g: 'projects' }] },
     { r: /contact|whatsapp|phone|number|e-?mail|\bcall\b|reach|নম্বর|নাম্বার|যোগাযোগ|ইমেইল/i,
       en: "Fastest is WhatsApp — we reply within 24 hours. Email works too: hello.therawbros@gmail.com",
       bn: "সবচেয়ে দ্রুত মাধ্যম WhatsApp — ২৪ ঘণ্টার মধ্যে উত্তর দিই। ইমেইলেও পাবেন: hello.therawbros@gmail.com",
       acts: [{ t: 'WhatsApp', w: 'Hi The Raw Bros!' }, { t: 'Email us', m: 1 }] },
     { r: /team|who are you|anondo|millat|nahid|founder|owner|কারা|তোমরা কারা|members/i,
-      en: "The Raw Bros is G.M. Millat (Anondo) & Younus Ali Nahid — a two-dev studio from Dhaka. Design, build, deploy: the people you talk to are the people who ship your site.",
-      bn: "The Raw Bros মানে G.M. Millat (Anondo) ও Younus Ali Nahid — ঢাকার ছোট্ট ডেভ স্টুডিও। ডিজাইন, বিল্ড, ডিপ্লয় — যাদের সাথে কথা বলবেন, তারাই আপনার সাইট বানাবেন।",
+      en: "The Raw Bros is a small dev studio from Dhaka — owned by Md. Anwar Hossain Gazi, with G.M. Millat (Anondo) as developer. Younus Ali Nahid is a former member. Design, build, deploy: the person you talk to is the person who ships your site.",
+      bn: "The Raw Bros ঢাকার ছোট্ট ডেভ স্টুডিও — মালিক Md. Anwar Hossain Gazi, ডেভেলপার G.M. Millat (Anondo)। Younus Ali Nahid আমাদের সাবেক সদস্য। ডিজাইন, বিল্ড, ডিপ্লয় — যার সাথে কথা বলবেন, সে-ই আপনার সাইট বানাবে।",
       acts: [{ t: 'Meet the team →', g: 'team' }] },
     { r: /wordpress|template|wix|shopify|page ?builder|technology|\bstack\b|react|টেমপ্লেট/i,
       en: "No templates and no page builders — everything we ship is 100% custom code (React / Next.js, Node, PostgreSQL…). Faster load times, better security, and a site that grows with you.",

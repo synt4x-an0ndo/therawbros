@@ -3,7 +3,7 @@
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://therawbros.tech/</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-11-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <image:image>
@@ -14,6 +14,11 @@
     <image:image>
       <image:loc>https://therawbros.tech/img/logo.PNG</image:loc>
       <image:title>The Raw Bros logo</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://therawbros.tech/img/tazzy-shot.webp</image:loc>
+      <image:title>TAZZY — fashion and footwear online store</image:title>
+      <image:caption>Fashion and footwear store for Bangladesh designed and built by The Raw Bros.</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://therawbros.tech/img/zuberee-shot.webp</image:loc>
@@ -30,7 +35,7 @@
     </image:image>
     <image:image>
       <image:loc>https://therawbros.tech/img/nahid.jpg</image:loc>
-      <image:title>Younus Ali Nahid — The Raw Bros</image:title>
+      <image:title>Younus Ali Nahid — former member of The Raw Bros</image:title>
     </image:image>
   </url>
 </urlset>
