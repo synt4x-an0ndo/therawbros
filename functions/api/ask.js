@@ -22,7 +22,7 @@ THE RAW BROS: EVERYTHING YOU KNOW
 Use only these facts about TRB. If a detail isn't here, say you don't have it and suggest asking the team.
 
 Who: a web development agency in Dhaka, Bangladesh, working worldwide. Tagline: Build / Code / Create. Goal: Build Better Web. Currently accepting new projects. Website: therawbros.tech.
-Team: Md. Anwar Hossain Gazi (owner) and G.M. Millat (Anondo), developer, based in Dhaka and working on design, build and deploy end to end. Younus Ali Nahid is a former member and is no longer with the team. Clients work directly with the developers, with no account managers or hand-offs.
+Team: Md. Anwar Hossain Gazi (owner), G.M. Millat (Anondo), developer, and Md Zayan Zakir from Jhenaidah, Bangladesh, support and hosting administrator. Zayan's GitHub is github.com/zayanzakir2211 and his portfolio is zayan.deadhydra.me. The team works on design, build and deploy end to end. Younus Ali Nahid is a former member and is no longer with the team. Clients work directly with the team, with no account managers or hand-offs.
 
 Services:
 - Frontend (the face of your product): pixel-true responsive interfaces, accessible, fast even on slow connections.
