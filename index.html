@@ -623,24 +623,30 @@ h1,h2,.wordmark,.p-info h3,.svc h3,.tcard-role .name,.brand-name,.stat-n{font-fa
 /* live site preview: scrolls Home, crossfades to Shop, loops */
 .live-view{position:relative;aspect-ratio:1280/820;overflow:hidden;background:#F1ECF8}
 .live-view img{position:absolute;left:0;top:0;width:100%;height:auto;display:block;will-change:transform,opacity}
-.lv-home{animation:lvHome 26s linear infinite}
-.lv-shop{opacity:0;animation:lvShop 26s linear infinite}
+/* per project: --lv-dur and each layer's --lv-end = -(imgH - 820) / imgH */
+.live-view{--lv-dur:26s}
+.lv-zuberee{--lv-dur:32s}
+.lv-home{--lv-end:-68.09%;animation:lvHome var(--lv-dur) linear infinite}
+.lv-shop{--lv-end:-62.21%;opacity:0;animation:lvShop var(--lv-dur) linear infinite}
+.lv-zuberee .lv-home{--lv-end:-80.84%}
+.lv-zuberee .lv-shop{--lv-end:-76.84%}
 .lv-swap{display:inline-grid;vertical-align:bottom}
 .lv-swap>span{grid-area:1/1}
 .lv-a{animation:lvA 26s linear infinite}
 .lv-b{opacity:0;animation:lvB 26s linear infinite}
+.lv-zuberee-mock .lv-a,.lv-zuberee-mock .lv-b{animation-duration:32s}
 @keyframes lvHome{
   0%,6%{transform:translateY(0);opacity:1;animation-timing-function:cubic-bezier(.45,0,.55,1)}
-  40%,46%{transform:translateY(-68.09%);opacity:1}
-  50%{transform:translateY(-68.09%);opacity:0}
+  40%,46%{transform:translateY(var(--lv-end));opacity:1}
+  50%{transform:translateY(var(--lv-end));opacity:0}
   50.01%,94%{transform:translateY(0);opacity:0}
   100%{transform:translateY(0);opacity:1}
 }
 @keyframes lvShop{
   0%,46%{transform:translateY(0);opacity:0}
   50%,56%{transform:translateY(0);opacity:1;animation-timing-function:cubic-bezier(.45,0,.55,1)}
-  88%,94%{transform:translateY(-62.21%);opacity:1}
-  100%{transform:translateY(-62.21%);opacity:0}
+  88%,94%{transform:translateY(var(--lv-end));opacity:1}
+  100%{transform:translateY(var(--lv-end));opacity:0}
 }
 @keyframes lvA{0%,47%{opacity:1}48%,97%{opacity:0}98%,100%{opacity:1}}
 @keyframes lvB{0%,47%{opacity:0}48%,97%{opacity:1}98%,100%{opacity:0}}
@@ -1643,13 +1649,16 @@ body.ask-open .ask-panel{opacity:1;visibility:visible;transform:none}
     </article>
 
     <article class="project reveal">
-      <a class="mock" href="https://zuberee.com/" target="_blank" rel="noopener" aria-label="Open Zuberee website">
+      <a class="mock lv-zuberee-mock" href="https://zuberee.com/" target="_blank" rel="noopener" aria-label="Open Zuberee website">
         <div class="mock-bar">
           <span class="dot o"></span><span class="dot"></span><span class="dot"></span>
-          <span class="url">https://zuberee.com</span>
+          <span class="url"><span class="lv-swap"><span class="lv-a">https://zuberee.com</span><span class="lv-b" aria-hidden="true">https://zuberee.com/shop</span></span></span>
         </div>
-        <img class="mock-shot" src="img/zuberee-shot.webp" alt="Zuberee — custom e-commerce storefront designed and built by The Raw Bros" loading="lazy" decoding="async" width="1280" height="820">
-        <div class="mock-console mono"><span class="ok">200</span> GET /api/products · 42ms</div>
+        <div class="live-view lv-zuberee" role="img" aria-label="Zuberee — custom e-commerce storefront designed and built by The Raw Bros, scrolling through the Home and Shop pages">
+          <img class="lv-home" src="img/zuberee-home-v1.webp" alt="" loading="lazy" decoding="async" width="1280" height="4280">
+          <img class="lv-shop" src="img/zuberee-shop-v1.webp" alt="" loading="lazy" decoding="async" width="1280" height="3540">
+        </div>
+        <div class="mock-console mono"><span class="ok">200</span> GET <span class="lv-swap"><span class="lv-a">/</span><span class="lv-b" aria-hidden="true">/shop</span></span> · 42ms</div>
       </a>
 
       <div class="p-info">
