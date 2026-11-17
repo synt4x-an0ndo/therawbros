@@ -1,4 +1,4 @@
-const CACHE_NAME = 'therawbros-v4';
+const CACHE_NAME = 'therawbros-v5';
 const APP_SHELL = ['/', '/index.html', '/site.webmanifest', '/img/app-icon-192-v3.png', '/img/app-icon-512-v3.png'];
 
 self.addEventListener('install', event => {
